@@ -7,7 +7,7 @@ Init: xorg-xinit\
 Launcher: dmenu\
 Layout: i3-layouts (AUR)\
 Compositor: picom\
-Wallpaper: feh
+Wallpaper: feh\
 Screenshot: maim
 
 ## IO settings
@@ -20,8 +20,8 @@ Mouse: xorg-xinput
 Shell: fish\
 Terminal: rxvt-unicode\
 Prompt: starship\
-Editor: micro
-Task manager: htop
+Editor: micro\
+Task manager: htop\
 Clipboard: xclip
 
 ## Development
@@ -35,16 +35,16 @@ dotnet-runtime\
 dotnet-sdk\
 jdk-openjdk\
 php\
-xampp (AUR)
-packettracer (AUR)
+xampp (AUR)\
+packettracer (AUR)\
 sdl2_image\
 sdl2_mixer\
 sdl2_ttf\
 sdl2_net
 
 ## Apps
-Explorer: nemo, nemo-fileroller
-Browser: google-chrome (AUR)
+Explorer: nemo, nemo-fileroller\
+Browser: google-chrome (AUR)\
 Office: libreoffice-fresh\
 Image editors: gimp, inkscape, aseprite (STEAM)\
 Audio editor: audacity\
