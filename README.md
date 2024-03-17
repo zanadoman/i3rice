@@ -70,7 +70,11 @@ google-chrome: login\
 code: extension and some tinkering with gui\
 libreoffice-fresh: disable tips\
 nemo: setup folders\
-git: user.name user.email
+git: user.name user.email\
+steam: login\
+minecraft-launcher: login\
+discord: login, keybind, notification off, text size\
+wine: first start
 
 ## Other
 .ssh folder config\
