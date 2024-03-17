@@ -1,5 +1,7 @@
 # Packages
 
+Dependency: git
+
 ## i3wm
 Core: i3-wm, i3status\
 Server: xorg-server\
@@ -19,6 +21,7 @@ Mouse: xorg-xinput
 ## Terminal
 Shell: fish\
 Terminal: rxvt-unicode\
+Info: fastfetch\
 Prompt: starship\
 Editor: micro\
 Task manager: htop\
@@ -37,6 +40,7 @@ jdk-openjdk\
 php\
 xampp (AUR)\
 packettracer (AUR)\
+mysql-workbench\
 sdl2_image\
 sdl2_mixer\
 sdl2_ttf\
