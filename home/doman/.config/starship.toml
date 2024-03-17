@@ -1,11 +1,11 @@
 # Username
 [username]
-format = " [╭─$user](cyan)@"
+format = "[╭─$user](cyan)"
 show_always = true
 
 # Hostname
 [hostname]
-format = "[$hostname](blue): "
+format = "[@](white)[$hostname](blue): "
 ssh_only = false
 
 # Directory
@@ -18,11 +18,11 @@ format = "[$duration](dimmed white)"
 
 # Time
 [time]
-format = " [│](cyan) [$time](dimmed white)\n"
+format = "[│](cyan) [$time](dimmed white)\n"
 time_format = "%r"
 disabled = false
 
 # Prompt
 [character]
-success_symbol = "[ ╰─>](cyan)"
-error_symbol = "[ ╰─X](red)"
+success_symbol = "[╰─>](cyan)"
+error_symbol = "[╰─X](red)"
