@@ -13,3 +13,10 @@ Productivity: libreoffice-fresh, gimp, audacity, inkscape, aseprite (STEAM)
 Compatibility: wine
 Entertainment: steam, minecraft-launcher (AUR), spotify-launcher, discord
 Font: noto-fonts-emoji
+
+# Packages
+
+#
+Shell: fish/
+Terminal: rxvt-unicode/
+Prompt: starship
