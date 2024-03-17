@@ -61,7 +61,7 @@ Emoji font: noto-fonts-emoji\
 Gaming: steam, minecraft-launcher (AUR),  jdk17-openjdk\
 Music: spotify-launcher
 
-# Additional setup:
+# Additional setup
 fish: set -U fish_greeting\
 grub: grub-mkconfig -o /boot/grub/grub.cfg\
 packettracer: download deb and make then login\
