@@ -1,0 +1,31 @@
+{
+    "editor.fontSize": 16,
+    "editor.fontWeight": "bold",
+    "editor.smoothScrolling": true,
+    "editor.cursorBlinking": "smooth",
+    "editor.cursorSmoothCaretAnimation": "on",
+    "editor.minimap.enabled": false,
+    "editor.stickyScroll.enabled": false,
+    "workbench.iconTheme": "vscode-icons",
+    "workbench.activityBar.location": "hidden",
+    "workbench.list.smoothScrolling": true,
+    "terminal.integrated.sendKeybindingsToShell": true,
+    "terminal.integrated.smoothScrolling": true,
+    "files.autoSave": "afterDelay",
+    "files.autoSaveDelay": 0,
+    "files.autoSaveWhenNoErrors": true,
+    "git.enableSmartCommit": true,
+    "git.confirmSync": false,
+    "diffEditor.ignoreTrimWhitespace": false,
+    "window.menuBarVisibility": "toggle",
+    "clangd.arguments": [
+        "--header-insertion=never"
+    ],
+    "codeium.enableCodeLens": false,
+    "fiveServer.php.executable": "/usr/bin/php",
+    "php.validate.run": "onType",
+    "workbench.startupEditor": "none",
+    "fiveServer.injectBody": true,
+    "clangd.path": "/home/doman/.config/Code - OSS/User/globalStorage/llvm-vs-code-extensions.vscode-clangd/install/17.0.3/clangd_17.0.3/bin/clangd",
+    "security.workspace.trust.untrustedFiles": "open"
+}
