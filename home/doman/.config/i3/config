@@ -202,7 +202,7 @@ bar {
 
 # Monitor setup
 exec --no-startup-id xrandr --output DP-2 --primary
-exec --no-startup-id xrandr --output HDMI-1 --rotate left
+exec --no-startup-id xrandr --output HDMI-1 --pos 1920x-600 --rotate left
 
 # Custom binds
 bindsym $mod+e exec --no-startup-id nemo
