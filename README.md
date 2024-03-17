@@ -44,7 +44,8 @@ mysql-workbench\
 sdl2_image\
 sdl2_mixer\
 sdl2_ttf\
-sdl2_net
+sdl2_net\
+mosh
 
 ## Apps
 Explorer: nemo, nemo-fileroller\
@@ -59,3 +60,18 @@ Compatibility: wine\
 Emoji font: noto-fonts-emoji\
 Gaming: steam, minecraft-launcher (AUR),  jdk17-openjdk\
 Music: spotify-launcher
+
+# Additional setup:
+fish: set -U fish_greeting\
+grub: grub-mkconfig -o /boot/grub/grub.cfg\
+packettracer: download deb and make then login\
+spotify-launcher: login\
+google-chrome: login\
+code: extension and some tinkering with gui\
+libreoffice-fresh: disable tips\
+nemo: setup folders\
+git: user.name user.email
+
+## Other
+.ssh folder config\
+chown home directory after applying dots

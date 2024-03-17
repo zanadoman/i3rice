@@ -26,5 +26,6 @@
     ],
     "codeium.enableCodeLens": false,
     "fiveServer.php.executable": "/usr/bin/php",
-    "php.validate.run": "onType"
+    "php.validate.run": "onType",
+    "vsicons.dontShowNewVersionMessage": true
 }
