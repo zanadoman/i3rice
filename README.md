@@ -17,6 +17,6 @@ Font: noto-fonts-emoji
 # Packages
 
 #
-Shell: fish/
-Terminal: rxvt-unicode/
+Shell: fish\
+Terminal: rxvt-unicode\
 Prompt: starship
