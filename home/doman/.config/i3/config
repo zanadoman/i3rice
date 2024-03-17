@@ -235,3 +235,6 @@ exec --no-startup-id i3-layouts
 
 # Compositor
 exec --no-startup-id picom -b
+
+# Mouse behavior
+focus_follows_mouse no
