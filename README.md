@@ -38,7 +38,7 @@ dotnet-runtime\
 dotnet-sdk\
 jdk-openjdk\
 php\
-xampp (AUR)\
+xampp (Official Website)\
 packettracer (AUR)\
 mysql-workbench\
 sdl2_image\
