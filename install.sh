@@ -26,5 +26,5 @@ grub-mkconfig -o /boot/grub/grub.cfg
 chsh -s /bin/fish
 echo "set -U fish_greeting" | fish
 sudo cp -r etc /
-sudo cp -r home /
-sudo chown -R doman:doman /home/doman
+sudo cp -r home/doman/* /home/$USER/
+sudo chown -R $USER:$USER /home/$USER
