@@ -62,8 +62,8 @@ Gaming: steam, minecraft-launcher (AUR),  jdk17-openjdk\
 Music: spotify-launcher
 
 # Additional setup
-fish: set -U fish_greeting\
-grub: grub-mkconfig -o /boot/grub/grub.cfg\
+fish: change shell and set -U fish_greeting (manual install only)\
+grub: grub-mkconfig -o /boot/grub/grub.cfg (manual install only)\
 packettracer: download deb and make then login\
 spotify-launcher: login\
 google-chrome: login\
@@ -74,9 +74,10 @@ git: user.name user.email\
 steam: login\
 minecraft-launcher: login\
 discord: login, keybind, notification off, text size\
-wine: first start
+wine: first start\
 xampp: download
+i3: monitor and touchpad setup
 
 ## Other
 .ssh folder config\
-chown home directory after applying dots
+chown home directory after applying dots (manual install only)
