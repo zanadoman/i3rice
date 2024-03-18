@@ -75,6 +75,7 @@ steam: login\
 minecraft-launcher: login\
 discord: login, keybind, notification off, text size\
 wine: first start
+xampp: download
 
 ## Other
 .ssh folder config\
