@@ -23,12 +23,11 @@ Shell: fish\
 Terminal: rxvt-unicode\
 Info: fastfetch\
 Prompt: starship\
-Editor: micro\
 Task manager: htop\
 Clipboard: xclip
 
 ## Development
-Editor: code
+Editor: nvim, nvim-lazy (AUR)
 
 ### Tools
 cmake\
@@ -67,10 +66,9 @@ grub: grub-mkconfig -o /boot/grub/grub.cfg (manual install only)\
 packettracer: download deb and make then login\
 spotify-launcher: login\
 google-chrome: login\
-code: extension and some tinkering with gui\
 libreoffice-fresh: disable tips\
 nemo: setup folders\
-git: user.name user.email\
+git: user.name user.email, credential.helper\
 steam: login\
 minecraft-launcher: login\
 discord: login, keybind, notification off, text size\

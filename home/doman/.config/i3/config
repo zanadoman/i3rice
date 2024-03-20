@@ -207,7 +207,7 @@ bar {
 
 # Custom binds
 bindsym $mod+e exec --no-startup-id nemo
-bindsym $mod+c exec --no-startup-id code
+bindsym $mod+c exec --no-startup-id urxvt -e nvim
 bindsym $mod+b exec --no-startup-id google-chrome-stable
 
 # Screenshot
