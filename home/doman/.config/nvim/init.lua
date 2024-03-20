@@ -59,7 +59,7 @@ require('mason-lspconfig').setup({
     }
 })
 
--- Start and configure cmp
+-- Start cmp and configure luasnip
 
 require('cmp').setup({
     snippet = {
@@ -72,20 +72,16 @@ require('cmp').setup({
 		{name = 'buffer'}
     },
     mapping = {
+		['<Up>'] = require('cmp').mapping.select_prev_item(select_opts),
+		['<Down>'] = require('cmp').mapping.select_next_item(select_opts),
 		['<Tab>'] = require('cmp').mapping.confirm({select = true}),
 		['<Escape>'] = require('cmp').mapping.abort(),
-		['<Up>'] = require('cmp').mapping.select_prev_item(select_opts),
-		['<Down>'] = require('cmp').mapping.select_next_item(select_opts)
+		['<C-Up>'] = require('cmp').mapping.scroll_docs(-1),
+		['<C-Down>'] = require('cmp').mapping.scroll_docs(1)
     },
     window = {
-		completion = {
-	    	winhighlight = 'Normal:#00000000',
-	    	scrollbar = false
-		},
-		documentation = {
-	    	winhighlight = 'Normal:#00000000',
-	    	scrollbar = false
-		}
+		completion = require('cmp').config.window.bordered(),
+		documentation = require('cmp').config.window.bordered()
     }
 })
 
