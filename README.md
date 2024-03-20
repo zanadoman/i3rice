@@ -27,7 +27,7 @@ Task manager: htop\
 Clipboard: xclip
 
 ## Development
-Editor: nvim, nvim-lazy (AUR)
+Editor: nvim, nvim-lazy (AUR), npm
 
 ### Tools
 cmake\

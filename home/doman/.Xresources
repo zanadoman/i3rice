@@ -1,7 +1,7 @@
 !! URxvt style
 
 ! Font
-URxvt.font: xft:monospace:pixelsize=12
+URxvt.font: xft:mono:pixelsize=14:style=bold
 
 ! Scrollbar
 URxvt.scrollBar: false
