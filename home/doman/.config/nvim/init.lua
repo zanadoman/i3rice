@@ -1,4 +1,4 @@
-	-- Line numbers
+-- Line numbers
 
 vim.o.number = true
 
@@ -7,17 +7,15 @@ vim.o.number = true
 vim.o.tabstop = 4
 vim.o.shiftwidth = 4
 
--- Autosave
+-- Border column
 
-vim.o.autowriteall = true
+vim.o.colorcolumn = '80'
 
 -- Activate LSP on insert
 
 vim.diagnostic.config({
 	update_in_insert = true
 })
-
-vim.lsp.buf.hover()
 
 -- Install plugins
 
@@ -41,7 +39,10 @@ require('lazy').setup({
     {
 		'Exafunction/codeium.nvim',
 		'nvim-lua/plenary.nvim'
-    }
+    },
+	{
+		'Mofiqul/vscode.nvim'
+	}
 })
 
 -- Start autoclose
@@ -90,6 +91,23 @@ require('cmp').setup({
     }
 })
 
+-- Documentation popup
+
+vim.o.updatetime = 1000
+
+vim.api.nvim_create_autocmd('CursorHold', {
+    callback = function()
+		vim.lsp.buf.hover()
+	end
+})
+
+vim.lsp.handlers['textDocument/hover'] = vim.lsp.with(
+    vim.lsp.handlers.hover,
+    {
+        border = 'rounded'
+    }
+)
+
 -- Start LSPs
 
 require('lspconfig').clangd.setup({})
@@ -101,3 +119,7 @@ require('lspconfig').intelephense.setup({})
 -- Start codeium
 
 require('codeium').setup()
+
+-- Theme
+
+require('vscode').load('dark')
