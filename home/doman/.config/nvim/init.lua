@@ -1,4 +1,4 @@
--- Line numbers
+	-- Line numbers
 
 vim.o.number = true
 
@@ -16,6 +16,8 @@ vim.o.autowriteall = true
 vim.diagnostic.config({
 	update_in_insert = true
 })
+
+vim.lsp.buf.hover()
 
 -- Install plugins
 
@@ -54,8 +56,11 @@ require('mason').setup()
 
 require('mason-lspconfig').setup({
     ensure_installed = {
-		"clangd",
-		"csharp_ls"
+		'clangd',
+		'csharp_ls',
+		'jdtls',
+		'pyright',
+		'intelephense'
     }
 })
 
@@ -89,6 +94,9 @@ require('cmp').setup({
 
 require('lspconfig').clangd.setup({})
 require('lspconfig').csharp_ls.setup({})
+require('lspconfig').jdtls.setup({})
+require('lspconfig').pyright.setup({})
+require('lspconfig').intelephense.setup({})
 
 -- Start codeium
 
