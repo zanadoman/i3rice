@@ -63,7 +63,7 @@ Music: spotify-launcher
 # Additional setup
 fish: change shell and set -U fish_greeting (manual install only)\
 grub: grub-mkconfig -o /boot/grub/grub.cfg (manual install only)\
-nemo: gsettings set org.cinnamon.default-applications.terminal exec urxvt\
+nemo: gsettings set org.cinnamon.default-applications.terminal exec urxvt (manual install only)\
 packettracer: download deb and make then login\
 spotify-launcher: login\
 google-chrome: login\
