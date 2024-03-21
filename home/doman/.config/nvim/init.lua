@@ -15,6 +15,10 @@ vim.o.colorcolumn = '80'
 
 vim.api.nvim_set_option('clipboard', 'unnamedplus')
 
+-- Autosave
+
+vim.go.autosave = true
+
 -- Activate LSP on insert
 
 vim.diagnostic.config({
