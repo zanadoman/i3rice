@@ -18,11 +18,12 @@ format = "[$duration](dimmed white)"
 
 # Time
 [time]
-format = "[│](cyan) [$time](dimmed white)\n"
+format = "[󰣇 ](cyan)[$time](dimmed white)\n"
 time_format = "%r"
 disabled = false
 
 # Prompt
 [character]
-success_symbol = "[╰─>](cyan)"
-error_symbol = "[╰─X](red)"
+success_symbol = "[╰─ ](cyan)"
+error_symbol = "[╰─󰰱 ](red)"
+
