@@ -13,23 +13,16 @@ vim.o.colorcolumn = '80'
 
 -- Hook system clipboard
 
-vim.api.nvim_set_option('clipboard', 'unnamedplus')
-
--- Autosave
-
-vim.go.autosave = true
-
--- Activate LSP on insert
-
-vim.diagnostic.config({
-	update_in_insert = true
-})
+vim.o.clipboard = 'unnamedplus'
 
 -- Install plugins
 
 require('lazy').setup({
 	{
 		'windwp/nvim-autopairs'
+	},
+	{
+		'tanvirtin/vgit.nvim'
 	},
 	{
 		'williamboman/mason.nvim',
@@ -53,95 +46,114 @@ require('lazy').setup({
 	}
 })
 
--- Start nvim-autopairs
+-- Load plugins
 
-require('nvim-autopairs').setup()
+local autopairs = require('nvim-autopairs')
+local vgit = require('vgit')
+local mason = require('mason')
+local mason_lsp = require('mason-lspconfig')
+local lspconfig = require('lspconfig')
+local cmp = require('cmp')
+local cmp_lsp = require('cmp_nvim_lsp')
+local luasnip = require('luasnip')
+local codeium = require('codeium')
+local vscode = require('vscode')
 
--- Start mason
+-- Enable bracket completion
 
-require('mason').setup()
+autopairs.setup()
 
--- Start mason-lspconfig and install LSPs
+-- Git integration
 
-require('mason-lspconfig').setup({
-	ensure_installed = {
-		'clangd',
-		'csharp_ls',
-		'jdtls',
-		'pyright',
-		'intelephense'
-	}
+vgit.setup()
+
+-- Install servers
+
+mason.setup()
+
+local servers = {
+	'clangd',
+	'csharp_ls',
+    'jdtls',
+    'pyright',
+    'intelephense'
+}
+
+mason_lsp.setup({
+	ensure_installed = servers
 })
 
--- Start cmp and configure luasnip
+-- Diagnostic config
 
-require('cmp').setup({
+vim.diagnostic.config({
+	update_in_insert = true,
+})
+
+-- Setup autocompletion
+
+cmp.setup({
     snippet = {
 		expand = function(args)
-		require('luasnip').lsp_expand(args.body)
-    end},
+			luasnip.lsp_expand(args.body)
+    	end
+	},
     sources = {
 		{name = 'nvim_lsp'},
 		{name = 'codeium'},
 		{name = 'buffer'}
     },
     mapping = {
-		['<Up>'] = require('cmp').mapping.select_prev_item(),
-		['<Down>'] = require('cmp').mapping.select_next_item(),
-		['<Tab>'] = require('cmp').mapping.confirm({select = true}),
-		['<Escape>'] = require('cmp').mapping.abort(),
-		['<C-Up>'] = require('cmp').mapping.scroll_docs(-1),
-		['<C-Down>'] = require('cmp').mapping.scroll_docs(1)
+		['<Up>'] = cmp.mapping.select_prev_item(),
+		['<Down>'] = cmp.mapping.select_next_item(),
+		['<Tab>'] = cmp.mapping.confirm({select = true}),
+		['<Escape>'] = cmp.mapping.abort(),
+		['<C-Up>'] = cmp.mapping.scroll_docs(-1),
+		['<C-Down>'] = cmp.mapping.scroll_docs(1)
     },
     window = {
-		completion = require('cmp').config.window.bordered(),
-		documentation = require('cmp').config.window.bordered()
+		completion = cmp.config.window.bordered(),
+		documentation = cmp.config.window.bordered()
     }
 })
 
--- Documentation popup
+-- Enable info popup
 
-vim.o.updatetime = 1000
-
-vim.api.nvim_create_autocmd({'CursorHold', 'CursorHoldI'}, {
-	callback = function()
-		if not require('cmp').visible() then
-			vim.lsp.buf.hover()
+function info_popup()
+	vim.api.nvim_create_autocmd({'CursorHold', 'CursorHoldI'}, {
+		callback = function()
+			if not cmp.visible() then
+				vim.lsp.buf.hover()
+			end
 		end
-	end
-})
+	})
 
-vim.lsp.handlers['textDocument/hover'] = vim.lsp.with(
-	vim.lsp.handlers.hover, {
-		border = 'rounded'
-	}
-)
+	vim.o.updatetime = 1000
 
+	vim.lsp.handlers['textDocument/hover'] = vim.lsp.with(
+		vim.lsp.handlers.hover,
+		{border = 'rounded'}
+	)
+end
 
--- Start LSPs
+-- Start servers
 
-require('cmp_nvim_lsp').default_capabilities()
+local capabilities = cmp_lsp.default_capabilities()
 
-require('lspconfig').clangd.setup({
-	capabilities = require('cmp_nvim_lsp').default_capabilities()
-})
-require('lspconfig').csharp_ls.setup({
-	capabilities = require('cmp_nvim_lsp').default_capabilities()
-})
-require('lspconfig').jdtls.setup({
-	capabilities = require('cmp_nvim_lsp').default_capabilities()
-})
-require('lspconfig').pyright.setup({
-	capabilities = require('cmp_nvim_lsp').default_capabilities()
-})
-require('lspconfig').intelephense.setup({
-	capabilities = require('cmp_nvim_lsp').default_capabilities()
-})
+local on_attach = function(client, bufnr)
+    info_popup()
+end
+
+for _, server in ipairs(servers) do
+    lspconfig[server].setup({
+		capabilities = capabilities,
+		on_attach = on_attach
+	})
+end
 
 -- Start codeium
 
-require('codeium').setup()
+codeium.setup()
 
--- Theme
+-- Set theme
 
-require('vscode').load('dark')
+vscode.load('dark')
