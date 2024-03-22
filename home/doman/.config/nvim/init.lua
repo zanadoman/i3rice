@@ -15,14 +15,18 @@ vim.o.colorcolumn = '80'
 
 vim.o.clipboard = 'unnamedplus'
 
+-- Set update time
+
+vim.o.updatetime = 1000
+
 -- Install plugins
 
 require('lazy').setup({
 	{
-		'windwp/nvim-autopairs'
+		'windwp/nvim-autopairs',
 	},
 	{
-		'tanvirtin/vgit.nvim'
+		'lewis6991/gitsigns.nvim'
 	},
 	{
 		'williamboman/mason.nvim',
@@ -49,7 +53,7 @@ require('lazy').setup({
 -- Load plugins
 
 local autopairs = require('nvim-autopairs')
-local vgit = require('vgit')
+local gitsigns = require('gitsigns')
 local mason = require('mason')
 local mason_lsp = require('mason-lspconfig')
 local lspconfig = require('lspconfig')
@@ -65,7 +69,19 @@ autopairs.setup()
 
 -- Git integration
 
-vgit.setup()
+gitsigns.setup({
+	on_attach = function()
+		vim.api.nvim_create_autocmd({'CursorHold', 'CursorHoldI'}, {
+        	callback = function()
+            	gitsigns.preview_hunk()
+       		end
+		})
+	end,
+
+	preview_config = {
+		border = 'rounded',
+	}
+})
 
 -- Install servers
 
@@ -118,35 +134,26 @@ cmp.setup({
 
 -- Enable info popup
 
-function info_popup()
-	vim.api.nvim_create_autocmd({'CursorHold', 'CursorHoldI'}, {
-		callback = function()
-			if not cmp.visible() then
-				vim.lsp.buf.hover()
-			end
+vim.api.nvim_create_autocmd({'CursorHold', 'CursorHoldI'}, {
+	callback = function()
+		if vim.lsp.buf.server_ready() and not cmp.visible() then
+			vim.lsp.buf.hover()
 		end
-	})
+	end
+})
 
-	vim.o.updatetime = 1000
-
-	vim.lsp.handlers['textDocument/hover'] = vim.lsp.with(
-		vim.lsp.handlers.hover,
-		{border = 'rounded'}
-	)
-end
+vim.lsp.handlers['textDocument/hover'] = vim.lsp.with(
+	vim.lsp.handlers.hover,
+	{border = 'rounded'}
+)
 
 -- Start servers
 
 local capabilities = cmp_lsp.default_capabilities()
 
-local on_attach = function(client, bufnr)
-    info_popup()
-end
-
 for _, server in ipairs(servers) do
     lspconfig[server].setup({
-		capabilities = capabilities,
-		on_attach = on_attach
+		capabilities = capabilities
 	})
 end
 
