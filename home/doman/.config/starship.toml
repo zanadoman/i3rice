@@ -14,11 +14,11 @@ style = "cyan"
 
 # Duration
 [cmd_duration]
-format = "[$duration](dimmed white)"
+format = "[$duration](white)"
 
 # Time
 [time]
-format = "[󰣇 ](cyan)[$time](dimmed white)\n"
+format = "[󰣇 ](cyan)[$time](white)\n"
 time_format = "%r"
 disabled = false
 

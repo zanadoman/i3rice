@@ -1,0 +1,62 @@
+[font]
+size = 12
+
+[font.normal]
+family = "Hack Nerd Font"
+style = "Bold"
+
+[font.bold]
+family = "Hack Nerd Font"
+style = "Bold"
+
+[font.italic]
+family = "Hack Nerd Font"
+style = "Italic"
+
+[font.bold_italic]
+family = "Hack Nerd Font"
+style = "Bold Italic"
+
+[window.padding]
+x = 10
+y = 10
+
+[colors.primary]
+foreground = "#ffffff"
+background = "#222222"
+dim_foreground = "#ffffff"
+bright_foreground = "#ffffff"
+
+[colors.cursor]
+text = "#222222"
+cursor = "#888888"
+
+[colors.normal]
+black = "#888888"
+red = "#ff0000"
+green = "#00ff00"
+yellow = "#ffff00"
+blue = "#00aaff"
+magenta = "#ff00ff"
+cyan = "#00ffff"
+white = "#ffffff"
+
+[colors.bright]
+black = "#888888"
+red = "#ff0000"
+green = "#00ff00"
+yellow = "#ffff00"
+blue = "#00aaff"
+magenta = "#ff00ff"
+cyan = "#00ffff"
+white = "#ffffff"
+
+[colors.dim]
+black = "#888888"
+red = "#ff0000"
+green = "#00ff00"
+yellow = "#ffff00"
+blue = "#00aaff"
+magenta = "#ff00ff"
+cyan = "#00ffff"
+white = "#ffffff"

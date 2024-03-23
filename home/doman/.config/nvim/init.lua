@@ -31,8 +31,7 @@ require('lazy').setup({
 		'windwp/nvim-autopairs',
 	},
 	{
-		'nvim-telescope/telescope.nvim',
-		'nvim-telescope/telescope-file-browser.nvim'
+		'nvim-telescope/telescope.nvim'
 	},
 	{
 		'lewis6991/gitsigns.nvim'
@@ -69,7 +68,6 @@ require('lazy').setup({
 -- Load plugins
 
 local autopairs = require('nvim-autopairs')
-local telescope = require('telescope')
 local gitsigns = require('gitsigns')
 local mason = require('mason')
 local mason_lsp = require('mason-lspconfig')
@@ -85,16 +83,11 @@ local vscode = require('vscode')
 
 autopairs.setup()
 
--- Telescope
-
-telescope.load_extension('file_browser')
-telescope.load_extension('project')
-
 -- Git integration
 
 gitsigns.setup({
 	on_attach = function()
-		vim.api.nvim_create_autocmd({'CursorHold', 'CursorHoldI'}, {
+		vim.api.nvim_create_autocmd('CursorHold', {
         	callback = function()
 				if not cmp.visible() then
             		gitsigns.preview_hunk()
@@ -103,6 +96,7 @@ gitsigns.setup({
 		})
 	end,
 	preview_config = {
+		focusable = false,
 		border = 'rounded'
 	}
 })
@@ -134,7 +128,7 @@ vim.diagnostic.config({
 vim.o.pumheight = 10
 
 cmp.setup({
-    snippet = {
+	snippet = {
 		expand = function(args)
 			luasnip.lsp_expand(args.body)
 		end
@@ -144,8 +138,8 @@ cmp.setup({
 		{name = 'codeium'},
 		{name = 'buffer'},
 		{name = 'path'}
-    },
-    mapping = {
+	},
+	mapping = {
 		['<Up>'] = cmp.mapping.select_prev_item(),
 		['<Down>'] = cmp.mapping.select_next_item(),
 		['<Tab>'] = cmp.mapping.confirm({select = true}),
@@ -153,10 +147,10 @@ cmp.setup({
 		['<C-Up>'] = cmp.mapping.scroll_docs(-1),	
 		['<C-Down>'] = cmp.mapping.scroll_docs(1)
 	},
-    window = {
+	window = {
 		completion = cmp.config.window.bordered(),
 		documentation = cmp.config.window.bordered()
-    }
+	}
 })
 
 cmp.setup.cmdline(':', {
@@ -179,7 +173,7 @@ cmp.setup.cmdline('!', {
 
 -- Enable info popup
 
-vim.api.nvim_create_autocmd({'CursorHold', 'CursorHoldI'}, {
+vim.api.nvim_create_autocmd('CursorHoldI', {
 	callback = function()
 		if vim.lsp.buf.server_ready() and not cmp.visible() then
 			vim.lsp.buf.hover()
@@ -189,6 +183,7 @@ vim.api.nvim_create_autocmd({'CursorHold', 'CursorHoldI'}, {
 
 vim.lsp.handlers['textDocument/hover'] = vim.lsp.with(
 	vim.lsp.handlers.hover, {
+		focusable = false,
 		border = 'rounded'
 	}
 )
@@ -198,7 +193,7 @@ vim.lsp.handlers['textDocument/hover'] = vim.lsp.with(
 local capabilities = cmp_lsp.default_capabilities()
 
 for _, server in ipairs(servers) do
-    lspconfig[server].setup({
+	lspconfig[server].setup({
 		capabilities = capabilities
 	})
 end
