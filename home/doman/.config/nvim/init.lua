@@ -90,9 +90,9 @@ gitsigns.setup({
 		vim.api.nvim_create_autocmd('CursorHold', {
         	callback = function()
 				if not cmp.visible() then
-            		gitsigns.preview_hunk()
+					gitsigns.preview_hunk()
 				end
-       		end
+			end
 		})
 	end,
 	preview_config = {
