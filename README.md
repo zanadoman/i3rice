@@ -20,7 +20,7 @@ Mouse: xorg-xinput
 
 ## Terminal
 Shell: fish\
-Terminal: rxvt-unicode\
+Terminal: alacritty\
 Info: fastfetch\
 Prompt: starship\
 Task manager: htop\
