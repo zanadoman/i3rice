@@ -1,7 +1,8 @@
 #!/bin/bash
 
 sudo cp -r etc /
-cp -r home/doman/* ~
+sudo cp -r home /
+sudo chown -R doman:doman ~
 
 sudo grub-mkconfig -o /boot/grub/grub.cfg
 
