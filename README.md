@@ -78,3 +78,4 @@ alacritty: font/padding 12/8 10/6\
 wine: wine mono\
 packettracer: download, login\
 xampp: download
+sudo: nopasswd
