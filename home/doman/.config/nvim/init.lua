@@ -108,7 +108,7 @@ require('dashboard').setup({
 			'░ ░░   ░ ▒░ ░ ░  ░  ░ ▒ ▒░    ░ ░░   ▒ ░░  ░      ░',
 			'   ░   ░ ░    ░   ░ ░ ░ ▒       ░░   ▒ ░░      ░   ',
 			'         ░    ░  ░    ░ ░        ░   ░         ░   ',
-            '                    ░                              ',
+			'                    ░                              ',
 			'                                                   '
 		},
 		shortcut = {
@@ -164,7 +164,7 @@ require('barbar').setup({
 		buffer_number = true,
 		diagnostics = {
 			[vim.diagnostic.severity.ERROR] = {enabled = true},
-            [vim.diagnostic.severity.WARN] = {enabled = true}
+			[vim.diagnostic.severity.WARN] = {enabled = true}
 		},
 		gitsigns = {
 			added = {enabled = true},
