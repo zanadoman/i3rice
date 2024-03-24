@@ -1,4 +1,4 @@
-# Packages (804)
+# Packages (817)
 
 Dependency: git
 
@@ -57,7 +57,7 @@ Chat: discord
 ## Other stuff
 Compatibility: wine\
 Emoji font: noto-fonts-emoji\
-Gaming: steam, minecraft-launcher (AUR), modrinth-launcher(AUR), jdk17-openjdk\
+Gaming: steam, minecraft-launcher (AUR), modrinth-launcher (AUR), jdk17-openjdk\
 Music: spotify-launcher
 
 # Manual setup
