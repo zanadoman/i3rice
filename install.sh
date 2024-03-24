@@ -21,11 +21,6 @@ cd i3-layouts
 makepkg -is
 cd ..
 
-git clone https://aur.archlinux.org/nvim-lazy.git
-cd nvim-lazy
-makepkg -is
-cd ..
-
 git clone https://aur.archlinux.org/google-chrome.git
 cd google-chrome
 makepkg -is

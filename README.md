@@ -1,4 +1,4 @@
-# Packages (810)
+# Packages (809)
 
 Dependency: git
 
@@ -27,7 +27,7 @@ Task manager: htop\
 Clipboard: xclip
 
 ## Development
-Editor: nvim, nvim-lazy (AUR), npm
+Editor: nvim, npm
 
 ### Tools
 cmake\
