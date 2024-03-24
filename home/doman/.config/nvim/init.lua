@@ -36,7 +36,7 @@ vim.o.autochdir = true
 
 -- Update time
 
-vim.o.updatetime = 1000
+vim.o.updatetime = 2500
 
 -- Disable mouse
 
