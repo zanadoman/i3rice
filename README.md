@@ -69,6 +69,7 @@ minecraft-launcher: login\
 libreoffice-fresh: disable tips\
 openssh: config\
 git: user.name, user.email, credential.helper store, token\
+fstab: disks\
 nemo: folders, sftp\
 networkmanager: wake-on-lan\
 i3: monitor, touchpad\
