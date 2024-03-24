@@ -79,4 +79,4 @@ i3: monitor and touchpad setup
 
 ## Other
 .ssh folder config\
-chown home directory after applying dots (manual install only)
+wake-on-lan
