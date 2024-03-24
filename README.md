@@ -60,23 +60,20 @@ Emoji font: noto-fonts-emoji\
 Gaming: steam, minecraft-launcher (AUR),  jdk17-openjdk\
 Music: spotify-launcher
 
-# Additional setup
-fish: change shell and set -U fish_greeting (manual install only)\
-grub: grub-mkconfig -o /boot/grub/grub.cfg (manual install only)\
-nemo: gsettings set org.cinnamon.desktop.default-applications.terminal exec alacritty (manual install only)\
-packettracer: download deb and make then login\
-spotify-launcher: login\
+# Manual setup
 google-chrome: login\
-libreoffice-fresh: disable tips\
-nemo: setup folders\
-git: user.name user.email, credential.helper\
-steam: login\
+spotify-launcher: login\
+steam: login, install aseprite\
+discord: login, disable notifications, fontsize, keybinding\
 minecraft-launcher: login\
-discord: login, keybind, notification off, text size\
-wine: first start\
+libreoffice-fresh: disable tips\
+openssh: config\
+git: user.name, user.email, credential.helper store, token\
+nemo: folders, sftp\
+networkmanager: wake-on-lan\
+i3: monitor, touchpad\
+i3status: disks\
+alacritty: font/padding 12/8 10/6\
+wine: wine mono\
+packettracer: download, login\
 xampp: download
-i3: monitor and touchpad setup
-
-## Other
-.ssh folder config\
-wake-on-lan
