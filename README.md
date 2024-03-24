@@ -57,7 +57,7 @@ Chat: discord
 ## Other stuff
 Compatibility: wine\
 Emoji font: noto-fonts-emoji\
-Gaming: steam, minecraft-launcher (AUR),  jdk17-openjdk\
+Gaming: steam, minecraft-launcher (AUR), modrinth-launcher(AUR), jdk17-openjdk\
 Music: spotify-launcher
 
 # Manual setup
@@ -75,6 +75,8 @@ networkmanager: wake-on-lan\
 i3: monitor, touchpad\
 i3status: disks\
 alacritty: font/padding 12/8 10/6\
+modrinth-launcher: login\
+neovim: codeium\
 wine: wine mono\
 packettracer: download, login\
 xampp: download

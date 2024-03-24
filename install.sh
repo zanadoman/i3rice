@@ -30,6 +30,11 @@ cd minecraft-launcher
 makepkg -is
 cd ..
 
+git clone https://aur.archlinux.org/modrinth-app.git
+cd modrinth-app
+makepkg -is
+cd ..
+
 git clone https://aur.archlinux.org/packettracer.git
 
 gsettings set org.cinnamon.desktop.default-applications.terminal exec alacritty
