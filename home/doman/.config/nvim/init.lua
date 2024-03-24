@@ -192,10 +192,7 @@ require('gitsigns').setup({
 			end
 		})
 	end,
-	preview_config = {
-		focusable = false,
-		border = 'rounded'
-	}
+	preview_config = {border = 'rounded'}
 })
 
 -- Help
