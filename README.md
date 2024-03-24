@@ -27,7 +27,7 @@ Task manager: htop\
 Clipboard: xclip
 
 ## Development
-Editor: nvim, npm
+Editor: neovim, npm
 
 ### Tools
 cmake\
