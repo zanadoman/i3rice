@@ -1,3 +1,17 @@
+-- Language servers
+
+local servers = {
+	'clangd',
+	'csharp_ls',
+	'jdtls',
+	'pyright',
+	'bashls',
+	'html',
+	'cssls',
+	'quick_lint_js',
+	'intelephense'
+}
+
 -- Line numbers
 
 vim.o.number = true
@@ -12,39 +26,60 @@ vim.o.shiftwidth = 4
 
 vim.o.colorcolumn = '80'
 
--- Hook system clipboard
+-- System clipboard
 
 vim.o.clipboard = 'unnamedplus'
 
--- Set update time
+-- Auto change directory
+
+vim.o.autochdir = true
+
+-- Update time
 
 vim.o.updatetime = 1000
 
--- Change directory to file location
+-- Disable mouse
 
-vim.o.autochdir = true
+vim.o.mouse = nil
+
+-- Plugin manager
+
+if not vim.loop.fs_stat(vim.fn.stdpath('data') .. '/lazy/lazy.nvim') then
+	vim.fn.system({
+		'git',
+		'clone',
+		'--filter=blob:none',
+		'https://github.com/folke/lazy.nvim.git',
+        '--branch=stable',
+        vim.fn.stdpath('data') .. '/lazy/lazy.nvim'
+	})
+end
+
+vim.opt.rtp:prepend(vim.fn.stdpath('data') .. '/lazy/lazy.nvim')
 
 -- Install plugins
 
 require('lazy').setup({
 	{
+		'nvimdev/dashboard-nvim',
+		'nvim-lualine/lualine.nvim',
+		'romgrk/barbar.nvim',
+		'Mofiqul/vscode.nvim',
+		'nvim-tree/nvim-web-devicons'
+	},
+	{
 		'windwp/nvim-autopairs',
-	},
-	{
-		'nvim-telescope/telescope.nvim'
-	},
-	{
-		'lewis6991/gitsigns.nvim'
+		'lewis6991/gitsigns.nvim',
+		'nvim-telescope/telescope.nvim',
+		'folke/which-key.nvim'
 	},
 	{
 		'williamboman/mason.nvim',
 		'williamboman/mason-lspconfig.nvim',
-		'neovim/nvim-lspconfig',
+		'neovim/nvim-lspconfig'
 	},
 	{
-		'L3MON4D3/LuaSnip'
-	},
-	{
+		'L3MON4D3/LuaSnip',
 		'hrsh7th/nvim-cmp',
 		'hrsh7th/cmp-nvim-lsp',
 		'hrsh7th/cmp-buffer',
@@ -52,46 +87,108 @@ require('lazy').setup({
 		'hrsh7th/cmp-path'
 	},
 	{
-		'nvim-lualine/lualine.nvim',
-		'romgrk/barbar.nvim',
-		'nvim-tree/nvim-web-devicons'
-	},
-	{
 		'Exafunction/codeium.nvim',
 		'nvim-lua/plenary.nvim'
-	},
-	{
-		'Mofiqul/vscode.nvim'
 	}
 })
 
--- Load plugins
+-- Startup screen
 
-local autopairs = require('nvim-autopairs')
-local gitsigns = require('gitsigns')
-local mason = require('mason')
-local mason_lsp = require('mason-lspconfig')
-local lspconfig = require('lspconfig')
-local luasnip = require('luasnip')
-local cmp = require('cmp')
-local cmp_lsp = require('cmp_nvim_lsp')
-local lualine = require('lualine')
-local codeium = require('codeium')
-local vscode = require('vscode')
+require('dashboard').setup({
+	shortcut_type = 'number',
+	config = {
+		disable_move = true,
+		header = {
+			' ███▄    █ ▓█████  ▒█████   ██▒   █▓ ██▓ ███▄ ▄███▓',
+			' ██ ▀█   █ ▓█   ▀ ▒██▒  ██▒▓██░   █▒▓██▒▓██▒▀█▀ ██▒',
+			'▓██  ▀█ ██▒▒███   ▒██░  ██▒ ▓██  █▒░▒██▒▓██    ▓██░',
+			'▓██▒  ▐▌██▒▒▓█  ▄ ▒██   ██░  ▒██ █░░░██░▒██    ▒██ ',
+			'▒██░   ▓██░░▒████▒░ ████▓▒░   ▒▀█░  ░██░▒██▒   ░██▒',
+			'░ ▒░   ▒ ▒ ░░ ▒░ ░░ ▒░▒░▒░    ░ ▐░  ░▓  ░ ▒░   ░  ░',
+			'░ ░░   ░ ▒░ ░ ░  ░  ░ ▒ ▒░    ░ ░░   ▒ ░░  ░      ░',
+			'   ░   ░ ░    ░   ░ ░ ░ ▒       ░░   ▒ ░░      ░   ',
+			'         ░    ░  ░    ░ ░        ░   ░         ░   ',
+            '                    ░                              ',
+			'                                                   '
+		},
+		shortcut = {
+			{
+				icon = ' ',
+				desc = 'New',
+				key = 'n',
+				action = 'enew'
+			},
+			{
+				icon = ' ',
+				desc = 'Files',
+				key = 'f',
+				action = 'Telescope find_files'
+			},
+			{
+				icon = ' ',
+				desc = 'Explorer',
+				key = 'e',
+				action = 'Explore'
+			},
+			{
+				icon = ' ',
+				desc = 'Update',
+				key = 'u',
+				action = 'Lazy update | MasonUpdate'
+			},
+			{
+				icon = '󰩈 ',
+				desc = 'Quit',
+				key = 'q',
+				action = 'quit' 
+			}
+		},
+		packages = {enable = false},
+		project = {enable = false},
+		mru = {limit = 9},
+		footer = {}
+	}
+})
 
--- Enable bracket completion
+-- Status line
 
-autopairs.setup()
+require('lualine').setup()
+
+vim.o.showmode = false
+
+-- Buffer line
+
+require('barbar').setup({
+	animation = false,
+	icons = {
+		buffer_number = true,
+		diagnostics = {
+			[vim.diagnostic.severity.ERROR] = {enabled = true},
+            [vim.diagnostic.severity.WARN] = {enabled = true}
+		},
+		gitsigns = {
+			added = {enabled = true},
+			changed = {enabled = true},
+			deleted = {enabled = true}
+		}
+	}
+})
+
+-- Theme
+
+require('vscode').load('dark')
+
+-- Bracket autocompletion
+
+require('nvim-autopairs').setup()
 
 -- Git integration
 
-gitsigns.setup({
+require('gitsigns').setup({
 	on_attach = function()
 		vim.api.nvim_create_autocmd('CursorHold', {
-        	callback = function()
-				if not cmp.visible() then
-					gitsigns.preview_hunk()
-				end
+			callback = function()
+				require('gitsigns').preview_hunk()
 			end
 		})
 	end,
@@ -101,36 +198,26 @@ gitsigns.setup({
 	}
 })
 
+-- Help
+
+require('which-key').setup()
+
 -- Install servers
 
-mason.setup()
+require('mason').setup()
 
-local servers = {
-	'clangd',
-	'csharp_ls',
-    'jdtls',
-    'pyright',
-    'intelephense'
-}
-
-mason_lsp.setup({
-	ensure_installed = servers
-})
+require('mason-lspconfig').setup({ensure_installed = servers})
 
 -- Diagnostic config
 
-vim.diagnostic.config({
-	update_in_insert = true,
-})
+vim.diagnostic.config({update_in_insert = true})
 
--- Setup autocompletion
+-- Autocompletion
 
-vim.o.pumheight = 10
-
-cmp.setup({
+require('cmp').setup({
 	snippet = {
 		expand = function(args)
-			luasnip.lsp_expand(args.body)
+			require('luasnip').lsp_expand(args.body)
 		end
 	},
     sources = {
@@ -140,46 +227,50 @@ cmp.setup({
 		{name = 'path'}
 	},
 	mapping = {
-		['<Up>'] = cmp.mapping.select_prev_item(),
-		['<Down>'] = cmp.mapping.select_next_item(),
-		['<Tab>'] = cmp.mapping.confirm({select = true}),
-		['<Escape>'] = cmp.mapping.abort(),
-		['<C-Up>'] = cmp.mapping.scroll_docs(-1),	
-		['<C-Down>'] = cmp.mapping.scroll_docs(1)
+		['<Up>'] = require('cmp').mapping.select_prev_item(),
+		['<Down>'] = require('cmp').mapping.select_next_item(),
+		['<Tab>'] = require('cmp').mapping.confirm({select = true}),
+		['<Escape>'] = require('cmp').mapping.abort(),
+		['<C-Up>'] = require('cmp').mapping.scroll_docs(-1),
+		['<C-Down>'] = require('cmp').mapping.scroll_docs(1)
 	},
 	window = {
-		completion = cmp.config.window.bordered(),
-		documentation = cmp.config.window.bordered()
+		completion = require('cmp').config.window.bordered(),
+		documentation = require('cmp').config.window.bordered()
 	}
 })
 
-cmp.setup.cmdline(':', {
+require('cmp').setup.cmdline(':', {
 	sources = {
 		{name = 'cmdline'}
 	},
 })
 
-cmp.setup.cmdline('/', {
+require('cmp').setup.cmdline('/', {
 	sources = {
 		{name = 'buffer'}
 	},
 })
 
-cmp.setup.cmdline('!', {
+require('cmp').setup.cmdline('!', {
 	sources = {
 		{name = 'path'}
 	},
 })
 
+vim.o.pumheight = 10
+
 -- Enable info popup
 
-vim.api.nvim_create_autocmd('CursorHoldI', {
-	callback = function()
-		if vim.lsp.buf.server_ready() and not cmp.visible() then
-			vim.lsp.buf.hover()
+function info_popup()
+	vim.api.nvim_create_autocmd('CursorHoldI', {
+		callback = function()
+			if vim.lsp.buf.server_ready() and not require('cmp').visible() then
+				vim.lsp.buf.hover()
+			end
 		end
-	end
-})
+	})
+end
 
 vim.lsp.handlers['textDocument/hover'] = vim.lsp.with(
 	vim.lsp.handlers.hover, {
@@ -190,24 +281,15 @@ vim.lsp.handlers['textDocument/hover'] = vim.lsp.with(
 
 -- Start servers
 
-local capabilities = cmp_lsp.default_capabilities()
-
 for _, server in ipairs(servers) do
-	lspconfig[server].setup({
-		capabilities = capabilities
+	require('lspconfig')[server].setup({
+		capabilities = require('cmp_nvim_lsp').default_capabilities(),
+		on_attach = function()
+			info_popup()
+		end
 	})
 end
 
--- Status line
+-- Codeium AI
 
-vim.o.showmode = false
-
-lualine.setup({})
-
--- Start codeium
-
-codeium.setup()
-
--- Set theme
-
-vscode.load('dark')
+require('codeium').setup()
