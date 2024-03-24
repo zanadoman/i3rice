@@ -13,7 +13,7 @@ Wallpaper: feh\
 Screenshot: maim
 
 ## IO settings
-Display: xorg-xrandr\
+Display: xorg-xrandr, brightnessctl\
 Bluetooth: bluez, bluez-utils\
 Volume: pulsemixer\
 Mouse: xorg-xinput
