@@ -11,7 +11,6 @@ sudo pacman -S i3-wm i3status xorg-server xorg-xinit dmenu picom feh maim xorg-x
 
 chsh -s /bin/fish
 echo "set -U fish_greeting" | fish
-gsettings set org.cinnamon.desktop.default-applications.terminal exec alacritty
 
 mkdir ~/.aur
 cd ~/.aur
@@ -33,6 +32,7 @@ cd ..
 
 git clone https://aur.archlinux.org/packettracer.git
 
+gsettings set org.cinnamon.desktop.default-applications.terminal exec alacritty
 mkdir ~/Desktop
 mkdir ~/Downloads
 mkdir ~/Documents
