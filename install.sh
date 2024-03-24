@@ -32,3 +32,11 @@ makepkg -is
 cd ..
 
 git clone https://aur.archlinux.org/packettracer.git
+
+mkdir ~/Desktop
+mkdir ~/Downloads
+mkdir ~/Documents
+mkdir ~/Pictures
+mkdir ~/Videos
+mkdir ~/Music
+mkdir ~/.path
