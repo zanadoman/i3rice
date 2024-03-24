@@ -22,8 +22,8 @@ x = 10
 y = 10
 
 [colors.primary]
-foreground = "#ffffff"
 background = "#222222"
+foreground = "#ffffff"
 dim_foreground = "#ffffff"
 bright_foreground = "#ffffff"
 
