@@ -23,7 +23,7 @@ Shell: fish\
 Terminal: alacritty\
 Info: fastfetch\
 Prompt: starship\
-Task manager: htop\
+Task manager: btop\
 Clipboard: xclip
 
 ## Development
