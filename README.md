@@ -46,7 +46,8 @@ sdl2_image\
 sdl2_mixer\
 sdl2_ttf\
 sdl2_net\
-mosh
+mosh\
+openvpn
 
 ## Apps
 Explorer: nemo, nemo-fileroller\
