@@ -35,6 +35,16 @@ cd modrinth-app
 makepkg -is
 cd ..
 
+git clone https://aur.archlinux.org/oracle-instantclient-basic.git
+cd oracle-instantclient-basic
+makepkg -is
+cd ..
+
+git clone https://aur.archlinux.org/oracle-instantclient-sqlplus.git
+cd oracle-instantclient-sqlplus
+makepkg -is
+cd ..
+
 git clone https://aur.archlinux.org/packettracer.git
 
 gsettings set org.cinnamon.desktop.default-applications.terminal exec alacritty

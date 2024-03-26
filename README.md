@@ -40,6 +40,8 @@ php\
 xampp (Official Website)\
 packettracer (AUR)\
 mysql-workbench\
+oracle-instantclient-basic\
+oracle-instantclient-sqplus\
 sdl2_image\
 sdl2_mixer\
 sdl2_ttf\
