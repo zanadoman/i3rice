@@ -88,16 +88,17 @@ require('lazy').setup({
         'neovim/nvim-lspconfig'
     },
     {
+        'tpope/vim-dadbod',
+        'kristijanhusak/vim-dadbod-ui',
+        'kristijanhusak/vim-dadbod-completion'
+    },
+    {
         'L3MON4D3/LuaSnip',
         'hrsh7th/nvim-cmp',
         'hrsh7th/cmp-nvim-lsp',
         'hrsh7th/cmp-buffer',
         'hrsh7th/cmp-cmdline',
         'hrsh7th/cmp-path'
-    },
-    {
-        'tpope/vim-dadbod',
-        'kristijanhusak/vim-dadbod-ui'
     },
     {
         'Exafunction/codeium.nvim',
@@ -250,6 +251,7 @@ require('cmp').setup({
     },
     sources = {
         {name = 'nvim_lsp'},
+        {name = 'vim-dadbod-completion'},
         {name = 'codeium'},
         {name = 'buffer'},
         {name = 'path'}
