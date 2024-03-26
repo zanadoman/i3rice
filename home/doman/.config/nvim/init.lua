@@ -9,7 +9,8 @@ local servers = {
     'html',
     'cssls',
     'quick_lint_js',
-    'intelephense'
+    'intelephense',
+    'sqlls'
 }
 
 -- Line numbers
@@ -34,6 +35,7 @@ vim.api.nvim_create_autocmd('BufReadPost', {
 vim.o.colorcolumn = '80'
 
 -- System clipboard
+
 vim.o.clipboard = 'unnamedplus'
 
 -- Autochange directory
@@ -94,6 +96,10 @@ require('lazy').setup({
         'hrsh7th/cmp-path'
     },
     {
+        'tpope/vim-dadbod',
+        'kristijanhusak/vim-dadbod-ui'
+    },
+    {
         'Exafunction/codeium.nvim',
         'nvim-lua/plenary.nvim'
     }
@@ -132,10 +138,22 @@ require('dashboard').setup({
                 action = 'Explore'
             },
             {
+                icon = ' ',
+                desc = 'DB',
+                key = 'd',
+                action = 'bdelete | DBUI'
+            },
+            {
                 icon = ' ',
                 desc = 'Update',
                 key = 'u',
                 action = 'Lazy update | MasonUpdate'
+            },
+            {
+                icon = ' ',
+                desc = 'Config',
+                key = 'c',
+                action = 'ex ' .. vim.fn.stdpath('config') .. '/init.lua'
             },
             {
                 icon = '󰩈 ',
@@ -146,7 +164,7 @@ require('dashboard').setup({
         },
         packages = {enable = false},
         project = {enable = false},
-        mru = {limit = 9},
+        mru = {limit = 20},
         footer = {}
     }
 })

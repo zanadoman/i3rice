@@ -1,4 +1,4 @@
-# Packages (817)
+# Packages (828)
 
 Dependency: git
 
@@ -41,7 +41,7 @@ xampp (Official Website)\
 packettracer (AUR)\
 mysql-workbench\
 oracle-instantclient-basic\
-oracle-instantclient-sqplus\
+oracle-instantclient-sqlplus\
 sdl2_image\
 sdl2_mixer\
 sdl2_ttf\
