@@ -25,7 +25,7 @@ vim.o.expandtab = true
 
 vim.api.nvim_create_autocmd('BufReadPost', {
     callback = function()
-        vim.cmd('retab')
+        vim.cmd('silent! retab')
     end
 })
 
@@ -42,7 +42,7 @@ vim.o.autochdir = true
 
 -- Update time
 
-vim.o.updatetime = 2000
+vim.o.updatetime = 1000
 
 -- Disable mouse
 
@@ -50,11 +50,10 @@ vim.o.mouse = nil
 
 -- Plugin manager
 
-if not vim.loop.fs_stat(vim.fn.stdpath('data') .. '/lazy/lazy.nvim') then
+if vim.fn.isdirectory(vim.fn.stdpath('data') .. '/lazy/lazy.nvim') == 0 then
     vim.fn.system({
         'git',
         'clone',
-        '--filter=blob:none',
         'https://github.com/folke/lazy.nvim.git',
         '--branch=stable',
         vim.fn.stdpath('data') .. '/lazy/lazy.nvim'
@@ -76,8 +75,9 @@ require('lazy').setup({
     },
     {
         'windwp/nvim-autopairs',
+        'kylechui/nvim-surround',
+        'numToStr/Comment.nvim',
         'lewis6991/gitsigns.nvim',
-        'nvim-telescope/telescope.nvim',
         'folke/which-key.nvim'
     },
     {
@@ -194,16 +194,17 @@ require('vscode').load('dark')
 
 require('nvim-autopairs').setup()
 
+-- Surround
+
+require('nvim-surround').setup()
+
+-- Bulk commenting
+
+require('Comment').setup()
+
 -- Git integration
 
 require('gitsigns').setup({
-    on_attach = function()
-        vim.api.nvim_create_autocmd('CursorHold', {
-            callback = function()
-                require('gitsigns').preview_hunk()
-            end
-        })
-    end,
     preview_config = {border = 'rounded'}
 })
 
@@ -271,10 +272,10 @@ vim.o.pumheight = 10
 
 -- Enable info popup
 
-vim.api.nvim_create_autocmd('CursorHoldI', {
+vim.api.nvim_create_autocmd({'CursorHold', 'CursorHoldI'}, {
     callback = function()
         if vim.lsp.buf.server_ready() and not require('cmp').visible() then
-            vim.lsp.buf.hover()
+            vim.cmd('silent! lua vim.lsp.buf.hover()')
         end
     end
 })
