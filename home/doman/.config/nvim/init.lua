@@ -79,6 +79,7 @@ require('lazy').setup({
         'windwp/nvim-autopairs',
         'kylechui/nvim-surround',
         'numToStr/Comment.nvim',
+        'stevearc/aerial.nvim',
         'lewis6991/gitsigns.nvim',
         'folke/which-key.nvim'
     },
@@ -198,11 +199,7 @@ require('barbar').setup({
 
 require('ibl').setup({
     indent = {char = '.'},
-    exclude = {
-        filetypes = {
-            'dashboard'
-        }
-    }
+    exclude = {filetypes = {'dashboard'}}
 })
 
 -- Theme
@@ -220,6 +217,32 @@ require('nvim-surround').setup()
 -- Bulk commenting
 
 require('Comment').setup()
+
+-- Function viewer
+
+require('aerial').setup({
+    layout = {
+        max_width = {20},
+        default_direction = 'right',
+        placement = 'edge'
+    },
+    close_automatic_events = {'unsupported'},
+    filter_kind = {
+        'Class',
+        'Constructor',
+        'Enum',
+        'Function',
+        'Interface',
+        'Module',
+        'Method',
+        'Struct',
+        'Destructor',
+        'Field',
+        'Property'
+    },
+    autojump = true,
+    open_automatic = true,
+})
 
 -- Git integration
 
@@ -271,21 +294,15 @@ require('cmp').setup({
 })
 
 require('cmp').setup.cmdline(':', {
-    sources = {
-        {name = 'cmdline'}
-    },
+    sources = {{name = 'cmdline'}},
 })
 
 require('cmp').setup.cmdline('/', {
-    sources = {
-        {name = 'buffer'}
-    },
+    sources = {{name = 'buffer'}},
 })
 
 require('cmp').setup.cmdline('!', {
-    sources = {
-        {name = 'path'}
-    },
+    sources = {{name = 'path'}},
 })
 
 vim.o.pumheight = 10
@@ -300,12 +317,10 @@ vim.api.nvim_create_autocmd({'CursorHold', 'CursorHoldI'}, {
     end
 })
 
-vim.lsp.handlers['textDocument/hover'] = vim.lsp.with(
-    vim.lsp.handlers.hover, {
-        focusable = false,
-        border = 'rounded'
-    }
-)
+vim.lsp.handlers['textDocument/hover'] = vim.lsp.with(vim.lsp.handlers.hover, {
+    focusable = false,
+    border = 'rounded'
+})
 
 -- Start servers
 
