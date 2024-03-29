@@ -155,7 +155,7 @@ require('dashboard').setup({
                 icon = ' ',
                 desc = 'Config',
                 key = 'c',
-                action = 'ex ' .. vim.fn.stdpath('config') .. '/init.lua'
+                action = 'edit ' .. vim.fn.stdpath('config') .. '/init.lua'
             },
             {
                 icon = '󰩈 ',
@@ -218,13 +218,14 @@ require('nvim-surround').setup()
 
 require('Comment').setup()
 
--- Function viewer
+-- Code explorer
 
 require('aerial').setup({
     layout = {
-        max_width = {20},
-        default_direction = 'right',
-        placement = 'edge'
+        width = 20,
+        default_direction = 'left',
+        placement = 'edge',
+        resize_to_content = true
     },
     close_automatic_events = {'unsupported'},
     filter_kind = {
@@ -241,7 +242,7 @@ require('aerial').setup({
         'Property'
     },
     autojump = true,
-    open_automatic = true,
+    open_automatic = true
 })
 
 -- Git integration
@@ -262,7 +263,24 @@ require('mason-lspconfig').setup({ensure_installed = servers})
 
 -- Diagnostic config
 
-vim.diagnostic.config({update_in_insert = true})
+vim.api.nvim_create_autocmd({'CursorHold', 'CursorHoldI'}, {
+    callback = function()
+        if vim.lsp.buf.server_ready() and not require('cmp').visible() then
+            vim.cmd('silent! lua vim.lsp.buf.hover()')
+            vim.cmd('silent! lua vim.diagnostic.open_float()')
+        end
+    end
+})
+
+vim.diagnostic.config({
+    update_in_insert = true,
+    float = {border = 'rounded'}
+})
+
+vim.lsp.handlers['textDocument/hover'] = vim.lsp.with(vim.lsp.handlers.hover, {
+    focusable = false,
+    border = 'rounded'
+})
 
 -- Autocompletion
 
@@ -306,21 +324,6 @@ require('cmp').setup.cmdline('!', {
 })
 
 vim.o.pumheight = 10
-
--- Enable info popup
-
-vim.api.nvim_create_autocmd({'CursorHold', 'CursorHoldI'}, {
-    callback = function()
-        if vim.lsp.buf.server_ready() and not require('cmp').visible() then
-            vim.cmd('silent! lua vim.lsp.buf.hover()')
-        end
-    end
-})
-
-vim.lsp.handlers['textDocument/hover'] = vim.lsp.with(vim.lsp.handlers.hover, {
-    focusable = false,
-    border = 'rounded'
-})
 
 -- Start servers
 
