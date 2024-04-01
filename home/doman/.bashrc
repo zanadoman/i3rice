@@ -11,7 +11,7 @@ PS1='[\u@\h \W]\$ '
 
 export PATH="/home/doman/.path:$PATH"
 alias clear="clear && fastfetch"
-alias startx="startx && clear"
+alias startx="cd && startx && clear"
 source /etc/profile.d/debuginfod.sh
 clear
 eval "$(starship init bash)"
