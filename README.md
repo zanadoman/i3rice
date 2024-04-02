@@ -62,7 +62,7 @@ Chat: discord
 Compatibility: wine\
 Emoji font: noto-fonts-emoji\
 Gaming: steam, minecraft-launcher (AUR), modrinth-launcher (AUR), jdk17-openjdk\
-Music: spotify-launcher
+Music: spotify-launcher\
 NTFS support: ntfs-3g
 
 # Manual setup
@@ -84,5 +84,5 @@ modrinth-launcher: login\
 neovim: codeium\
 wine: wine mono\
 packettracer: download, login\
-xampp: download
+xampp: download\
 sudo: nopasswd
