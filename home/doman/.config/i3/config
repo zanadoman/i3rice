@@ -43,9 +43,9 @@ bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ to
 bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
 
 # Use brightnessctl to adjust brightness
-#exec --no-startup-id brightnessctl set 40%
-#bindsym XF86MonBrightnessUp exec --no-startup-id brightnessctl set +10%
-#bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl set 10%-
+exec --no-startup-id brightnessctl set 40%
+bindsym XF86MonBrightnessUp exec --no-startup-id brightnessctl set +10%
+bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl set 10%-
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
@@ -177,7 +177,7 @@ bindsym $alt+Shift+9 move container to workspace number $ws9, workspace number $
 #bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
 
 # resize window (you can also use the mouse for that)
-mode "resize" {
+#mode "resize" {
         # These bindings trigger as soon as you enter the resize mode
 
         # Pressing left will shrink the window’s width.
@@ -190,21 +190,24 @@ mode "resize" {
         #bindsym eacute resize grow width 10 px or 10 ppt
 
         # same bindings, but for the arrow keys
-        bindsym Left resize shrink width 10 px or 10 ppt
-        bindsym Down resize grow height 10 px or 10 ppt
-        bindsym Up resize shrink height 10 px or 10 ppt
-        bindsym Right resize grow width 10 px or 10 ppt
+        #bindsym Left resize shrink width 10 px or 10 ppt
+        #bindsym Down resize grow height 10 px or 10 ppt
+        #bindsym Up resize shrink height 10 px or 10 ppt
+        #bindsym Right resize grow width 10 px or 10 ppt
 
         # back to normal: Enter or Escape or $mod+r
         #bindsym Return mode "default"
-        bindsym Escape mode "default"
-        bindsym $mod+r mode "default"
-}
+        #bindsym Escape mode "default"
+        #bindsym $mod+r mode "default"
+#}
 
-bindsym $mod+r mode "resize"
+#bindsym $mod+r mode "resize"
 
-# Start i3bar to display a workspace bar (plus the system information i3status
-# finds out, if available)
+bindsym $alt+Left resize shrink width 10 px or 10 ppt
+bindsym $alt+Right resize grow width 10 px or 10 ppt
+bindsym $alt+Down resize shrink height 10 px or 10 ppt
+bindsym $alt+Up resize grow height 10 px or 10 ppt
+
 bar {
         i3bar_command i3bar
         status_command i3status
@@ -224,9 +227,9 @@ bar {
 }
 
 # Monitor setup
-exec --no-startup-id xrandr --output DP-2 --primary
-exec --no-startup-id xrandr --output HDMI-1 --pos 1920x-600 --rotate left
-#exec --no-startup-id xrandr --output eDP-1 --primary
+#exec --no-startup-id xrandr --output DP-2 --primary
+#exec --no-startup-id xrandr --output HDMI-1 --pos 1920x-600 --rotate left
+exec --no-startup-id xrandr --output eDP-1 --primary
 
 # Custom binds
 bindsym $mod+e exec --no-startup-id nemo
@@ -264,8 +267,8 @@ exec --no-startup-id picom -b
 focus_follows_mouse no
 
 # Touchpad
-#exec --no-startup-id xinput set-prop "SYNA2BA6:00 06CB:CE2C Touchpad" "libinput Tapping Enabled" 1
-#exec --no-startup-id xinput set-prop "SYNA2BA6:00 06CB:CE2C Touchpad" "libinput Natural Scrolling Enabled" 1
+exec --no-startup-id xinput set-prop "SYNA2BA6:00 06CB:CE2C Touchpad" "libinput Tapping Enabled" 1
+exec --no-startup-id xinput set-prop "SYNA2BA6:00 06CB:CE2C Touchpad" "libinput Natural Scrolling Enabled" 1
 
 # Keyboard layout
 bindsym $mod+u exec --no-startup-id setxkbmap us
