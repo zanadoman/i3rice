@@ -47,7 +47,8 @@ sdl2_mixer\
 sdl2_ttf\
 sdl2_net\
 mosh\
-openvpn
+openvpn\
+gameconqueror
 
 ## Apps
 Explorer: nemo, nemo-fileroller\
@@ -62,6 +63,7 @@ Compatibility: wine\
 Emoji font: noto-fonts-emoji\
 Gaming: steam, minecraft-launcher (AUR), modrinth-launcher (AUR), jdk17-openjdk\
 Music: spotify-launcher
+NTFS support: ntfs-3g
 
 # Manual setup
 google-chrome: login\
