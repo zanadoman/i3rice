@@ -22,13 +22,13 @@ x = 10
 y = 10
 
 [colors.primary]
-background = "#222222"
+background = "#1a1b26"
 foreground = "#ffffff"
 dim_foreground = "#ffffff"
 bright_foreground = "#ffffff"
 
 [colors.cursor]
-text = "#222222"
+text = "#1a1b26"
 cursor = "#888888"
 
 [colors.normal]
