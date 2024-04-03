@@ -72,7 +72,7 @@ require('lazy').setup({
         'nvim-lualine/lualine.nvim',
         'romgrk/barbar.nvim',
         'lukas-reineke/indent-blankline.nvim',
-        'Mofiqul/vscode.nvim',
+        'folke/tokyonight.nvim',
         'nvim-tree/nvim-web-devicons'
     },
     {
@@ -204,7 +204,11 @@ require('ibl').setup({
 
 -- Theme
 
-require('vscode').load('dark')
+require('tokyonight').setup({
+    style = 'night'
+})
+
+vim.cmd('colorscheme tokyonight')
 
 -- Bracket autocompletion
 
