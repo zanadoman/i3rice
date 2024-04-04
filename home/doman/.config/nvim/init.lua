@@ -93,6 +93,9 @@ require('lazy').setup({
         'neovim/nvim-lspconfig'
     },
     {
+        'mattn/emmet-vim',  
+    },
+    {
         'tpope/vim-dadbod',
         'kristijanhusak/vim-dadbod-ui',
         'kristijanhusak/vim-dadbod-completion'
