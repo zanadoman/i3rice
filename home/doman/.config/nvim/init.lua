@@ -30,6 +30,10 @@ vim.api.nvim_create_autocmd('BufReadPost', {
     end
 })
 
+-- Cursorline
+
+vim.o.cursorline = true
+
 -- Border column
 
 vim.o.colorcolumn = '80'
@@ -52,7 +56,7 @@ vim.o.mouse = nil
 
 -- Plugin manager
 
-if vim.fn.isdirectory(vim.fn.stdpath('data') .. '/lazy/lazy.nvim') == 0 then
+if vim.fn.isdirectory(vim.fn.stdpath('data') .. '/lazy/lazy.nvim') then
     vim.fn.system({
         'git',
         'clone',
@@ -94,7 +98,6 @@ require('lazy').setup({
         'kristijanhusak/vim-dadbod-completion'
     },
     {
-        'L3MON4D3/LuaSnip',
         'hrsh7th/nvim-cmp',
         'hrsh7th/cmp-nvim-lsp',
         'hrsh7th/cmp-buffer',
@@ -112,7 +115,6 @@ require('lazy').setup({
 require('dashboard').setup({
     shortcut_type = 'number',
     config = {
-        disable_move = true,
         header = {
             ' ███▄    █ ▓█████  ▒█████   ██▒   █▓ ██▓ ███▄ ▄███▓',
             ' ██ ▀█   █ ▓█   ▀ ▒██▒  ██▒▓██░   █▒▓██▒▓██▒▀█▀ ██▒',
@@ -126,6 +128,7 @@ require('dashboard').setup({
             '                    ░                              ',
             '                                                   '
         },
+        disable_move = true,
         shortcut = {
             {
                 icon = ' ',
@@ -171,16 +174,24 @@ require('dashboard').setup({
     }
 })
 
--- Status line
+-- Statusline
 
-require('lualine').setup()
+require('lualine').setup({
+    options = {globalstatus = true},
+    extensions = {
+        'aerial',
+        'lazy',
+        'mason'
+    }
+})
 
 vim.o.showmode = false
 
--- Buffer line
+-- Bufferline
 
 require('barbar').setup({
     animation = false,
+    tabpages = false,
     icons = {
         buffer_number = true,
         diagnostics = {
@@ -205,7 +216,8 @@ require('ibl').setup({
 -- Theme
 
 require('tokyonight').setup({
-    style = 'night'
+    style = 'night',
+    transparent = true
 })
 
 vim.cmd('colorscheme tokyonight')
@@ -214,11 +226,11 @@ vim.cmd('colorscheme tokyonight')
 
 require('nvim-autopairs').setup()
 
--- Surround
+-- Surround helper
 
 require('nvim-surround').setup()
 
--- Bulk commenting
+-- Bulk commenter
 
 require('Comment').setup()
 
@@ -228,8 +240,7 @@ require('aerial').setup({
     layout = {
         width = 20,
         default_direction = 'left',
-        placement = 'edge',
-        resize_to_content = true
+        placement = 'edge'
     },
     close_automatic_events = {'unsupported'},
     filter_kind = {
@@ -241,9 +252,9 @@ require('aerial').setup({
         'Module',
         'Method',
         'Struct',
-        'Destructor',
         'Field',
-        'Property'
+        'Property',
+        'Destructor'
     },
     autojump = true,
     open_automatic = true
@@ -257,21 +268,27 @@ require('gitsigns').setup({
 
 -- Help
 
-require('which-key').setup()
+require('which-key').setup({
+    window = {border = 'single'}
+})
 
 -- Install servers
 
-require('mason').setup()
+require('mason').setup({
+    ui = {border = 'rounded'}
+})
 
-require('mason-lspconfig').setup({ensure_installed = servers})
+require('mason-lspconfig').setup({
+    ensure_installed = servers
+})
 
 -- Diagnostic config
 
 vim.api.nvim_create_autocmd({'CursorHold', 'CursorHoldI'}, {
     callback = function()
         if vim.lsp.buf.server_ready() and not require('cmp').visible() then
-            vim.cmd('silent! lua vim.lsp.buf.hover()')
-            vim.cmd('silent! lua vim.diagnostic.open_float()')
+            vim.lsp.buf.hover()
+            vim.diagnostic.open_float()
         end
     end
 })
@@ -289,17 +306,9 @@ vim.lsp.handlers['textDocument/hover'] = vim.lsp.with(vim.lsp.handlers.hover, {
 -- Autocompletion
 
 require('cmp').setup({
-    snippet = {
-        expand = function(args)
-            require('luasnip').lsp_expand(args.body)
-        end
-    },
-    sources = {
-        {name = 'nvim_lsp'},
-        {name = 'vim-dadbod-completion'},
-        {name = 'codeium'},
-        {name = 'buffer'},
-        {name = 'path'}
+    window = {
+        completion = require('cmp').config.window.bordered(),
+        documentation = require('cmp').config.window.bordered()
     },
     mapping = {
         ['<Up>'] = require('cmp').mapping.select_prev_item(),
@@ -309,10 +318,14 @@ require('cmp').setup({
         ['<C-Up>'] = require('cmp').mapping.scroll_docs(-1),
         ['<C-Down>'] = require('cmp').mapping.scroll_docs(1)
     },
-    window = {
-        completion = require('cmp').config.window.bordered(),
-        documentation = require('cmp').config.window.bordered()
-    }
+    sources = {
+        {name = 'nvim_lsp'},
+        {name = 'vim-dadbod-completion'},
+        {name = 'codeium'},
+        {name = 'buffer'},
+        {name = 'path'}
+    },
+    experimental = {ghost_text = true}
 })
 
 require('cmp').setup.cmdline(':', {
@@ -321,10 +334,6 @@ require('cmp').setup.cmdline(':', {
 
 require('cmp').setup.cmdline('/', {
     sources = {{name = 'buffer'}},
-})
-
-require('cmp').setup.cmdline('!', {
-    sources = {{name = 'path'}},
 })
 
 vim.o.pumheight = 10
