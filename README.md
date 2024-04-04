@@ -1,4 +1,4 @@
-# Packages (827)
+# Packages (793)
 
 Dependency: git
 
@@ -8,7 +8,7 @@ Server: xorg-server\
 Init: xorg-xinit\
 Launcher: dmenu\
 Layout: i3-layouts (AUR)\
-Compositor: picom\
+Compositor: picom-ftlabs-git (AUR)\
 Wallpaper: feh\
 Screenshot: maim
 
@@ -51,7 +51,7 @@ openvpn\
 gameconqueror
 
 ## Apps
-Explorer: nemo, nemo-fileroller\
+Explorer: ranger, w3m\
 Browser: google-chrome (AUR)\
 Office: libreoffice-fresh\
 Image editors: gimp, inkscape, aseprite (STEAM)\

@@ -7,7 +7,7 @@ sudo chown -R doman:doman ~
 sudo grub-mkconfig -o /boot/grub/grub.cfg
 
 sudo pacman -Syu
-sudo pacman -S i3-wm i3status xorg-server xorg-xinit dmenu picom feh maim xorg-xrandr brightnessctl bluez bluez-utils pulsemixer xorg-xinput fish alacritty fastfetch starship btop xclip neovim npm cmake mingw-w64 valgrind dotnet-runtime dotnet-sdk jdk-openjdk php mysql-workbench sdl2_image sdl2_mixer sdl2_ttf sdl2_net mosh openvpn gameconqueror nemo nemo-fileroller libreoffice-fresh gimp inkscape audacity discord wine noto-fonts-emoji steam jdk17-openjdk spotify-launcher ntfs-3g
+sudo pacman -S i3-wm i3status xorg-server xorg-xinit dmenu picom feh maim xorg-xrandr brightnessctl bluez bluez-utils pulsemixer xorg-xinput fish alacritty fastfetch starship btop xclip neovim npm cmake mingw-w64 valgrind dotnet-runtime dotnet-sdk jdk-openjdk php mysql-workbench sdl2_image sdl2_mixer sdl2_ttf sdl2_net mosh openvpn gameconqueror ranger w3m libreoffice-fresh gimp inkscape audacity discord wine noto-fonts-emoji steam jdk17-openjdk spotify-launcher ntfs-3g
 
 chsh -s /bin/fish
 echo "set -U fish_greeting" | fish
@@ -17,6 +17,11 @@ cd ~/.aur
 
 git clone https://aur.archlinux.org/i3-layouts.git
 cd i3-layouts
+makepkg -is
+cd ..
+
+git clone https://aur.archlinux.org/picom-ftlabs-git.git
+cd picom-ftlabs-git
 makepkg -is
 cd ..
 
@@ -46,6 +51,8 @@ makepkg -is
 cd ..
 
 git clone https://aur.archlinux.org/packettracer.git
+
+pacman -Qdtq | sudo pacman -Rns -
 
 gsettings set org.cinnamon.desktop.default-applications.terminal exec alacritty
 mkdir ~/Desktop
