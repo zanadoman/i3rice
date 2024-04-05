@@ -1,5 +1,4 @@
 -- Language servers
-
 local servers = {
     'clangd',
     'csharp_ls',
@@ -14,12 +13,10 @@ local servers = {
 }
 
 -- Line numbers
-
 vim.o.number = true
 vim.o.relativenumber = true
 
 -- Indentation width
-
 vim.o.tabstop = 4
 vim.o.shiftwidth = 4
 vim.o.expandtab = true
@@ -31,31 +28,24 @@ vim.api.nvim_create_autocmd('BufReadPost', {
 })
 
 -- Cursorline
-
 vim.o.cursorline = true
 
 -- Border column
-
 vim.o.colorcolumn = '80'
 
 -- System clipboard
-
 vim.o.clipboard = 'unnamedplus'
 
 -- Autochange directory
-
 vim.o.autochdir = true
 
 -- Update time
-
 vim.o.updatetime = 1000
 
 -- Disable mouse
-
 vim.o.mouse = nil
 
 -- Plugin manager
-
 if vim.fn.isdirectory(vim.fn.stdpath('data') .. '/lazy/lazy.nvim') then
     vim.fn.system({
         'git',
@@ -69,7 +59,6 @@ end
 vim.opt.rtp:prepend(vim.fn.stdpath('data') .. '/lazy/lazy.nvim')
 
 -- Install plugins
-
 require('lazy').setup({
     {
         'nvimdev/dashboard-nvim',
@@ -115,7 +104,6 @@ require('lazy').setup({
 })
 
 -- Startup screen
-
 require('dashboard').setup({
     shortcut_type = 'number',
     config = {
@@ -180,7 +168,6 @@ require('dashboard').setup({
 })
 
 -- Statusline
-
 require('lualine').setup({
     options = {globalstatus = true},
     extensions = {
@@ -193,7 +180,6 @@ require('lualine').setup({
 vim.o.showmode = false
 
 -- Bufferline
-
 require('barbar').setup({
     animation = false,
     tabpages = false,
@@ -212,14 +198,12 @@ require('barbar').setup({
 })
 
 -- Indentation indicator
-
 require('ibl').setup({
     indent = {char = '.'},
     exclude = {filetypes = {'dashboard'}}
 })
 
 -- Theme
-
 require('tokyonight').setup({
     style = 'night',
     transparent = true
@@ -228,23 +212,18 @@ require('tokyonight').setup({
 vim.cmd('colorscheme tokyonight')
 
 -- Movement
-
 require('leap').create_default_mappings()
 
 -- Bracket autocompletion
-
 require('nvim-autopairs').setup()
 
 -- Surround helper
-
 require('nvim-surround').setup()
 
 -- Bulk commenter
-
 require('Comment').setup()
 
 -- Code explorer
-
 require('aerial').setup({
     layout = {
         width = 20,
@@ -270,19 +249,16 @@ require('aerial').setup({
 })
 
 -- Git integration
-
 require('gitsigns').setup({
     preview_config = {border = 'rounded'}
 })
 
 -- Help
-
 require('which-key').setup({
     window = {border = 'single'}
 })
 
 -- Install servers
-
 require('mason').setup({
     ui = {border = 'rounded'}
 })
@@ -292,7 +268,6 @@ require('mason-lspconfig').setup({
 })
 
 -- Diagnostic config
-
 vim.api.nvim_create_autocmd({'CursorHold', 'CursorHoldI'}, {
     callback = function()
         if vim.lsp.buf.server_ready() and not require('cmp').visible() then
@@ -313,7 +288,6 @@ vim.lsp.handlers['textDocument/hover'] = vim.lsp.with(vim.lsp.handlers.hover, {
 })
 
 -- Autocompletion
-
 require('cmp').setup({
     window = {
         completion = require('cmp').config.window.bordered(),
@@ -348,7 +322,6 @@ require('cmp').setup.cmdline('/', {
 vim.o.pumheight = 10
 
 -- Start servers
-
 for _, server in ipairs(servers) do
     require('lspconfig')[server].setup({
         capabilities = require('cmp_nvim_lsp').default_capabilities()
@@ -356,5 +329,4 @@ for _, server in ipairs(servers) do
 end
 
 -- Codeium AI
-
 require('codeium').setup()
