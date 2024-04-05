@@ -11,7 +11,7 @@ style = "Bold"
 
 [font.italic]
 family = "Hack Nerd Font"
-style = "Italic"
+style = "Bold Italic"
 
 [font.bold_italic]
 family = "Hack Nerd Font"

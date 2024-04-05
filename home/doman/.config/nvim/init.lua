@@ -80,6 +80,7 @@ require('lazy').setup({
         'nvim-tree/nvim-web-devicons'
     },
     {
+        'ggandor/leap.nvim',
         'windwp/nvim-autopairs',
         'kylechui/nvim-surround',
         'numToStr/Comment.nvim',
@@ -93,7 +94,7 @@ require('lazy').setup({
         'neovim/nvim-lspconfig'
     },
     {
-        'mattn/emmet-vim',  
+        'mattn/emmet-vim'
     },
     {
         'tpope/vim-dadbod',
@@ -119,17 +120,15 @@ require('dashboard').setup({
     shortcut_type = 'number',
     config = {
         header = {
-            ' ███▄    █ ▓█████  ▒█████   ██▒   █▓ ██▓ ███▄ ▄███▓',
-            ' ██ ▀█   █ ▓█   ▀ ▒██▒  ██▒▓██░   █▒▓██▒▓██▒▀█▀ ██▒',
-            '▓██  ▀█ ██▒▒███   ▒██░  ██▒ ▓██  █▒░▒██▒▓██    ▓██░',
-            '▓██▒  ▐▌██▒▒▓█  ▄ ▒██   ██░  ▒██ █░░░██░▒██    ▒██ ',
-            '▒██░   ▓██░░▒████▒░ ████▓▒░   ▒▀█░  ░██░▒██▒   ░██▒',
-            '░ ▒░   ▒ ▒ ░░ ▒░ ░░ ▒░▒░▒░    ░ ▐░  ░▓  ░ ▒░   ░  ░',
-            '░ ░░   ░ ▒░ ░ ░  ░  ░ ▒ ▒░    ░ ░░   ▒ ░░  ░      ░',
-            '   ░   ░ ░    ░   ░ ░ ░ ▒       ░░   ▒ ░░      ░   ',
-            '         ░    ░  ░    ░ ░        ░   ░         ░   ',
-            '                    ░                              ',
-            '                                                   '
+            '                                                                   ',
+            '      ████ ██████           █████      ██                    ',
+            '     ███████████             █████                            ',
+            '     █████████ ███████████████████ ███   ███████████  ',
+            '    █████████  ███    █████████████ █████ ██████████████  ',
+            '   █████████ ██████████ █████████ █████ █████ ████ █████  ',
+            ' ███████████ ███    ███ █████████ █████ █████ ████ █████ ',
+            '██████  █████████████████████ ████ █████ █████ ████ ██████',
+            '                                                                     ',
         },
         disable_move = true,
         shortcut = {
@@ -173,7 +172,10 @@ require('dashboard').setup({
         packages = {enable = false},
         project = {enable = false},
         mru = {limit = 20},
-        footer = {}
+        footer = {
+            '                         ',
+            '"Keep it simple, stupid!"',
+        }
     }
 })
 
@@ -224,6 +226,10 @@ require('tokyonight').setup({
 })
 
 vim.cmd('colorscheme tokyonight')
+
+-- Movement
+
+require('leap').create_default_mappings()
 
 -- Bracket autocompletion
 
@@ -332,11 +338,11 @@ require('cmp').setup({
 })
 
 require('cmp').setup.cmdline(':', {
-    sources = {{name = 'cmdline'}},
+    sources = {{name = 'cmdline'}}
 })
 
 require('cmp').setup.cmdline('/', {
-    sources = {{name = 'buffer'}},
+    sources = {{name = 'buffer'}}
 })
 
 vim.o.pumheight = 10

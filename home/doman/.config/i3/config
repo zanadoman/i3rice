@@ -3,25 +3,21 @@ set $mod Mod4
 set $alt Mod1
 
 # Change focus
-bindsym $mod+Down focus down
 bindsym $mod+Up focus up
+bindsym $mod+Down focus down
 bindsym $mod+Left focus left
 bindsym $mod+Right focus right
 focus_follows_mouse no
 
 # Move window
-bindsym $alt+Shift+Down move down
 bindsym $alt+Shift+Up move up
+bindsym $alt+Shift+Down move down
 bindsym $alt+Shift+Left move left
 bindsym $alt+Shift+Right move right
 
-# Move floating windows
-floating_modifier $mod
-tiling_drag modifier
-
 # Move window in layout
-bindsym $mod+Shift+Down exec --no-startup-id i3l move down
 bindsym $mod+Shift+Up exec --no-startup-id i3l move up
+bindsym $mod+Shift+Down exec --no-startup-id i3l move down
 bindsym $mod+Shift+Left exec --no-startup-id i3l move left
 bindsym $mod+Shift+Right exec --no-startup-id i3l move right
 
@@ -95,27 +91,21 @@ bindsym $alt+Shift+9 move container to workspace number $ws9, workspace number $
 
 # Statusbar
 bar {
-        i3bar_command i3bar
-        status_command i3status
+    i3bar_command i3bar
+    status_command i3status
 
-        mode hide
-        hidden_state hide
-        modifier $mod
+    mode hide
+    modifier $mod
 
-        colors {
-                background #000000
-                separator #ffffff
+    colors {
+        background #000000
+        separator #ffffff
 
-                focused_workspace #ffffff #ffffff #000000
-                active_workspace #ffffff #000000 #ffffff
-                inactive_workspace #000000 #000000 #ffffff
-        }
+        focused_workspace #ffffff #ffffff #000000
+        active_workspace #ffffff #000000 #ffffff
+        inactive_workspace #000000 #000000 #ffffff
+    }
 }
-
-# Monitor setup
-exec --no-startup-id xrandr --output DP-2 --primary
-exec --no-startup-id xrandr --output HDMI-1 --pos 1920x-600 --rotate left
-#exec --no-startup-id xrandr --output eDP-1 --primary
 
 # Dmenu
 bindsym $mod+d exec --no-startup-id dmenu_run -nb '#000000' -nf '#ffffff' -sb '#ffffff' -sf '#000000'
@@ -142,10 +132,9 @@ exec --no-startup-id feh --no-fehbg --bg-fill '/home/doman/.wallpaper.png'
 font xft:HackNerdFont 8
 
 # Borders and gaps
-gaps inner 10
 default_border pixel 0
 default_floating_border pixel 0
-client.focused #ffffff #ffffff #ffffff #ffffff #ffffff
+gaps inner 10
 
 # Compositor
 exec --no-startup-id picom -b
@@ -159,12 +148,17 @@ bindsym $mod+h exec --no-startup-id setxkbmap hu
 #exec --no-startup-id xinput set-prop "SYNA2BA6:00 06CB:CE2C Touchpad" "libinput Natural Scrolling Enabled" 1
 
 # Volume control
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10% && $refresh_i3status
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -10% && $refresh_i3status
-bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
-bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10%
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -10%
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle
+bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle
 
 # Brightness control
 #exec --no-startup-id brightnessctl set 40%
 #bindsym XF86MonBrightnessUp exec --no-startup-id brightnessctl set +10%
 #bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl set 10%-
+
+# Monitor setup
+exec --no-startup-id xrandr --output DP-2 --primary
+exec --no-startup-id xrandr --output HDMI-1 --pos 1920x-600 --rotate left
+#exec --no-startup-id xrandr --output eDP-1 --primary
