@@ -35,11 +35,6 @@ cd minecraft-launcher
 makepkg -is
 cd ..
 
-git clone https://aur.archlinux.org/modrinth-app.git
-cd modrinth-app
-makepkg -is
-cd ..
-
 git clone https://aur.archlinux.org/oracle-instantclient-basic.git
 cd oracle-instantclient-basic
 makepkg -is
@@ -54,7 +49,6 @@ git clone https://aur.archlinux.org/packettracer.git
 
 pacman -Qdtq | sudo pacman -Rns -
 
-gsettings set org.cinnamon.desktop.default-applications.terminal exec alacritty
 mkdir ~/Desktop
 mkdir ~/Downloads
 mkdir ~/Documents

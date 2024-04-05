@@ -35,7 +35,7 @@ mingw-w64\
 valgrind\
 dotnet-runtime\
 dotnet-sdk\
-jdk-openjdk\
+jdk17-openjdk\
 php\
 xampp (Official Website)\
 packettracer (AUR)\
@@ -48,20 +48,20 @@ sdl2_ttf\
 sdl2_net\
 mosh\
 openvpn\
-gameconqueror
 
 ## Apps
 Explorer: ranger, w3m\
 Browser: google-chrome (AUR)\
 Office: libreoffice-fresh\
-Image editors: gimp, inkscape, aseprite (STEAM)\
+Image editors: gimp, aseprite (STEAM)\
 Audio editor: audacity\
 Chat: discord
 
 ## Other stuff
+Archives: atool, zip, unzip, unrar\
 Compatibility: wine\
 Emoji font: noto-fonts-emoji\
-Gaming: steam, minecraft-launcher (AUR), modrinth-launcher (AUR), jdk17-openjdk\
+Gaming: steam, minecraft-launcher (AUR)\
 Music: spotify-launcher\
 NTFS support: ntfs-3g
 
