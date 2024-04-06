@@ -36,8 +36,7 @@ valgrind\
 dotnet-runtime\
 dotnet-sdk\
 jdk17-openjdk\
-php\
-xampp (Official Website)\
+apache, php, php-apache\
 packettracer (AUR)\
 mysql-workbench\
 oracle-instantclient-basic\
@@ -50,7 +49,6 @@ mosh\
 openvpn\
 
 ## Apps
-Explorer: ranger, w3m\
 Browser: google-chrome (AUR)\
 Office: libreoffice-fresh\
 Image editors: gimp, aseprite (STEAM)\
@@ -58,7 +56,7 @@ Audio editor: audacity\
 Chat: discord
 
 ## Other stuff
-Archives: atool, zip, unzip, unrar\
+Archives: atool, zip, unzip, p7zip, unrar\
 Compatibility: wine\
 Emoji font: noto-fonts-emoji\
 Gaming: steam, minecraft-launcher (AUR)\
@@ -84,5 +82,4 @@ modrinth-launcher: login\
 neovim: codeium\
 wine: wine mono\
 packettracer: download, login\
-xampp: download\
 sudo: nopasswd

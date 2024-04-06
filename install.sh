@@ -1,16 +1,6 @@
 #!/bin/bash
 
-sudo cp -r etc /
-sudo cp -r home /
-sudo chown -R doman:doman ~
-
-sudo grub-mkconfig -o /boot/grub/grub.cfg
-
-sudo pacman -Syu
-sudo pacman -S i3-wm i3status xorg-server xorg-xinit dmenu picom feh maim xorg-xrandr brightnessctl bluez bluez-utils pulsemixer xorg-xinput fish alacritty fastfetch starship btop xclip neovim npm cmake mingw-w64 valgrind dotnet-runtime dotnet-sdk jdk-openjdk php mysql-workbench sdl2_image sdl2_mixer sdl2_ttf sdl2_net mosh openvpn gameconqueror ranger w3m libreoffice-fresh gimp inkscape audacity discord wine noto-fonts-emoji steam jdk17-openjdk spotify-launcher ntfs-3g
-
-chsh -s /bin/fish
-echo "set -U fish_greeting" | fish
+sudo pacman -Syu i3-wm i3status xorg-server xorg-xinit dmenu picom feh maim xorg-xrandr brightnessctl bluez bluez-utils pulsemixer xorg-xinput fish alacritty fastfetch starship btop xclip neovim npm cmake mingw-w64 valgrind dotnet-runtime dotnet-sdk jdk-openjdk php mysql-workbench sdl2_image sdl2_mixer sdl2_ttf sdl2_net mosh openvpn gameconqueror ranger w3m libreoffice-fresh gimp inkscape audacity discord wine noto-fonts-emoji steam jdk17-openjdk spotify-launcher ntfs-3g
 
 mkdir ~/.aur
 cd ~/.aur
@@ -48,6 +38,17 @@ cd ..
 git clone https://aur.archlinux.org/packettracer.git
 
 pacman -Qdtq | sudo pacman -Rns -
+
+sudo cp -r etc /
+sudo cp -r home /
+sudo chown -R doman:doman ~
+
+chsh -s /bin/fish
+echo "set -U fish_greeting" | fish
+
+sudo grub-mkconfig -o /boot/grub/grub.cfg
+
+sudo chmod 777 /srv/http
 
 mkdir ~/Desktop
 mkdir ~/Downloads
