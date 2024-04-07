@@ -83,16 +83,15 @@ require('lazy').setup({
         'neovim/nvim-lspconfig'
     },
     {
-        'mattn/emmet-vim'
-    },
-    {
         'tpope/vim-dadbod',
         'kristijanhusak/vim-dadbod-ui',
         'kristijanhusak/vim-dadbod-completion'
     },
     {
+        'L3MON4D3/LuaSnip',
         'hrsh7th/nvim-cmp',
         'hrsh7th/cmp-nvim-lsp',
+        'dcampos/cmp-emmet-vim',
         'hrsh7th/cmp-buffer',
         'hrsh7th/cmp-cmdline',
         'hrsh7th/cmp-path'
@@ -289,6 +288,11 @@ vim.lsp.handlers['textDocument/hover'] = vim.lsp.with(vim.lsp.handlers.hover, {
 
 -- Autocompletion
 require('cmp').setup({
+    snippet = {
+        expand = function(args)
+            require('luasnip').lsp_expand(args.body)
+        end
+    },
     window = {
         completion = require('cmp').config.window.bordered(),
         documentation = require('cmp').config.window.bordered()
@@ -303,6 +307,9 @@ require('cmp').setup({
     },
     sources = {
         {name = 'nvim_lsp'},
+        {name = 'emmet_vim', option = {
+            filetypes = {'html', 'css', 'php'}
+        }},
         {name = 'vim-dadbod-completion'},
         {name = 'codeium'},
         {name = 'buffer'},
