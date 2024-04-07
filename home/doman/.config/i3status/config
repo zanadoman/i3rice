@@ -43,15 +43,14 @@ wireless _first_ {
 
 # Volume
 volume master {
-    format_up = "VOL: %volume"
-    format_down = "VOL: NONE"
+    format = "VOL: %volume"
     format_muted = "VOL: MUTED"
     device = "default"
 }
 
 # Battery
 battery all {
-    format_up = "BAT: %status %percentage %remaining"
+    format = "BAT: %status %percentage %remaining"
     format_down = "BAT: PSU"
 }
 
