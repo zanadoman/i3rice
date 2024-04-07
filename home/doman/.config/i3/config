@@ -118,9 +118,6 @@ bindsym $mod+Return exec --no-startup-id alacritty
 # Text editor
 bindsym $mod+v exec --no-startup-id alacritty -e nvim
 
-# File explorer
-bindsym $mod+e exec --no-startup-id alacritty -e ranger
-
 # Internet browser
 bindsym $mod+b exec --no-startup-id google-chrome-stable
 
