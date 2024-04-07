@@ -39,14 +39,14 @@ jdk17-openjdk\
 apache, php, php-apache\
 packettracer (AUR)\
 mysql-workbench\
-oracle-instantclient-basic\
-oracle-instantclient-sqlplus\
+oracle-instantclient-basic (AUR)\
+oracle-instantclient-sqlplus (AUR)\
 sdl2_image\
 sdl2_mixer\
 sdl2_ttf\
 sdl2_net\
 mosh\
-openvpn\
+openvpn
 
 ## Apps
 Browser: google-chrome (AUR)\
@@ -73,12 +73,9 @@ libreoffice-fresh: disable tips, icons: colibre dark, scheme: dark\
 openssh: config\
 git: user.name, user.email, credential.helper store, token\
 fstab: disks\
-nemo: folders, sftp\
 networkmanager: wake-on-lan\
 i3: monitor, touchpad\
-i3status: disks\
 alacritty: font/padding 12/8 10/6\
-modrinth-launcher: login\
 neovim: codeium\
 wine: wine mono\
 packettracer: download, login\
