@@ -1,7 +1,7 @@
 # Preview
 <img src="preview.png">
 
-# Packages (745)
+# Packages (750)
 
 Dependency: git
 
@@ -39,7 +39,7 @@ valgrind\
 dotnet-runtime\
 dotnet-sdk\
 jdk17-openjdk\
-apache, php, php-apache\
+apache, php, php-apache, mariadb, phpmyadmin\
 packettracer (AUR)\
 mysql-workbench\
 oracle-instantclient-basic (AUR)\
