@@ -39,7 +39,7 @@ valgrind\
 dotnet-runtime\
 dotnet-sdk\
 jdk17-openjdk\
-apache, php, php-apache, mariadb, phpmyadmin\
+apache, php, php-apache, mysql, phpmyadmin\
 packettracer (AUR)\
 mysql-workbench\
 oracle-instantclient-basic (AUR)\
