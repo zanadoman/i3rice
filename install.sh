@@ -52,7 +52,7 @@ sudo chmod 557 /srv/http
 sudo mariadb-install-db --user=mysql --basedir=/usr --datadir=/var/lib/mysql
 sudo systemctl start mariadb.service
 sudo mariadb -u root -p
-mariadb-secure-installation
+sudo mariadb-secure-installation
 
 mkdir ~/Downloads
 mkdir ~/Documents
