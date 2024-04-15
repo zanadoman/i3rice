@@ -16,45 +16,45 @@ order += "tztime local"
 
 # CPU
 cpu_usage {
-    format = "CPU: %usage"
+    format = "󰻠 %usage"
 }
 
 # RAM
 memory {
-    format = "RAM: %used"
+    format = " %used"
 }
 
 # Internal drive
 disk "/" {
-    format = "DRIVE: %avail"
+    format = "󱛟 %avail"
 }
 
 # Ethernet
 ethernet _first_ {
-    format_up = "E: %speed"
-    format_down = "E: DOWN"
+    format_up = "󰈁 %speed"
+    format_down = "󰈂 "
 }
 
 # Wi-Fi
 wireless _first_ {
-    format_up = "W: %essid-%quality"
-    format_down = "W: DOWN"
+    format_up = "󰤨 %essid-%quality"
+    format_down = "󰤭 "
 }
 
 # Volume
 volume master {
-    format = "VOL: %volume"
-    format_muted = "VOL: MUTED"
+    format = "󰕾 %volume"
+    format_muted = "󰝟 "
     device = "default"
 }
 
 # Battery
 battery all {
-    format = "BAT: %status %percentage %remaining"
-    format_down = "BAT: PSU"
+    format = "󰁹 %status %percentage %remaining"
+    format_down = " "
 }
 
 # Time
 tztime local {
-    format = "%Y-%m-%d %H:%M:%S"
+    format = " %m.%d. 󰥔 %H:%M %p "
 }

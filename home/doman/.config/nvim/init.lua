@@ -30,6 +30,9 @@ vim.api.nvim_create_autocmd('BufReadPost', {
 -- Cursorline
 vim.o.cursorline = true
 
+-- Center cursorline
+vim.o.scrolloff = 999
+
 -- Border column
 vim.o.colorcolumn = '80'
 
