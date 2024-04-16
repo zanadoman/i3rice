@@ -78,7 +78,7 @@ git: user.name, user.email, credential.helper store, token\
 fstab: disks\
 networkmanager: wake-on-lan\
 i3: touchpad, brightness, monitor\
-alacritty: font/padding 12/8 10/6\
+alacritty: font/padding 11/10 7/6\
 neovim: codeium\
 wine: wine mono\
 packettracer: download, login\
