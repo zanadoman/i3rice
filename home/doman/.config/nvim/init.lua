@@ -31,7 +31,15 @@ vim.api.nvim_create_autocmd('BufReadPost', {
 vim.o.cursorline = true
 
 -- Center cursorline
-vim.o.scrolloff = 999
+vim.api.nvim_create_autocmd({'CursorMoved', 'CursorMovedI'}, {
+    callback = function()
+        local line = vim.api.nvim_win_get_cursor(0)[1]
+        if line ~= vim.b.prv_line then
+            vim.cmd('silent! normal! zz')
+            vim.b.prv_line = line 
+        end 
+    end
+})
 
 -- Border column
 vim.o.colorcolumn = '80'
@@ -64,6 +72,9 @@ vim.opt.rtp:prepend(vim.fn.stdpath('data') .. '/lazy/lazy.nvim')
 -- Install plugins
 require('lazy').setup({
     {
+        'nvim-lua/plenary.nvim'
+    },
+    {
         'nvimdev/dashboard-nvim',
         'nvim-lualine/lualine.nvim',
         'romgrk/barbar.nvim',
@@ -76,8 +87,9 @@ require('lazy').setup({
         'windwp/nvim-autopairs',
         'kylechui/nvim-surround',
         'numToStr/Comment.nvim',
-        'stevearc/aerial.nvim',
         'lewis6991/gitsigns.nvim',
+        'nvim-telescope/telescope.nvim',
+        'nvim-telescope/telescope-file-browser.nvim',
         'folke/which-key.nvim'
     },
     {
@@ -100,8 +112,7 @@ require('lazy').setup({
         'hrsh7th/cmp-path'
     },
     {
-        'Exafunction/codeium.nvim',
-        'nvim-lua/plenary.nvim'
+        'Exafunction/codeium.nvim'
     }
 })
 
@@ -132,7 +143,7 @@ require('dashboard').setup({
                 icon = ' ',
                 desc = 'Open',
                 key = 'o',
-                action = 'Explore'
+                action = 'Telescope file_browser'
             },
             {
                 icon = ' ',
@@ -173,7 +184,6 @@ require('dashboard').setup({
 require('lualine').setup({
     options = {globalstatus = true},
     extensions = {
-        'aerial',
         'lazy',
         'mason'
     }
@@ -186,7 +196,6 @@ require('barbar').setup({
     animation = false,
     tabpages = false,
     icons = {
-        buffer_number = true,
         diagnostics = {
             [vim.diagnostic.severity.ERROR] = {enabled = true},
             [vim.diagnostic.severity.WARN] = {enabled = true}
@@ -216,6 +225,19 @@ vim.cmd('colorscheme tokyonight')
 -- Movement
 require('leap').create_default_mappings()
 
+-- Buffer handling
+vim.keymap.set('n', ' n', ':BufferNext\n', {
+    desc = 'Next buffer'
+})
+
+vim.keymap.set('n', ' p', ':BufferPrevious\n', {
+    desc = 'Previous buffer'
+})
+
+vim.keymap.set('n', ' q', ':BufferWipeout!\n', {
+    desc = 'Close buffer'
+})
+
 -- Bracket autocompletion
 require('nvim-autopairs').setup()
 
@@ -225,34 +247,79 @@ require('nvim-surround').setup()
 -- Bulk commenter
 require('Comment').setup()
 
--- Code explorer
-require('aerial').setup({
-    layout = {
-        width = 20,
-        default_direction = 'left',
-        placement = 'edge'
-    },
-    close_automatic_events = {'unsupported'},
-    filter_kind = {
-        'Class',
-        'Constructor',
-        'Enum',
-        'Function',
-        'Interface',
-        'Module',
-        'Method',
-        'Struct',
-        'Field',
-        'Property',
-        'Destructor'
-    },
-    autojump = true,
-    open_automatic = true
+-- Git integration
+require('gitsigns').setup()
+
+vim.keymap.set('n', ' hp', ':Gitsigns preview_hunk_inline\n', {
+    desc = 'Gitsigns preview hunk'
 })
 
--- Git integration
-require('gitsigns').setup({
-    preview_config = {border = 'rounded'}
+vim.keymap.set('n', ' hs', ':Gitsigns stage_hunk\n', {
+    desc = 'Gitsigns stage hunk'
+})
+
+vim.keymap.set('n', ' hu', ':Gitsigns undo_stage_hunk\n', {
+    desc = 'Gitsigns unstage hunk'
+})
+
+vim.keymap.set('n', ' hr', ':Gitsigns reset_hunk\n', {
+    desc = 'Gitsigns reset hunk'
+})
+
+vim.keymap.set('n', ' hR', ':Gitsigns reset_buffer\n', {
+    desc = 'Gitsigns reset buffer'
+})
+
+--Fuzzy finder
+require('telescope').setup()
+
+vim.keymap.set('n', ' f', ':Telescope\n', {
+    desc = 'Telescope'
+})
+
+vim.keymap.set('n', ' ff', ':Telescope file_browser\n', {
+    desc = 'Telescope file browser'
+})
+
+vim.keymap.set('n', ' fg', ':Telescope live_grep\n', {
+    desc = 'Telescope live grep'
+})
+
+vim.keymap.set('n', ' fb', ':Telescope buffers\n', {
+    desc = 'Telescope buffers'
+})
+
+--Code runner
+vim.api.nvim_create_autocmd('BufEnter', {
+    callback = function(opts)
+        if vim.bo[opts.buf].filetype == 'c' then
+            vim.keymap.set('n', ' r', ':term gcc -std=c99 -O3 ' ..
+                           '-Werror -Wall -Wextra -Wpedantic % && ./a.out\n', {
+                desc = 'Run 󰙱 '
+            })
+        elseif vim.bo[opts.buf].filetype == 'cpp' then
+            vim.keymap.set('n', ' r', ':term g++ -std=c++11 -O3 ' ..
+                           '-Werror -Wall -Wextra -Wpedantic % && ./a.out\n', {
+                desc = 'Run 󰙲 '
+            })
+        elseif vim.bo[opts.buf].filetype == 'cs' then
+            vim.keymap.set('n', ' r', ':term dotnet run\n', {
+                desc = 'Run 󰌛 '
+            })
+        elseif vim.bo[opts.buf].filetype == 'java' then
+            vim.keymap.set('n', ' r', ':term java %\n', {
+                desc = 'Run  '
+            })
+        elseif vim.bo[opts.buf].filetype == 'python' then
+            vim.keymap.set('n', ' r', ':term python3 %\n', {
+                desc = 'Run  '
+            })
+        elseif vim.bo[opts.buf].filetype == 'sh' then
+            vim.keymap.set('n', ' r', ':term ./%\n', {
+                desc = 'Run  '
+            })
+        end
+    end
 })
 
 -- Help
