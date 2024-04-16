@@ -1,7 +1,7 @@
 # Preview
 <img src="preview.png">
 
-# Packages (751)
+# Packages (752)
 
 Dependency: git
 
@@ -30,7 +30,7 @@ Task manager: btop\
 Clipboard: xclip
 
 ## Development
-Editor: neovim, npm
+Editor: neovim, npm, ripgrep
 
 ### Tools
 cmake\

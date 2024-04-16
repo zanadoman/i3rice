@@ -4,7 +4,7 @@ sudo cp -r etc /
 sudo cp -r home /
 sudo chown -R doman:doman ~
 
-sudo pacman -Syu i3-wm i3status xorg-server xorg-xinit dmenu feh maim xorg-xrandr brightnessctl bluez bluez-utils pulsemixer xorg-xinput fish alacritty fastfetch starship btop xclip neovim npm cmake mingw-w64 valgrind dotnet-runtime dotnet-sdk jdk17-openjdk apache php php-apache mysql phpmyadmin mysql-workbench sdl2_image sdl2_mixer sdl2_ttf sdl2_net mosh openvpn libreoffice-fresh gimp audacity discord atool zip unzip p7zip unrar wine noto-fonts-emoji steam spotify-launcher ntfs-3g
+sudo pacman -Syu i3-wm i3status xorg-server xorg-xinit dmenu feh maim xorg-xrandr brightnessctl bluez bluez-utils pulsemixer xorg-xinput fish alacritty fastfetch starship btop xclip neovim npm ripgrep cmake mingw-w64 valgrind dotnet-runtime dotnet-sdk jdk17-openjdk apache php php-apache mysql phpmyadmin mysql-workbench sdl2_image sdl2_mixer sdl2_ttf sdl2_net mosh openvpn libreoffice-fresh gimp audacity discord atool zip unzip p7zip unrar wine noto-fonts-emoji steam spotify-launcher ntfs-3g
 
 mkdir ~/.aur
 cd ~/.aur
