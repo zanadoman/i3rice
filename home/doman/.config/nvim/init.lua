@@ -250,6 +250,10 @@ require('Comment').setup()
 -- Git integration
 require('gitsigns').setup()
 
+vim.keymap.set('n', ' h', ':Gitsigns\n', {
+    desc = 'Gitsigns'
+})
+
 vim.keymap.set('n', ' hp', ':Gitsigns preview_hunk_inline\n', {
     desc = 'Gitsigns preview hunk'
 })
@@ -324,7 +328,7 @@ vim.api.nvim_create_autocmd('BufEnter', {
 
 -- Help
 require('which-key').setup({
-    window = {border = 'single'}
+    window = {border = 'rounded'}
 })
 
 -- Install servers
