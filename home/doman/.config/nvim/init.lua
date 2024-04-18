@@ -12,6 +12,12 @@ local servers = {
     'sqlls'
 }
 
+-- Movement
+vim.keymap.set('i', '<C-h>', '<Left>')
+vim.keymap.set('i', '<C-j>', '<Down>')
+vim.keymap.set('i', '<C-k>', '<Up>')
+vim.keymap.set('i', '<C-l>', '<Right>')
+
 -- Line numbers
 vim.o.number = true
 vim.o.relativenumber = true
@@ -30,16 +36,8 @@ vim.api.nvim_create_autocmd('BufReadPost', {
 -- Cursorline
 vim.o.cursorline = true
 
--- Center cursorline
-vim.api.nvim_create_autocmd({'CursorMoved', 'CursorMovedI'}, {
-    callback = function()
-        local line = vim.api.nvim_win_get_cursor(0)[1]
-        if line ~= vim.b.prv_line then
-            vim.cmd('silent! normal! zz')
-            vim.b.prv_line = line 
-        end 
-    end
-})
+-- Scrolloff
+vim.o.scrolloff = 64
 
 -- Border column
 vim.o.colorcolumn = '80'
@@ -49,6 +47,10 @@ vim.o.clipboard = 'unnamedplus'
 
 -- Autochange directory
 vim.o.autochdir = true
+
+-- Search mode
+vim.o.ignorecase = true
+vim.o.smartcase = true
 
 -- Update time
 vim.o.updatetime = 1000
@@ -183,10 +185,6 @@ require('dashboard').setup({
 -- Statusline
 require('lualine').setup({
     options = {globalstatus = true},
-    extensions = {
-        'lazy',
-        'mason'
-    }
 })
 
 vim.o.showmode = false
@@ -195,7 +193,10 @@ vim.o.showmode = false
 require('barbar').setup({
     animation = false,
     tabpages = false,
+    focus_on_close = 'previous',
     icons = {
+        buffer_index = true,
+        button = '',
         diagnostics = {
             [vim.diagnostic.severity.ERROR] = {enabled = true},
             [vim.diagnostic.severity.WARN] = {enabled = true}
@@ -204,13 +205,31 @@ require('barbar').setup({
             added = {enabled = true},
             changed = {enabled = true},
             deleted = {enabled = true}
-        }
-    }
+        },
+        separator_at_end = false,
+        modified = {button = ''}
+    },
+    insert_at_end = true
 })
+
+vim.keymap.set('n', '<A-,>', ':BufferPrevious\n', {silent = true})
+vim.keymap.set('n', '<A-.>', ':BufferNext\n', {silent = true})
+vim.keymap.set('n', '<A-c>', ':BufferWipeout!\n', {silent = true})
+
+vim.keymap.set('n', '<A-1>', ':BufferGoto 1\n', {silent = true})
+vim.keymap.set('n', '<A-2>', ':BufferGoto 2\n', {silent = true})
+vim.keymap.set('n', '<A-3>', ':BufferGoto 3\n', {silent = true})
+vim.keymap.set('n', '<A-4>', ':BufferGoto 4\n', {silent = true})
+vim.keymap.set('n', '<A-5>', ':BufferGoto 5\n', {silent = true})
+vim.keymap.set('n', '<A-6>', ':BufferGoto 6\n', {silent = true})
+vim.keymap.set('n', '<A-7>', ':BufferGoto 7\n', {silent = true})
+vim.keymap.set('n', '<A-8>', ':BufferGoto 8\n', {silent = true})
+vim.keymap.set('n', '<A-9>', ':BufferGoto 9\n', {silent = true})
 
 -- Indentation indicator
 require('ibl').setup({
     indent = {char = '.'},
+    scope = {enabled = false},
     exclude = {filetypes = {'dashboard'}}
 })
 
@@ -225,19 +244,6 @@ vim.cmd('colorscheme tokyonight')
 -- Movement
 require('leap').create_default_mappings()
 
--- Buffer handling
-vim.keymap.set('n', ' n', ':BufferNext\n', {
-    desc = 'Next buffer'
-})
-
-vim.keymap.set('n', ' p', ':BufferPrevious\n', {
-    desc = 'Previous buffer'
-})
-
-vim.keymap.set('n', ' q', ':BufferWipeout!\n', {
-    desc = 'Close buffer'
-})
-
 -- Bracket autocompletion
 require('nvim-autopairs').setup()
 
@@ -248,85 +254,113 @@ require('nvim-surround').setup()
 require('Comment').setup()
 
 -- Git integration
-require('gitsigns').setup()
+require('gitsigns').setup({
+    on_attach = function()
+        vim.keymap.set('n', ' h', ':Gitsigns\n', {
+            silent = true,
+            desc = 'Gitsigns'
+        })
 
-vim.keymap.set('n', ' h', ':Gitsigns\n', {
-    desc = 'Gitsigns'
-})
+        vim.keymap.set('n', ' hp', ':Gitsigns preview_hunk_inline\n', {
+            silent = true,
+            desc = 'Gitsigns preview hunk'
+        })
 
-vim.keymap.set('n', ' hp', ':Gitsigns preview_hunk_inline\n', {
-    desc = 'Gitsigns preview hunk'
-})
+        vim.keymap.set('n', ' hs', ':Gitsigns stage_hunk\n', {
+            silent = true,
+            desc = 'Gitsigns stage hunk'
+        })
 
-vim.keymap.set('n', ' hs', ':Gitsigns stage_hunk\n', {
-    desc = 'Gitsigns stage hunk'
-})
+        vim.keymap.set('n', ' hu', ':Gitsigns undo_stage_hunk\n', {
+            silent = true,
+            desc = 'Gitsigns unstage hunk'
+        })
 
-vim.keymap.set('n', ' hu', ':Gitsigns undo_stage_hunk\n', {
-    desc = 'Gitsigns unstage hunk'
-})
+        vim.keymap.set('n', ' hr', ':Gitsigns reset_hunk\n', {
+            silent = true,
+            desc = 'Gitsigns reset hunk'
+        })
 
-vim.keymap.set('n', ' hr', ':Gitsigns reset_hunk\n', {
-    desc = 'Gitsigns reset hunk'
-})
+        vim.keymap.set('n', ' hS', ':Gitsigns stage_buffer\n', {
+            silent = true,
+            desc = 'Gitsigns stage buffer'
+        })
 
-vim.keymap.set('n', ' hR', ':Gitsigns reset_buffer\n', {
-    desc = 'Gitsigns reset buffer'
+        vim.keymap.set('n', ' hR', ':Gitsigns reset_buffer\n', {
+            silent = true,
+            desc = 'Gitsigns reset buffer'
+        })
+
+        vim.keymap.set('n', ' hb', ':Gitsigns toggle_current_line_blame\n', {
+            silent = true,
+            desc = 'Gitsigns toggle blame'
+        })
+    end
 })
 
 --Fuzzy finder
 require('telescope').setup()
 
 vim.keymap.set('n', ' f', ':Telescope\n', {
+    silent = true,
     desc = 'Telescope'
 })
 
 vim.keymap.set('n', ' ff', ':Telescope file_browser\n', {
+    silent = true,
     desc = 'Telescope file browser'
 })
 
 vim.keymap.set('n', ' fg', ':Telescope live_grep\n', {
+    silent = true,
     desc = 'Telescope live grep'
 })
 
 vim.keymap.set('n', ' fb', ':Telescope buffers\n', {
+    silent = true,
     desc = 'Telescope buffers'
 })
 
---Code runner
+-- Code runner
 vim.api.nvim_create_autocmd('BufEnter', {
     callback = function(opts)
         if vim.bo[opts.buf].filetype == 'c' then
-            vim.keymap.set('n', ' r', ':term gcc -std=c99 -O3 ' ..
+            vim.keymap.set('n', ' r', ':terminal gcc -std=c99 -O3 ' ..
                            '-Werror -Wall -Wextra -Wpedantic % && ./a.out\n', {
+                silent = true,
                 desc = 'Run 󰙱 '
             })
         elseif vim.bo[opts.buf].filetype == 'cpp' then
-            vim.keymap.set('n', ' r', ':term g++ -std=c++11 -O3 ' ..
+            vim.keymap.set('n', ' r', ':terminal g++ -std=c++11 -O3 ' ..
                            '-Werror -Wall -Wextra -Wpedantic % && ./a.out\n', {
+                silent = true,
                 desc = 'Run 󰙲 '
             })
         elseif vim.bo[opts.buf].filetype == 'cs' then
-            vim.keymap.set('n', ' r', ':term dotnet run\n', {
+            vim.keymap.set('n', ' r', ':terminal dotnet run\n', {
+                silent = true,
                 desc = 'Run 󰌛 '
             })
         elseif vim.bo[opts.buf].filetype == 'java' then
-            vim.keymap.set('n', ' r', ':term java %\n', {
+            vim.keymap.set('n', ' r', ':terminal java %\n', {
+                silent = true,
                 desc = 'Run  '
             })
         elseif vim.bo[opts.buf].filetype == 'python' then
-            vim.keymap.set('n', ' r', ':term python3 %\n', {
+            vim.keymap.set('n', ' r', ':terminal python3 %\n', {
+                silent = true,
                 desc = 'Run  '
             })
         elseif vim.bo[opts.buf].filetype == 'sh' then
-            vim.keymap.set('n', ' r', ':term ./%\n', {
+            vim.keymap.set('n', ' r', ':terminal ./%\n', {
+                silent = true,
                 desc = 'Run  '
             })
         end
     end
 })
 
--- Help
+-- Key bindings
 require('which-key').setup({
     window = {border = 'rounded'}
 })
@@ -374,7 +408,7 @@ require('cmp').setup({
     mapping = {
         ['<Up>'] = require('cmp').mapping.select_prev_item(),
         ['<Down>'] = require('cmp').mapping.select_next_item(),
-        ['<Tab>'] = require('cmp').mapping.confirm({select = true}),
+        ['<Tab>'] = require('cmp').mapping.confirm(),
         ['<Escape>'] = require('cmp').mapping.abort(),
         ['<C-Up>'] = require('cmp').mapping.scroll_docs(-1),
         ['<C-Down>'] = require('cmp').mapping.scroll_docs(1)
