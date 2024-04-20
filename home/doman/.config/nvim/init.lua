@@ -12,12 +12,6 @@ local servers = {
     'sqlls'
 }
 
--- Movement
-vim.keymap.set('i', '<C-h>', '<Left>')
-vim.keymap.set('i', '<C-j>', '<Down>')
-vim.keymap.set('i', '<C-k>', '<Up>')
-vim.keymap.set('i', '<C-l>', '<Right>')
-
 -- Line numbers
 vim.o.number = true
 vim.o.relativenumber = true
@@ -72,52 +66,57 @@ end
 vim.opt.rtp:prepend(vim.fn.stdpath('data') .. '/lazy/lazy.nvim')
 
 -- Install plugins
-require('lazy').setup({
+require('lazy').setup(
     {
-        'nvim-lua/plenary.nvim'
+        {
+            'nvim-lua/plenary.nvim'
+        },
+        {
+            'nvimdev/dashboard-nvim',
+            'nvim-lualine/lualine.nvim',
+            'romgrk/barbar.nvim',
+            'lukas-reineke/indent-blankline.nvim',
+            'folke/tokyonight.nvim',
+            'nvim-tree/nvim-web-devicons'
+        },
+        {
+            'ggandor/leap.nvim',
+            'windwp/nvim-autopairs',
+            'kylechui/nvim-surround',
+            'numToStr/Comment.nvim',
+            'lewis6991/gitsigns.nvim',
+            'nvim-telescope/telescope.nvim',
+            'nvim-telescope/telescope-file-browser.nvim',
+            'folke/which-key.nvim'
+        },
+        {
+            'williamboman/mason.nvim',
+            'williamboman/mason-lspconfig.nvim',
+            'neovim/nvim-lspconfig'
+        },
+        {
+            'tpope/vim-dadbod',
+            'kristijanhusak/vim-dadbod-ui',
+            'kristijanhusak/vim-dadbod-completion'
+        },
+        {
+            'L3MON4D3/LuaSnip',
+            'hrsh7th/nvim-cmp',
+            'hrsh7th/cmp-nvim-lsp',
+            'dcampos/cmp-emmet-vim',
+            'hrsh7th/cmp-buffer',
+            'hrsh7th/cmp-cmdline',
+            'hrsh7th/cmp-path'
+        },
+        {
+            'Exafunction/codeium.nvim'
+        }
     },
     {
-        'nvimdev/dashboard-nvim',
-        'nvim-lualine/lualine.nvim',
-        'romgrk/barbar.nvim',
-        'lukas-reineke/indent-blankline.nvim',
-        'folke/tokyonight.nvim',
-        'nvim-tree/nvim-web-devicons'
-    },
-    {
-        'ggandor/leap.nvim',
-        'windwp/nvim-autopairs',
-        'kylechui/nvim-surround',
-        'numToStr/Comment.nvim',
-        'lewis6991/gitsigns.nvim',
-        'nvim-telescope/telescope.nvim',
-        'nvim-telescope/telescope-file-browser.nvim',
-        'folke/which-key.nvim'
-    },
-    {
-        'williamboman/mason.nvim',
-        'williamboman/mason-lspconfig.nvim',
-        'neovim/nvim-lspconfig'
-    },
-    {
-        'tpope/vim-dadbod',
-        'kristijanhusak/vim-dadbod-ui',
-        'kristijanhusak/vim-dadbod-completion'
-    },
-    {
-        'L3MON4D3/LuaSnip',
-        'hrsh7th/nvim-cmp',
-        'hrsh7th/cmp-nvim-lsp',
-        'dcampos/cmp-emmet-vim',
-        'hrsh7th/cmp-buffer',
-        'hrsh7th/cmp-cmdline',
-        'hrsh7th/cmp-path'
-    },
-    {
-        'Exafunction/codeium.nvim'
+        ui = {border = 'rounded'}
     }
-})
-
+)
+    
 -- Startup screen
 require('dashboard').setup({
     shortcut_type = 'number',
@@ -247,7 +246,7 @@ require('leap').create_default_mappings()
 -- Bracket autocompletion
 require('nvim-autopairs').setup()
 
--- Surround helper
+-- Surround tool
 require('nvim-surround').setup()
 
 -- Bulk commenter
