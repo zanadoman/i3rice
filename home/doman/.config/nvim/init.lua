@@ -405,18 +405,16 @@ require('cmp').setup({
         documentation = require('cmp').config.window.bordered()
     },
     mapping = {
+        ['<C-f>'] = require('cmp').mapping.confirm({select = true}),
+        ['<C-e>'] = require('cmp').mapping.abort(),
         ['<Up>'] = require('cmp').mapping.select_prev_item(),
         ['<Down>'] = require('cmp').mapping.select_next_item(),
-        ['<Tab>'] = require('cmp').mapping.confirm(),
-        ['<Escape>'] = require('cmp').mapping.abort(),
-        ['<C-Up>'] = require('cmp').mapping.scroll_docs(-1),
-        ['<C-Down>'] = require('cmp').mapping.scroll_docs(1)
+        ['<C-Down>'] = require('cmp').mapping.scroll_docs(1),
+        ['<C-Up>'] = require('cmp').mapping.scroll_docs(-1)
     },
     sources = {
         {name = 'nvim_lsp'},
-        {name = 'emmet_vim', option = {
-            filetypes = {'html', 'css', 'php'}
-        }},
+        {name = 'emmet_vim', option = {filetypes = {'html', 'css', 'php'}}},
         {name = 'vim-dadbod-completion'},
         {name = 'codeium'},
         {name = 'buffer'},
