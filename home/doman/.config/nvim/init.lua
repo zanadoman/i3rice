@@ -42,6 +42,9 @@ vim.o.clipboard = 'unnamedplus'
 -- Autochange directory
 vim.o.autochdir = true
 
+-- Wrap lines
+vim.o.wrap = false
+
 -- Search mode
 vim.o.ignorecase = true
 vim.o.smartcase = true
@@ -84,9 +87,9 @@ require('lazy').setup(
             'windwp/nvim-autopairs',
             'kylechui/nvim-surround',
             'numToStr/Comment.nvim',
-            'lewis6991/gitsigns.nvim',
             'nvim-telescope/telescope.nvim',
             'nvim-telescope/telescope-file-browser.nvim',
+            'lewis6991/gitsigns.nvim',
             'folke/which-key.nvim'
         },
         {
@@ -132,7 +135,6 @@ require('dashboard').setup({
             '██████  █████████████████████ ████ █████ █████ ████ ██████',
             '                                                                     ',
         },
-        disable_move = true,
         shortcut = {
             {
                 icon = ' ',
@@ -233,12 +235,8 @@ require('ibl').setup({
 })
 
 -- Theme
-require('tokyonight').setup({
-    style = 'night',
-    transparent = true
-})
-
-vim.cmd('colorscheme tokyonight')
+require('tokyonight').setup({transparent = true})
+vim.cmd('colorscheme tokyonight-night')
 
 -- Movement
 require('leap').create_default_mappings()
@@ -251,6 +249,29 @@ require('nvim-surround').setup()
 
 -- Bulk commenter
 require('Comment').setup()
+
+--Fuzzy finder
+require('telescope').setup()
+
+vim.keymap.set('n', ' f', ':Telescope\n', {
+    silent = true,
+    desc = 'Telescope'
+})
+
+vim.keymap.set('n', ' ff', ':Telescope file_browser\n', {
+    silent = true,
+    desc = 'Telescope file browser'
+})
+
+vim.keymap.set('n', ' fg', ':Telescope live_grep\n', {
+    silent = true,
+    desc = 'Telescope live grep'
+})
+
+vim.keymap.set('n', ' fb', ':Telescope buffers\n', {
+    silent = true,
+    desc = 'Telescope buffers'
+})
 
 -- Git integration
 require('gitsigns').setup({
@@ -297,44 +318,37 @@ require('gitsigns').setup({
     end
 })
 
---Fuzzy finder
-require('telescope').setup()
-
-vim.keymap.set('n', ' f', ':Telescope\n', {
-    silent = true,
-    desc = 'Telescope'
-})
-
-vim.keymap.set('n', ' ff', ':Telescope file_browser\n', {
-    silent = true,
-    desc = 'Telescope file browser'
-})
-
-vim.keymap.set('n', ' fg', ':Telescope live_grep\n', {
-    silent = true,
-    desc = 'Telescope live grep'
-})
-
-vim.keymap.set('n', ' fb', ':Telescope buffers\n', {
-    silent = true,
-    desc = 'Telescope buffers'
-})
-
 -- Code runner
 vim.api.nvim_create_autocmd('BufEnter', {
     callback = function(opts)
         if vim.bo[opts.buf].filetype == 'c' then
-            vim.keymap.set('n', ' r', ':terminal gcc -std=c99 -O3 ' ..
-                           '-Werror -Wall -Wextra -Wpedantic % && ./a.out\n', {
-                silent = true,
-                desc = 'Run 󰙱 '
-            })
+            if vim.fn.filereadable('compile_flags.txt') then
+                vim.keymap.set('n', ' r', ':terminal gcc % ' ..
+                               '$(cat compile_flags.txt) && ./a.out\n', {
+                    silent = true,
+                    desc = 'Run 󰙱 '
+                })
+            else
+                vim.keymap.set('n', ' r', ':terminal gcc -std=c99 -O3 ' ..
+                               '-Werror -Wall -Wextra -Wpedantic % && ./a.out\n', {
+                    silent = true,
+                    desc = 'Run 󰙱 '
+                })
+            end
         elseif vim.bo[opts.buf].filetype == 'cpp' then
-            vim.keymap.set('n', ' r', ':terminal g++ -std=c++11 -O3 ' ..
-                           '-Werror -Wall -Wextra -Wpedantic % && ./a.out\n', {
-                silent = true,
-                desc = 'Run 󰙲 '
-            })
+            if vim.fn.filereadable('compile_flags.txt') then
+                vim.keymap.set('n', ' r', ':terminal g++ % ' ..
+                               '$(cat compile_flags.txt) && ./a.out\n', {
+                    silent = true,
+                    desc = 'Run 󰙲 '
+                })
+            else
+                vim.keymap.set('n', ' r', ':terminal g++ -std=c++11 -O3 ' ..
+                               '-Werror -Wall -Wextra -Wpedantic % && ./a.out\n', {
+                    silent = true,
+                    desc = 'Run 󰙲 '
+                })
+            end
         elseif vim.bo[opts.buf].filetype == 'cs' then
             vim.keymap.set('n', ' r', ':terminal dotnet run\n', {
                 silent = true,
@@ -374,18 +388,14 @@ require('mason-lspconfig').setup({
 })
 
 -- Diagnostic config
+vim.diagnostic.config({update_in_insert = true})
+
 vim.api.nvim_create_autocmd({'CursorHold', 'CursorHoldI'}, {
     callback = function()
         if vim.lsp.buf.server_ready() and not require('cmp').visible() then
             vim.lsp.buf.hover()
-            vim.diagnostic.open_float()
         end
     end
-})
-
-vim.diagnostic.config({
-    update_in_insert = true,
-    float = {border = 'rounded'}
 })
 
 vim.lsp.handlers['textDocument/hover'] = vim.lsp.with(vim.lsp.handlers.hover, {
