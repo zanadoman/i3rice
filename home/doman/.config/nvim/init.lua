@@ -280,42 +280,42 @@ vim.keymap.set('n', '<leader>fb', ':Telescope buffers\n', {
 -- Git integration
 require('gitsigns').setup({
     on_attach = function()
-        vim.keymap.set('n', ' h', ':Gitsigns\n', {
+        vim.keymap.set('n', '<leader>h', ':Gitsigns\n', {
             silent = true,
             desc = 'Gitsigns'
         })
 
-        vim.keymap.set('n', ' hp', ':Gitsigns preview_hunk_inline\n', {
+        vim.keymap.set('n', '<leader>hp', ':Gitsigns preview_hunk_inline\n', {
             silent = true,
             desc = 'Gitsigns preview hunk'
         })
 
-        vim.keymap.set('n', ' hs', ':Gitsigns stage_hunk\n', {
+        vim.keymap.set('n', '<leader>hs', ':Gitsigns stage_hunk\n', {
             silent = true,
             desc = 'Gitsigns stage hunk'
         })
 
-        vim.keymap.set('n', ' hu', ':Gitsigns undo_stage_hunk\n', {
+        vim.keymap.set('n', '<leader>hu', ':Gitsigns undo_stage_hunk\n', {
             silent = true,
             desc = 'Gitsigns unstage hunk'
         })
 
-        vim.keymap.set('n', ' hr', ':Gitsigns reset_hunk\n', {
+        vim.keymap.set('n', '<leader>hr', ':Gitsigns reset_hunk\n', {
             silent = true,
             desc = 'Gitsigns reset hunk'
         })
 
-        vim.keymap.set('n', ' hS', ':Gitsigns stage_buffer\n', {
+        vim.keymap.set('n', '<leader>hS', ':Gitsigns stage_buffer\n', {
             silent = true,
             desc = 'Gitsigns stage buffer'
         })
 
-        vim.keymap.set('n', ' hR', ':Gitsigns reset_buffer\n', {
+        vim.keymap.set('n', '<leader>hR', ':Gitsigns reset_buffer\n', {
             silent = true,
             desc = 'Gitsigns reset buffer'
         })
 
-        vim.keymap.set('n', ' hb', ':Gitsigns toggle_current_line_blame\n', {
+        vim.keymap.set('n', '<leader>hb', ':Gitsigns toggle_current_line_blame\n', {
             silent = true,
             desc = 'Gitsigns toggle blame'
         })
@@ -327,13 +327,13 @@ vim.api.nvim_create_autocmd('BufEnter', {
     callback = function(opts)
         if vim.bo[opts.buf].filetype == 'c' then
             if vim.fn.filereadable('compile_flags.txt') then
-                vim.keymap.set('n', ' r', ':terminal gcc % ' ..
+                vim.keymap.set('n', '<leader>r', ':terminal gcc % ' ..
                                '$(cat compile_flags.txt) && ./a.out\n', {
                     silent = true,
                     desc = 'Run 󰙱 '
                 })
             else
-                vim.keymap.set('n', ' r', ':terminal gcc -std=c99 -O3 ' ..
+                vim.keymap.set('n', '<leader>r', ':terminal gcc -std=c99 -O3 ' ..
                                '-Werror -Wall -Wextra -Wpedantic % && ./a.out\n', {
                     silent = true,
                     desc = 'Run 󰙱 '
@@ -341,35 +341,35 @@ vim.api.nvim_create_autocmd('BufEnter', {
             end
         elseif vim.bo[opts.buf].filetype == 'cpp' then
             if vim.fn.filereadable('compile_flags.txt') then
-                vim.keymap.set('n', ' r', ':terminal g++ % ' ..
+                vim.keymap.set('n', '<leader>r', ':terminal g++ % ' ..
                                '$(cat compile_flags.txt) && ./a.out\n', {
                     silent = true,
                     desc = 'Run 󰙲 '
                 })
             else
-                vim.keymap.set('n', ' r', ':terminal g++ -std=c++11 -O3 ' ..
+                vim.keymap.set('n', '<leader>r', ':terminal g++ -std=c++11 -O3 ' ..
                                '-Werror -Wall -Wextra -Wpedantic % && ./a.out\n', {
                     silent = true,
                     desc = 'Run 󰙲 '
                 })
             end
         elseif vim.bo[opts.buf].filetype == 'cs' then
-            vim.keymap.set('n', ' r', ':terminal dotnet run\n', {
+            vim.keymap.set('n', '<leader>r', ':terminal dotnet run\n', {
                 silent = true,
                 desc = 'Run 󰌛 '
             })
         elseif vim.bo[opts.buf].filetype == 'java' then
-            vim.keymap.set('n', ' r', ':terminal java %\n', {
+            vim.keymap.set('n', '<leader>r', ':terminal java %\n', {
                 silent = true,
                 desc = 'Run  '
             })
         elseif vim.bo[opts.buf].filetype == 'python' then
-            vim.keymap.set('n', ' r', ':terminal python3 %\n', {
+            vim.keymap.set('n', '<leader>r', ':terminal python3 %\n', {
                 silent = true,
                 desc = 'Run  '
             })
         elseif vim.bo[opts.buf].filetype == 'sh' then
-            vim.keymap.set('n', ' r', ':terminal ./%\n', {
+            vim.keymap.set('n', '<leader>r', ':terminal ./%\n', {
                 silent = true,
                 desc = 'Run  '
             })
