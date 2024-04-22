@@ -12,6 +12,9 @@ local servers = {
     'sqlls'
 }
 
+-- Leader
+vim.g.mapleader = ' '
+
 -- Line numbers
 vim.o.number = true
 vim.o.relativenumber = true
@@ -249,26 +252,27 @@ require('nvim-surround').setup()
 
 -- Bulk commenter
 require('Comment').setup()
+require('Comment.ft').set('plsql', '--%s')
 
 --Fuzzy finder
 require('telescope').setup()
 
-vim.keymap.set('n', ' f', ':Telescope\n', {
+vim.keymap.set('n', '<leader>f', ':Telescope\n', {
     silent = true,
     desc = 'Telescope'
 })
 
-vim.keymap.set('n', ' ff', ':Telescope file_browser\n', {
+vim.keymap.set('n', '<leader>ff', ':Telescope file_browser\n', {
     silent = true,
     desc = 'Telescope file browser'
 })
 
-vim.keymap.set('n', ' fg', ':Telescope live_grep\n', {
+vim.keymap.set('n', '<leader>fg', ':Telescope live_grep\n', {
     silent = true,
     desc = 'Telescope live grep'
 })
 
-vim.keymap.set('n', ' fb', ':Telescope buffers\n', {
+vim.keymap.set('n', '<leader>fb', ':Telescope buffers\n', {
     silent = true,
     desc = 'Telescope buffers'
 })
