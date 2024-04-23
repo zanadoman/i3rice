@@ -1,7 +1,7 @@
 # Preview
 <img src="preview.png">
 
-# Packages (752)
+# Packages (722)
 
 Dependency: git
 
@@ -53,7 +53,7 @@ openvpn
 
 ## Apps
 Browser: google-chrome (AUR)\
-Office: libreoffice-fresh\
+Office: onlyoffice (AUR)\
 Image editors: gimp, aseprite (STEAM)\
 Audio editor: audacity\
 Chat: discord
