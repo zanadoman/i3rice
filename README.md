@@ -72,7 +72,6 @@ spotify-launcher: login\
 steam: login, install aseprite\
 discord: login, disable notifications, fontsize, keybinding\
 minecraft-launcher: login\
-libreoffice-fresh: disable tips, icons: colibre dark, scheme: dark\
 openssh: config\
 git: user.name, user.email, credential.helper store, token\
 fstab: disks\
