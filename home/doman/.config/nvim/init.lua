@@ -36,7 +36,8 @@ vim.o.cursorline = true
 -- Scrolloff
 vim.o.scrolloff = 64
 
--- Border column
+-- Columns
+vim.o.signcolumn = 'yes'
 vim.o.colorcolumn = '80'
 
 -- System clipboard
@@ -210,6 +211,7 @@ require('barbar').setup({
             changed = {enabled = true},
             deleted = {enabled = true}
         },
+        separator = {left = '[', right = ']'},
         separator_at_end = false,
         modified = {button = ''}
     },
@@ -240,6 +242,15 @@ require('ibl').setup({
 -- Theme
 require('tokyonight').setup({transparent = true})
 vim.cmd('colorscheme tokyonight-night')
+
+vim.cmd('highlight BufferTabpageFill guibg=None')
+vim.cmd('highlight BufferCurrentSign guibg=None guifg=#0cb0cc')
+vim.cmd('highlight BufferCurrentADDED guibg=None')
+vim.cmd('highlight BufferCurrentCHANGED guibg=None')
+vim.cmd('highlight BufferCurrentDELETED guibg=None')
+vim.cmd('highlight BufferInactiveADDED guibg=#202331')
+vim.cmd('highlight BufferInactiveCHANGED guibg=#202331')
+vim.cmd('highlight BufferInactiveDELETED guibg=#202331')
 
 -- Movement
 require('leap').create_default_mappings()
@@ -421,10 +432,10 @@ require('cmp').setup({
     mapping = {
         ['<C-f>'] = require('cmp').mapping.confirm({select = true}),
         ['<C-e>'] = require('cmp').mapping.abort(),
-        ['<Up>'] = require('cmp').mapping.select_prev_item(),
-        ['<Down>'] = require('cmp').mapping.select_next_item(),
-        ['<C-Down>'] = require('cmp').mapping.scroll_docs(1),
-        ['<C-Up>'] = require('cmp').mapping.scroll_docs(-1)
+        ['<C-Up>'] = require('cmp').mapping.select_prev_item(),
+        ['<C-Down>'] = require('cmp').mapping.select_next_item(),
+        ['<A-Down>'] = require('cmp').mapping.scroll_docs(1),
+        ['<A-Up>'] = require('cmp').mapping.scroll_docs(-1)
     },
     sources = {
         {name = 'nvim_lsp'},
