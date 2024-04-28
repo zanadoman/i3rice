@@ -1,14 +1,15 @@
 -- Language servers
 local servers = {
     'clangd',
+    'rust_analyzer',
     'csharp_ls',
     'jdtls',
     'pyright',
     'bashls',
     'html',
     'cssls',
-    'quick_lint_js',
-    'intelephense',
+    'tsserver',
+    'phpactor',
     'sqlls'
 }
 
@@ -337,33 +338,22 @@ require('gitsigns').setup({
 vim.api.nvim_create_autocmd('BufEnter', {
     callback = function(opts)
         if vim.bo[opts.buf].filetype == 'c' then
-            if vim.fn.filereadable('compile_flags.txt') then
-                vim.keymap.set('n', '<leader>r', ':terminal gcc % ' ..
-                               '$(cat compile_flags.txt) && ./a.out\n', {
-                    silent = true,
-                    desc = 'Run 󰙱 '
-                })
-            else
-                vim.keymap.set('n', '<leader>r', ':terminal gcc -std=c99 -O3 ' ..
-                               '-Werror -Wall -Wextra -Wpedantic % && ./a.out\n', {
-                    silent = true,
-                    desc = 'Run 󰙱 '
-                })
-            end
+            vim.keymap.set('n', '<leader>r', ':terminal gcc -std=c99 -O3 ' ..
+                           '-Werror -Wall -Wextra -Wpedantic % && ./a.out\n', {
+                silent = true,
+                desc = 'Run 󰙱 '
+            })
         elseif vim.bo[opts.buf].filetype == 'cpp' then
-            if vim.fn.filereadable('compile_flags.txt') then
-                vim.keymap.set('n', '<leader>r', ':terminal g++ % ' ..
-                               '$(cat compile_flags.txt) && ./a.out\n', {
-                    silent = true,
-                    desc = 'Run 󰙲 '
-                })
-            else
-                vim.keymap.set('n', '<leader>r', ':terminal g++ -std=c++11 -O3 ' ..
-                               '-Werror -Wall -Wextra -Wpedantic % && ./a.out\n', {
-                    silent = true,
-                    desc = 'Run 󰙲 '
-                })
-            end
+            vim.keymap.set('n', '<leader>r', ':terminal g++ -std=c++11 -O3 ' ..
+                           '-Werror -Wall -Wextra -Wpedantic % && ./a.out\n', {
+                silent = true,
+                desc = 'Run 󰙲 '
+            })
+        elseif vim.bo[opts.buf].filetype == 'rust' then
+            vim.keymap.set('n', '<leader>r', ':terminal cargo run\n', {
+                silent = true,
+                desc = 'Run  '
+            })
         elseif vim.bo[opts.buf].filetype == 'cs' then
             vim.keymap.set('n', '<leader>r', ':terminal dotnet run\n', {
                 silent = true,
