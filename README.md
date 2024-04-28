@@ -30,7 +30,7 @@ Task manager: btop\
 Clipboard: xclip
 
 ## Development
-Editor: neovim, npm, ripgrep
+Editor: neovim, npm, ripgrep, composer
 
 ### Tools
 cmake\
@@ -38,6 +38,7 @@ mingw-w64\
 valgrind\
 dotnet-runtime\
 dotnet-sdk\
+rustup\
 jdk17-openjdk\
 apache, php, php-apache, mysql, phpmyadmin\
 packettracer (AUR)\
