@@ -15,6 +15,7 @@ local servers = {
 
 -- Leader
 vim.g.mapleader = ' '
+vim.keymap.set('n', '<leader><leader>', '<leader>', {desc = 'Leader'});
 
 -- Line numbers
 vim.o.number = true
@@ -54,11 +55,22 @@ vim.o.wrap = false
 vim.o.ignorecase = true
 vim.o.smartcase = true
 
+-- Split
+vim.o.splitright = true
+vim.o.splitbelow = true
+
+-- Terminal
+vim.keymap.set('t', '<esc>', '<C-\\><C-n>')
+
 -- Update time
 vim.o.updatetime = 1000
 
 -- Disable mouse
 vim.o.mouse = nil
+
+-- Move lines
+vim.keymap.set('v', '<C-down>', ":m '>+1<CR>gv=gv")
+vim.keymap.set('v', '<C-up>', ":m '<-2<CR>gv=gv")
 
 -- Plugin manager
 if vim.fn.isdirectory(vim.fn.stdpath('data') .. '/lazy/lazy.nvim') then
@@ -83,6 +95,7 @@ require('lazy').setup(
             'nvimdev/dashboard-nvim',
             'nvim-lualine/lualine.nvim',
             'romgrk/barbar.nvim',
+            'shortcuts/no-neck-pain.nvim',
             'lukas-reineke/indent-blankline.nvim',
             'folke/tokyonight.nvim',
             'nvim-tree/nvim-web-devicons'
@@ -232,6 +245,18 @@ vim.keymap.set('n', '<A-6>', ':BufferGoto 6\n', {silent = true})
 vim.keymap.set('n', '<A-7>', ':BufferGoto 7\n', {silent = true})
 vim.keymap.set('n', '<A-8>', ':BufferGoto 8\n', {silent = true})
 vim.keymap.set('n', '<A-9>', ':BufferGoto 9\n', {silent = true})
+
+-- Center buffer
+require('no-neck-pain').setup({
+    autocmds = {
+        enableOnVimEnter = true
+    }
+})
+
+vim.keymap.set('n', '<leader>z', ':NoNeckPain\n', {
+    silent = true,
+    desc = 'Zen mode'
+})
 
 -- Indentation indicator
 require('ibl').setup({
