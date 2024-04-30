@@ -18,7 +18,7 @@ tiling_drag off
 floating_modifier $mod
 
 # Layout
-exec --no-startup-id autotiling
+exec --no-startup-id autotiling -o DP-2
 
 # Resize window
 bindsym $alt+Up resize grow height 5 px or 5 ppt
