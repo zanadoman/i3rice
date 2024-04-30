@@ -9,8 +9,8 @@ sudo pacman -Syu i3-wm i3status xorg-server xorg-xinit dmenu feh maim xorg-xrand
 mkdir ~/.aur
 cd ~/.aur
 
-git clone https://aur.archlinux.org/i3-layouts.git
-cd i3-layouts
+git clone https://aur.archlinux.org/autotiling.git
+cd autotiling
 makepkg -is
 cd ..
 

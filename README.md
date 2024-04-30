@@ -1,7 +1,7 @@
 # Preview
 <img src="preview.png">
 
-# Packages (722)
+# Packages (724)
 
 Dependency: git
 
@@ -10,7 +10,7 @@ Core: i3-wm, i3status\
 Server: xorg-server\
 Init: xorg-xinit\
 Launcher: dmenu\
-Layout: i3-layouts (AUR)\
+Layout: autotiling (AUR)\
 Compositor: picom-ftlabs-git (AUR)\
 Wallpaper: feh\
 Screenshot: maim
