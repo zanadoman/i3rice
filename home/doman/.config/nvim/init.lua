@@ -1,3 +1,14 @@
+-- Code runner
+local code_runner = {
+    ['c'] = {'gcc -std=c99 -O3 -Werror -Wall -Wextra -Wpedantic % && ./a.out', '󰙱 '},
+    ['cpp'] = {'g++ -std=c++11 -O3 -Werror -Wall -Wextra -Wpedantic % && ./a.out', '󰙲 '},
+    ['rust'] = {'cargo run', ' '},
+    ['cs'] = {'dotnet run', '󰌛 '},
+    ['java'] = {'java %', ' '},
+    ['python'] = {'python3 %', ' '},
+    ['sh'] = {'./%', ' '}
+}
+
 -- Language servers
 local servers = {
     'clangd',
@@ -59,7 +70,7 @@ vim.o.smartcase = true
 vim.o.splitright = true
 vim.o.splitbelow = true
 
--- Terminal
+-- Exit terminal
 vim.keymap.set('t', '<esc>', '<C-\\><C-n>')
 
 -- Update time
@@ -73,7 +84,8 @@ vim.keymap.set('v', '<C-down>', ":m '>+1<CR>gv=gv")
 vim.keymap.set('v', '<C-up>', ":m '<-2<CR>gv=gv")
 
 -- Plugin manager
-if vim.fn.isdirectory(vim.fn.stdpath('data') .. '/lazy/lazy.nvim') then
+if vim.fn.isdirectory(vim.fn.stdpath('data') .. '/lazy/lazy.nvim')
+then
     vim.fn.system({
         'git',
         'clone',
@@ -113,7 +125,8 @@ require('lazy').setup(
         {
             'williamboman/mason.nvim',
             'williamboman/mason-lspconfig.nvim',
-            'neovim/nvim-lspconfig'
+            'neovim/nvim-lspconfig',
+            'ray-x/lsp_signature.nvim'
         },
         {
             'tpope/vim-dadbod',
@@ -202,10 +215,7 @@ require('dashboard').setup({
 })
 
 -- Statusline
-require('lualine').setup({
-    options = {globalstatus = true},
-})
-
+require('lualine').setup({options = {globalstatus = true}})
 vim.o.showmode = false
 
 -- Bufferline
@@ -247,11 +257,7 @@ vim.keymap.set('n', '<A-8>', ':BufferGoto 8\n', {silent = true})
 vim.keymap.set('n', '<A-9>', ':BufferGoto 9\n', {silent = true})
 
 -- Center buffer
-require('no-neck-pain').setup({
-    autocmds = {
-        enableOnVimEnter = true
-    }
-})
+require('no-neck-pain').setup({autocmds = {enableOnVimEnter = true}})
 
 vim.keymap.set('n', '<leader>z', ':NoNeckPain\n', {
     silent = true,
@@ -269,11 +275,15 @@ require('ibl').setup({
 require('tokyonight').setup({transparent = true})
 vim.cmd('colorscheme tokyonight-night')
 
-vim.cmd('highlight BufferTabpageFill guibg=None')
-vim.cmd('highlight BufferCurrentSign guibg=None guifg=#0cb0cc')
+vim.cmd('highlight BufferTabpageFill guibg=#15161e')
+vim.cmd('highlight BufferCurrent guibg=#15161e')
+vim.cmd('highlight BufferCurrentSign guibg=#15161e guifg=#0cb0cc')
 vim.cmd('highlight BufferCurrentADDED guibg=None')
 vim.cmd('highlight BufferCurrentCHANGED guibg=None')
 vim.cmd('highlight BufferCurrentDELETED guibg=None')
+vim.cmd('highlight BufferInactive guibg=#15161e')
+vim.cmd('highlight BufferInactiveSign guibg=#15161e')
+vim.cmd('highlight BufferInactiveIndex guibg=#15161e')
 vim.cmd('highlight BufferInactiveADDED guibg=#202331')
 vim.cmd('highlight BufferInactiveCHANGED guibg=#202331')
 vim.cmd('highlight BufferInactiveDELETED guibg=#202331')
@@ -362,75 +372,53 @@ require('gitsigns').setup({
 -- Code runner
 vim.api.nvim_create_autocmd('BufEnter', {
     callback = function(opts)
-        if vim.bo[opts.buf].filetype == 'c' then
-            vim.keymap.set('n', '<leader>r', ':terminal gcc -std=c99 -O3 ' ..
-                           '-Werror -Wall -Wextra -Wpedantic % && ./a.out\n', {
+        if code_runner[vim.bo[opts.buf].filetype]
+        then
+            vim.keymap.set('n', '<leader>r', ':terminal ' ..
+            code_runner[vim.bo[opts.buf].filetype][1] .. '\n', {
                 silent = true,
-                desc = 'Run 󰙱 '
-            })
-        elseif vim.bo[opts.buf].filetype == 'cpp' then
-            vim.keymap.set('n', '<leader>r', ':terminal g++ -std=c++11 -O3 ' ..
-                           '-Werror -Wall -Wextra -Wpedantic % && ./a.out\n', {
-                silent = true,
-                desc = 'Run 󰙲 '
-            })
-        elseif vim.bo[opts.buf].filetype == 'rust' then
-            vim.keymap.set('n', '<leader>r', ':terminal cargo run\n', {
-                silent = true,
-                desc = 'Run  '
-            })
-        elseif vim.bo[opts.buf].filetype == 'cs' then
-            vim.keymap.set('n', '<leader>r', ':terminal dotnet run\n', {
-                silent = true,
-                desc = 'Run 󰌛 '
-            })
-        elseif vim.bo[opts.buf].filetype == 'java' then
-            vim.keymap.set('n', '<leader>r', ':terminal java %\n', {
-                silent = true,
-                desc = 'Run  '
-            })
-        elseif vim.bo[opts.buf].filetype == 'python' then
-            vim.keymap.set('n', '<leader>r', ':terminal python3 %\n', {
-                silent = true,
-                desc = 'Run  '
-            })
-        elseif vim.bo[opts.buf].filetype == 'sh' then
-            vim.keymap.set('n', '<leader>r', ':terminal ./%\n', {
-                silent = true,
-                desc = 'Run  '
+                desc = 'Run ' .. (
+                    code_runner[vim.bo[opts.buf].filetype][2]
+                    and code_runner[vim.bo[opts.buf].filetype][2]
+                    or vim.bo[opts.buf].filetype
+                )
             })
         end
     end
 })
 
 -- Key bindings
-require('which-key').setup({
-    window = {border = 'rounded'}
-})
+require('which-key').setup({window = {border = 'rounded'}})
 
 -- Install servers
-require('mason').setup({
-    ui = {border = 'rounded'}
-})
-
-require('mason-lspconfig').setup({
-    ensure_installed = servers
-})
+require('mason').setup({ui = {border = 'rounded'}})
+require('mason-lspconfig').setup({ensure_installed = servers})
 
 -- Diagnostic config
-vim.diagnostic.config({update_in_insert = true})
-
 vim.api.nvim_create_autocmd({'CursorHold', 'CursorHoldI'}, {
     callback = function()
-        if vim.lsp.buf.server_ready() and not require('cmp').visible() then
+        if not require('cmp').visible() and not vim.diagnostic.open_float()
+        then
             vim.lsp.buf.hover()
         end
     end
 })
 
+vim.diagnostic.config({
+    update_in_insert = true,
+    float = {border = 'rounded'}
+})
+
 vim.lsp.handlers['textDocument/hover'] = vim.lsp.with(vim.lsp.handlers.hover, {
     focusable = false,
     border = 'rounded'
+})
+
+-- LSP hints
+require('lsp_signature').setup({
+    bind = true,
+    handler_opts = {border = 'rounded'},
+    hint_prefix = '■ '
 })
 
 -- Autocompletion
@@ -463,18 +451,13 @@ require('cmp').setup({
     experimental = {ghost_text = true}
 })
 
-require('cmp').setup.cmdline(':', {
-    sources = {{name = 'cmdline'}}
-})
-
-require('cmp').setup.cmdline('/', {
-    sources = {{name = 'buffer'}}
-})
-
+require('cmp').setup.cmdline(':', {sources = {{name = 'cmdline'}}})
+require('cmp').setup.cmdline('/', {sources = {{name = 'buffer'}}})
 vim.o.pumheight = 10
 
 -- Start servers
-for _, server in ipairs(servers) do
+for _, server in ipairs(servers)
+do
     require('lspconfig')[server].setup({
         capabilities = require('cmp_nvim_lsp').default_capabilities()
     })
