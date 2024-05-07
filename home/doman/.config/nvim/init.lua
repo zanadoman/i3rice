@@ -366,35 +366,35 @@ require('gitsigns').setup({
 -- Speedrun
 require('speedrun').setup({
     keymap = '<leader>r',
-    mode = 'buffer',
     langs = {
         c = {
-            cmd = 'gcc -std=c99 -O3 -Werror -Wall -Wextra -Wpedantic % && ./a.out',
-            icon = '󰙱 '
+            cmd = {'gcc -std=c99 -O3 -Werror -Wall -Wextra -Wpedantic % && ./a.out'},
+            icon = '󰙱'
         },
         cpp = {
-            cmd = 'g++ -std=c++11 -O3 -Werror -Wall -Wextra -Wpedantic % && ./a.out',
-            icon = '󰙲 '
+            cmd = {'g++ -std=c++11 -O3 -Werror -Wall -Wextra -Wpedantic % && ./a.out'},
+            icon = '󰙲'
         },
         rust = {
-            cmd = 'cargo run',
-            icon = ' '
+            cmd = {'cargo run', 'cargo clippy', 'cargo fmt'},
+            mods = {'r', 'c'},
+            icon = ''
         },
         cs = {
-            cmd = 'dotnet run', 
-            icon = '󰌛 '
+            cmd = {'dotnet run'}, 
+            icon = '󰌛'
         },
         java = {
-            cmd = 'java %',
-            icon = ' '
+            cmd = {'java %'},
+            icon = ''
         },
         python = {
-            cmd = 'python3 %',
-            icon = ' '
+            cmd = {'python3 %'},
+            icon = ''
         },
         sh = {
-            cmd = './%',
-            icon = ' '
+            cmd = {'./%'},
+            icon = ''
         }
     }
 })
