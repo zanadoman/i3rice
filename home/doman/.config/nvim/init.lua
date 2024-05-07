@@ -1,14 +1,3 @@
--- Code runner
-local code_runner = {
-    ['c'] = {'gcc -std=c99 -O3 -Werror -Wall -Wextra -Wpedantic % && ./a.out', '󰙱 '},
-    ['cpp'] = {'g++ -std=c++11 -O3 -Werror -Wall -Wextra -Wpedantic % && ./a.out', '󰙲 '},
-    ['rust'] = {'cargo run', ' '},
-    ['cs'] = {'dotnet run', '󰌛 '},
-    ['java'] = {'java %', ' '},
-    ['python'] = {'python3 %', ' '},
-    ['sh'] = {'./%', ' '}
-}
-
 -- Language servers
 local servers = {
     'clangd',
@@ -20,28 +9,20 @@ local servers = {
     'html',
     'cssls',
     'tsserver',
-    'phpactor',
-    'sqlls'
+    'phpactor'
 }
 
 -- Leader
 vim.g.mapleader = ' '
-vim.keymap.set('n', '<leader><leader>', '<leader>', {desc = 'Leader'});
 
 -- Line numbers
 vim.o.number = true
 vim.o.relativenumber = true
 
--- Indentation width
+-- Indentation
 vim.o.tabstop = 4
 vim.o.shiftwidth = 4
 vim.o.expandtab = true
-
-vim.api.nvim_create_autocmd('BufReadPost', {
-    callback = function()
-        vim.cmd('silent! retab')
-    end
-})
 
 -- Cursorline
 vim.o.cursorline = true
@@ -83,6 +64,18 @@ vim.o.mouse = nil
 vim.keymap.set('v', '<C-down>', ":m '>+1<CR>gv=gv")
 vim.keymap.set('v', '<C-up>', ":m '<-2<CR>gv=gv")
 
+-- Fix files
+vim.api.nvim_create_autocmd('BufReadPost', {
+    callback = function(opts)
+        vim.cmd('silent! retab')
+        if vim.bo[opts.buf].fileformat == 'dos'
+        then
+            vim.bo.fileformat = 'unix'
+            vim.cmd('silent! %s/\r//g')
+        end
+    end
+})
+
 -- Plugin manager
 if vim.fn.isdirectory(vim.fn.stdpath('data') .. '/lazy/lazy.nvim')
 then
@@ -120,6 +113,7 @@ require('lazy').setup(
             'nvim-telescope/telescope.nvim',
             'nvim-telescope/telescope-file-browser.nvim',
             'lewis6991/gitsigns.nvim',
+            'zanadoman/speedrun.nvim',
             'folke/which-key.nvim'
         },
         {
@@ -369,22 +363,40 @@ require('gitsigns').setup({
     end
 })
 
--- Code runner
-vim.api.nvim_create_autocmd('BufEnter', {
-    callback = function(opts)
-        if code_runner[vim.bo[opts.buf].filetype]
-        then
-            vim.keymap.set('n', '<leader>r', ':terminal ' ..
-            code_runner[vim.bo[opts.buf].filetype][1] .. '\n', {
-                silent = true,
-                desc = 'Run ' .. (
-                    code_runner[vim.bo[opts.buf].filetype][2]
-                    and code_runner[vim.bo[opts.buf].filetype][2]
-                    or vim.bo[opts.buf].filetype
-                )
-            })
-        end
-    end
+-- Speedrun
+require('speedrun').setup({
+    keymap = '<leader>r',
+    mode = 'buffer',
+    langs = {
+        c = {
+            cmd = 'gcc -std=c99 -O3 -Werror -Wall -Wextra -Wpedantic % && ./a.out',
+            icon = '󰙱 '
+        },
+        cpp = {
+            cmd = 'g++ -std=c++11 -O3 -Werror -Wall -Wextra -Wpedantic % && ./a.out',
+            icon = '󰙲 '
+        },
+        rust = {
+            cmd = 'cargo run',
+            icon = ' '
+        },
+        cs = {
+            cmd = 'dotnet run', 
+            icon = '󰌛 '
+        },
+        java = {
+            cmd = 'java %',
+            icon = ' '
+        },
+        python = {
+            cmd = 'python3 %',
+            icon = ' '
+        },
+        sh = {
+            cmd = './%',
+            icon = ' '
+        }
+    }
 })
 
 -- Key bindings
