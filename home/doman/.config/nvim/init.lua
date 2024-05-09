@@ -9,7 +9,8 @@ local servers = {
     'html',
     'cssls',
     'tsserver',
-    'phpactor'
+    'phpactor',
+    'emmet_language_server'
 }
 
 -- Leader
@@ -131,7 +132,6 @@ require('lazy').setup(
             'L3MON4D3/LuaSnip',
             'hrsh7th/nvim-cmp',
             'hrsh7th/cmp-nvim-lsp',
-            'dcampos/cmp-emmet-vim',
             'hrsh7th/cmp-buffer',
             'hrsh7th/cmp-cmdline',
             'hrsh7th/cmp-path'
@@ -278,9 +278,9 @@ vim.cmd('highlight BufferCurrentDELETED guibg=None')
 vim.cmd('highlight BufferInactive guibg=#15161e')
 vim.cmd('highlight BufferInactiveSign guibg=#15161e')
 vim.cmd('highlight BufferInactiveIndex guibg=#15161e')
-vim.cmd('highlight BufferInactiveADDED guibg=#202331')
-vim.cmd('highlight BufferInactiveCHANGED guibg=#202331')
-vim.cmd('highlight BufferInactiveDELETED guibg=#202331')
+vim.cmd('highlight BufferInactiveADDED guibg=#15161e')
+vim.cmd('highlight BufferInactiveCHANGED guibg=#15161e')
+vim.cmd('highlight BufferInactiveDELETED guibg=#15161e')
 
 -- Movement
 require('leap').create_default_mappings()
@@ -368,32 +368,50 @@ require('speedrun').setup({
     keymap = '<leader>r',
     langs = {
         c = {
-            cmd = {'gcc -std=c99 -O3 -Werror -Wall -Wextra -Wpedantic % && ./a.out'},
+            cmd = {
+                'gcc -std=c99 -O3 -Werror -Wall -Wextra -Wpedantic % && ./a.out',
+                '../cbuild -l',
+                '../cbuild -w',
+                '../cbuild -g',
+                'clang-format ../src/*.c ../inc/*.h'
+            },
+            mods = {'r', 'l', 'w', 'g', 'f'},
             icon = '󰙱'
         },
         cpp = {
-            cmd = {'g++ -std=c++11 -O3 -Werror -Wall -Wextra -Wpedantic % && ./a.out'},
+            cmd = {
+                'g++ -std=c++11 -O3 -Werror -Wall -Wextra -Wpedantic % && ./a.out',
+                '../cbuild -l',
+                '../cbuild -w',
+                '../cbuild -g',
+                'clang-format ../src/*.cpp ../inc/*.hpp'
+            },
+            mods = {'r', 'l', 'w', 'g', 'f'},
             icon = '󰙲'
         },
         rust = {
-            cmd = {'cargo run', 'cargo clippy', 'cargo fmt'},
-            mods = {'r', 'c'},
+            cmd = {'cargo run', 'cargo clippy', 'cargo fmt', 'cargo test'},
+            mods = {'r', 'c', 'f', 't'},
             icon = ''
         },
         cs = {
             cmd = {'dotnet run'}, 
+            mods = {'r'},
             icon = '󰌛'
         },
         java = {
             cmd = {'java %'},
+            mods = {'r'},
             icon = ''
         },
         python = {
             cmd = {'python3 %'},
+            mods = {'r'},
             icon = ''
         },
         sh = {
             cmd = {'./%'},
+            mods = {'r'},
             icon = ''
         }
     }
@@ -454,7 +472,6 @@ require('cmp').setup({
     },
     sources = {
         {name = 'nvim_lsp'},
-        {name = 'emmet_vim', option = {filetypes = {'html', 'css', 'php'}}},
         {name = 'vim-dadbod-completion'},
         {name = 'codeium'},
         {name = 'buffer'},
