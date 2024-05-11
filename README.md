@@ -1,9 +1,9 @@
 # Preview
 <img src="preview.png">
 
-# Packages (724)
+# Packages (747)
 
-Dependency: git
+Dependency: git, yay
 
 ## i3wm
 Core: i3-wm, i3status\
@@ -33,8 +33,10 @@ Clipboard: xclip
 Editor: neovim, npm, ripgrep, composer
 
 ### Tools
+clang\
 cmake\
 mingw-w64\
+mingw-w64-cmake (AUR)\
 valgrind\
 dotnet-runtime\
 dotnet-sdk\
@@ -43,12 +45,15 @@ jdk17-openjdk\
 apache, php, php-apache, mysql, phpmyadmin\
 packettracer (AUR)\
 mysql-workbench\
-oracle-instantclient-basic (AUR)\
 oracle-instantclient-sqlplus (AUR)\
+sdl2
 sdl2_image\
 sdl2_mixer\
 sdl2_ttf\
-sdl2_net\
+mingw-w64-sdl2 (AUR)\
+mingw-w64-sdl2_image (AUR)\
+mingw-w64-sdl2_mixer (AUR)\
+mingw-w64-sdl2_ttf (AUR)\
 mosh\
 openvpn
 
