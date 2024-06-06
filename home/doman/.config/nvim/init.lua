@@ -28,9 +28,6 @@ vim.o.expandtab = true
 -- Cursorline
 vim.o.cursorline = true
 
--- Scrolloff
-vim.o.scrolloff = 64
-
 -- Columns
 vim.o.signcolumn = 'yes'
 vim.o.colorcolumn = '80'
@@ -107,6 +104,7 @@ require('lazy').setup(
             'nvim-tree/nvim-web-devicons'
         },
         {
+            'arnamak/stay-centered.nvim',
             'ggandor/leap.nvim',
             'windwp/nvim-autopairs',
             'kylechui/nvim-surround',
@@ -150,15 +148,16 @@ require('dashboard').setup({
     shortcut_type = 'number',
     config = {
         header = {
-            '                                                                   ',
-            '      ████ ██████           █████      ██                    ',
-            '     ███████████             █████                            ',
-            '     █████████ ███████████████████ ███   ███████████  ',
-            '    █████████  ███    █████████████ █████ ██████████████  ',
-            '   █████████ ██████████ █████████ █████ █████ ████ █████  ',
-            ' ███████████ ███    ███ █████████ █████ █████ ████ █████ ',
-            '██████  █████████████████████ ████ █████ █████ ████ ██████',
             '                                                                     ',
+            ' ██████   █████                   █████   █████  ███                 ',
+            '░░██████ ░░███                   ░░███   ░░███  ░░░                  ',
+            ' ░███░███ ░███   ██████   ██████  ░███    ░███  ████  █████████████  ',
+            ' ░███░░███░███  ███░░███ ███░░███ ░███    ░███ ░░███ ░░███░░███░░███ ',
+            ' ░███ ░░██████ ░███████ ░███ ░███ ░░███   ███   ░███  ░███ ░███ ░███ ',
+            ' ░███  ░░█████ ░███░░░  ░███ ░███  ░░░█████░    ░███  ░███ ░███ ░███ ',
+            ' █████  ░░█████░░██████ ░░██████     ░░███      █████ █████░███ █████',
+            '░░░░░    ░░░░░  ░░░░░░   ░░░░░░       ░░░      ░░░░░ ░░░░░ ░░░ ░░░░░ ',
+            '                                                                     '
         },
         shortcut = {
             {
@@ -203,13 +202,19 @@ require('dashboard').setup({
         mru = {limit = 20},
         footer = {
             '                         ',
-            '"Keep it simple, stupid!"',
+            '"Keep it simple, stupid!"'
         }
     }
 })
 
 -- Statusline
-require('lualine').setup({options = {globalstatus = true}})
+require('lualine').setup({
+    options = {
+        disabled_filetypes = {'dashboard'},
+        globalstatus = true
+    }
+})
+
 vim.o.showmode = false
 
 -- Bufferline
@@ -222,7 +227,9 @@ require('barbar').setup({
         button = '',
         diagnostics = {
             [vim.diagnostic.severity.ERROR] = {enabled = true},
-            [vim.diagnostic.severity.WARN] = {enabled = true}
+            [vim.diagnostic.severity.WARN] = {enabled = true},
+            [vim.diagnostic.severity.INFO] = {enabled = true},
+            [vim.diagnostic.severity.HINT] = {enabled = true}
         },
         gitsigns = {
             added = {enabled = true},
@@ -255,7 +262,7 @@ require('no-neck-pain').setup({autocmds = {enableOnVimEnter = true}})
 
 vim.keymap.set('n', '<leader>z', ':NoNeckPain\n', {
     silent = true,
-    desc = 'Zen mode'
+    desc = '󰘞 Zen mode'
 })
 
 -- Indentation indicator
@@ -275,46 +282,61 @@ vim.cmd('colorscheme tokyonight')
 
 vim.cmd('highlight BufferScrollArrow guibg=#15161e guifg=#0cb0cc')
 vim.cmd('highlight BufferTabpageFill guibg=#15161e guifg=#15161e')
+
 vim.cmd('highlight BufferAlternate guibg=#15161e guifg=#565f89')
 vim.cmd('highlight BufferAlternateADDED guibg=#15161e guifg=#246865')
 vim.cmd('highlight BufferAlternateCHANGED guibg=#15161e guifg=#4f6796')
 vim.cmd('highlight BufferAlternateDELETED guibg=#15161e guifg=#a95156')
 vim.cmd('highlight BufferAlternateERROR guibg=#15161e guifg=#d04747')
+vim.cmd('highlight BufferAlternateHINT guibg=#15161e guifg=#19b394')
 vim.cmd('highlight BufferAlternateIndex guibg=#15161e guifg=#0cb0cc')
+vim.cmd('highlight BufferAlternateINFO guibg=#15161e guifg=#10b2d7')
 vim.cmd('highlight BufferAlternateMod guibg=#15161e guifg=#d5a86c')
 vim.cmd('highlight BufferAlternateSign guibg=#15161e guifg=#15161e')
 vim.cmd('highlight BufferAlternateSignRight guibg=#15161e guifg=#15161e')
 vim.cmd('highlight BufferAlternateWARN guibg=#15161e guifg=#d5a663')
+
 vim.cmd('highlight BufferCurrent guibg=#15161e guifg=#b4c0e7')
 vim.cmd('highlight BufferCurrentADDED guibg=#15161e guifg=#246865')
 vim.cmd('highlight BufferCurrentCHANGED guibg=#15161e guifg=#4f6796')
 vim.cmd('highlight BufferCurrentDELETED guibg=#15161e guifg=#a95156')
 vim.cmd('highlight BufferCurrentERROR guibg=#15161e guifg=#d04747')
+vim.cmd('highlight BufferCurrentHINT guibg=#15161e guifg=#19b394')
 vim.cmd('highlight BufferCurrentIndex guibg=#15161e guifg=#0cb0cc')
+vim.cmd('highlight BufferCurrentINFO guibg=#15161e guifg=#10b2d7')
 vim.cmd('highlight BufferCurrentMod guibg=#15161e guifg=#d5a86c')
 vim.cmd('highlight BufferCurrentSign guibg=#15161e guifg=#0cb0cc')
 vim.cmd('highlight BufferCurrentSignRight guibg=#15161e guifg=#0cb0cc')
 vim.cmd('highlight BufferCurrentWARN guibg=#15161e guifg=#d5a663')
+
 vim.cmd('highlight BufferInactive guibg=#15161e guifg=#565f89')
 vim.cmd('highlight BufferInactiveADDED guibg=#15161e guifg=#246865')
 vim.cmd('highlight BufferInactiveCHANGED guibg=#15161e guifg=#4f6796')
 vim.cmd('highlight BufferInactiveDELETED guibg=#15161e guifg=#a95156')
 vim.cmd('highlight BufferInactiveERROR guibg=#15161e guifg=#d04747')
+vim.cmd('highlight BufferInactiveHINT guibg=#15161e guifg=#19b394')
 vim.cmd('highlight BufferInactiveIndex guibg=#15161e guifg=#0cb0cc')
+vim.cmd('highlight BufferInactiveINFO guibg=#15161e guifg=#10b2d7')
 vim.cmd('highlight BufferInactiveMod guibg=#15161e guifg=#d5a86c')
 vim.cmd('highlight BufferInactiveSign guibg=#15161e guifg=#15161e')
 vim.cmd('highlight BufferInactiveSignRight guibg=#15161e guifg=#15161e')
 vim.cmd('highlight BufferInactiveWARN guibg=#15161e guifg=#d5a663')
+
 vim.cmd('highlight BufferVisible guibg=#15161e guifg=#b4c0e7')
 vim.cmd('highlight BufferVisibleADDED guibg=#15161e guifg=#246865')
 vim.cmd('highlight BufferVisibleCHANGED guibg=#15161e guifg=#4f6796')
 vim.cmd('highlight BufferVisibleDELETED guibg=#15161e guifg=#a95156')
 vim.cmd('highlight BufferVisibleERROR guibg=#15161e guifg=#d04747')
+vim.cmd('highlight BufferVisibleHINT guibg=#15161e guifg=#19b394')
 vim.cmd('highlight BufferVisibleIndex guibg=#15161e guifg=#0cb0cc')
+vim.cmd('highlight BufferVisibleINFO guibg=#15161e guifg=#10b2d7')
 vim.cmd('highlight BufferVisibleMod guibg=#15161e guifg=#d5a86c')
 vim.cmd('highlight BufferVisibleSign guibg=#15161e guifg=#0cb0cc')
 vim.cmd('highlight BufferVisibleSignRight guibg=#15161e guifg=#0cb0cc')
 vim.cmd('highlight BufferVisibleWARN guibg=#15161e guifg=#d5a663')
+
+-- Center cursorline
+require('stay-centered').setup({skip_filetypes = {'dashboard'}})
 
 -- Movement
 require('leap').create_default_mappings()
@@ -334,65 +356,65 @@ require('telescope').setup()
 
 vim.keymap.set('n', '<leader>f', ':Telescope\n', {
     silent = true,
-    desc = 'Telescope'
+    desc = '󰭎 Telescope'
 })
 
 vim.keymap.set('n', '<leader>ff', ':Telescope file_browser\n', {
     silent = true,
-    desc = 'Telescope file browser'
+    desc = '󰭎 File browser'
 })
 
 vim.keymap.set('n', '<leader>fg', ':Telescope live_grep\n', {
     silent = true,
-    desc = 'Telescope live grep'
+    desc = '󰭎 Live grep'
 })
 
 vim.keymap.set('n', '<leader>fb', ':Telescope buffers\n', {
     silent = true,
-    desc = 'Telescope buffers'
+    desc = '󰭎 Buffers'
 })
 
 -- Git integration
 require('gitsigns').setup({
     on_attach = function()
-        vim.keymap.set('n', '<leader>h', ':Gitsigns\n', {
+        vim.keymap.set('n', '<leader>g', ':Gitsigns\n', {
             silent = true,
-            desc = 'Gitsigns'
+            desc = ' Git'
         })
 
-        vim.keymap.set('n', '<leader>hp', ':Gitsigns preview_hunk_inline\n', {
+        vim.keymap.set('n', '<leader>gp', ':Gitsigns preview_hunk_inline\n', {
             silent = true,
-            desc = 'Gitsigns preview hunk'
+            desc = ' Preview hunk'
         })
 
-        vim.keymap.set('n', '<leader>hs', ':Gitsigns stage_hunk\n', {
+        vim.keymap.set('n', '<leader>gs', ':Gitsigns stage_hunk\n', {
             silent = true,
-            desc = 'Gitsigns stage hunk'
+            desc = ' Stage hunk'
         })
 
-        vim.keymap.set('n', '<leader>hu', ':Gitsigns undo_stage_hunk\n', {
+        vim.keymap.set('n', '<leader>gu', ':Gitsigns undo_stage_hunk\n', {
             silent = true,
-            desc = 'Gitsigns unstage hunk'
+            desc = ' Unstage hunk'
         })
 
-        vim.keymap.set('n', '<leader>hr', ':Gitsigns reset_hunk\n', {
+        vim.keymap.set('n', '<leader>gr', ':Gitsigns reset_hunk\n', {
             silent = true,
-            desc = 'Gitsigns reset hunk'
+            desc = ' Reset hunk'
         })
 
-        vim.keymap.set('n', '<leader>hS', ':Gitsigns stage_buffer\n', {
+        vim.keymap.set('n', '<leader>gS', ':Gitsigns stage_buffer\n', {
             silent = true,
-            desc = 'Gitsigns stage buffer'
+            desc = ' Stage buffer'
         })
 
-        vim.keymap.set('n', '<leader>hR', ':Gitsigns reset_buffer\n', {
+        vim.keymap.set('n', '<leader>gR', ':Gitsigns reset_buffer\n', {
             silent = true,
-            desc = 'Gitsigns reset buffer'
+            desc = ' Reset buffer'
         })
 
-        vim.keymap.set('n', '<leader>hb', ':Gitsigns toggle_current_line_blame\n', {
+        vim.keymap.set('n', '<leader>gb', ':Gitsigns toggle_current_line_blame\n', {
             silent = true,
-            desc = 'Gitsigns toggle blame'
+            desc = ' Toggle blame'
         })
     end
 })
@@ -404,17 +426,15 @@ require('speedrun').setup({
         c = {
             cmd = {
                 'gcc -std=c99 -O3 -Werror -Wall -Wextra -Wpedantic % -lm && ./a.out',
-                'clang-format -i %'
             },
-            mods = {'r', 'f'},
+            mods = {'r'},
             icon = '󰙱'
         },
         cpp = {
             cmd = {
                 'g++ -std=c++23 -O3 -Werror -Wall -Wextra -Wpedantic % -lm && ./a.out',
-                'clang-format -i %'
             },
-            mods = {'r', 'f'},
+            mods = {'r'},
             icon = '󰙲'
         },
         rust = {
@@ -452,10 +472,56 @@ require('which-key').setup({window = {border = 'rounded'}})
 require('mason').setup({ui = {border = 'rounded'}})
 require('mason-lspconfig').setup({ensure_installed = servers})
 
+vim.keymap.set('n', '<leader>l', ':LspInfo\n', {
+    silent = true,
+    desc = ' LSP'
+})
+
+vim.keymap.set('n', '<leader>ln', vim.lsp.buf.rename, {
+    silent = true,
+    desc = ' Rename'
+})
+
+vim.keymap.set('n', '<leader>lf', vim.lsp.buf.format, {
+    silent = true,
+    desc = ' Format'
+})
+
+vim.keymap.set('n', '<leader>ld',
+    function()
+        require('telescope.builtin').lsp_definitions()
+    end,
+    {
+        silent = true,
+        desc = ' Jump to definition'
+    }
+)
+
+vim.keymap.set('n', '<leader>lr',
+    function()
+        require('telescope.builtin').lsp_references()
+    end,
+    {
+        silent = true,
+        desc = ' Jump to references'
+    }
+)
+
+vim.keymap.set('n', '<leader>ll',
+    function()
+        require('telescope.builtin').diagnostics()
+    end,
+    {
+        silent = true,
+        desc = ' List diagnostics'
+    }
+)
+
 -- Diagnostic config
 vim.api.nvim_create_autocmd({'CursorHold', 'CursorHoldI'}, {
     callback = function()
-        if not require('cmp').visible() and not vim.diagnostic.open_float()
+        if not require('cmp').visible() and
+           not vim.diagnostic.open_float({focusable = false})
         then
             vim.lsp.buf.hover()
         end
