@@ -59,7 +59,7 @@ vim.keymap.set('t', '<esc>', '<C-\\><C-n>')
 vim.o.updatetime = 1000
 
 -- Disable mouse
-vim.o.mouse = nil
+vim.o.mouse = "";
 
 -- Move lines
 vim.keymap.set('v', '<C-down>', ":m '>+1<CR>gv=gv")
@@ -266,21 +266,55 @@ require('ibl').setup({
 })
 
 -- Theme
-require('tokyonight').setup({transparent = true})
-vim.cmd('colorscheme tokyonight-night')
+require('tokyonight').setup({
+    style = 'night',
+    transparent = true
+})
 
-vim.cmd('highlight BufferTabpageFill guibg=#15161e')
-vim.cmd('highlight BufferCurrent guibg=#15161e')
+vim.cmd('colorscheme tokyonight')
+
+vim.cmd('highlight BufferScrollArrow guibg=#15161e guifg=#0cb0cc')
+vim.cmd('highlight BufferTabpageFill guibg=#15161e guifg=#15161e')
+vim.cmd('highlight BufferAlternate guibg=#15161e guifg=#565f89')
+vim.cmd('highlight BufferAlternateADDED guibg=#15161e guifg=#246865')
+vim.cmd('highlight BufferAlternateCHANGED guibg=#15161e guifg=#4f6796')
+vim.cmd('highlight BufferAlternateDELETED guibg=#15161e guifg=#a95156')
+vim.cmd('highlight BufferAlternateERROR guibg=#15161e guifg=#d04747')
+vim.cmd('highlight BufferAlternateIndex guibg=#15161e guifg=#0cb0cc')
+vim.cmd('highlight BufferAlternateMod guibg=#15161e guifg=#d5a86c')
+vim.cmd('highlight BufferAlternateSign guibg=#15161e guifg=#15161e')
+vim.cmd('highlight BufferAlternateSignRight guibg=#15161e guifg=#15161e')
+vim.cmd('highlight BufferAlternateWARN guibg=#15161e guifg=#d5a663')
+vim.cmd('highlight BufferCurrent guibg=#15161e guifg=#b4c0e7')
+vim.cmd('highlight BufferCurrentADDED guibg=#15161e guifg=#246865')
+vim.cmd('highlight BufferCurrentCHANGED guibg=#15161e guifg=#4f6796')
+vim.cmd('highlight BufferCurrentDELETED guibg=#15161e guifg=#a95156')
+vim.cmd('highlight BufferCurrentERROR guibg=#15161e guifg=#d04747')
+vim.cmd('highlight BufferCurrentIndex guibg=#15161e guifg=#0cb0cc')
+vim.cmd('highlight BufferCurrentMod guibg=#15161e guifg=#d5a86c')
 vim.cmd('highlight BufferCurrentSign guibg=#15161e guifg=#0cb0cc')
-vim.cmd('highlight BufferCurrentADDED guibg=None')
-vim.cmd('highlight BufferCurrentCHANGED guibg=None')
-vim.cmd('highlight BufferCurrentDELETED guibg=None')
-vim.cmd('highlight BufferInactive guibg=#15161e')
-vim.cmd('highlight BufferInactiveSign guibg=#15161e')
-vim.cmd('highlight BufferInactiveIndex guibg=#15161e')
-vim.cmd('highlight BufferInactiveADDED guibg=#15161e')
-vim.cmd('highlight BufferInactiveCHANGED guibg=#15161e')
-vim.cmd('highlight BufferInactiveDELETED guibg=#15161e')
+vim.cmd('highlight BufferCurrentSignRight guibg=#15161e guifg=#0cb0cc')
+vim.cmd('highlight BufferCurrentWARN guibg=#15161e guifg=#d5a663')
+vim.cmd('highlight BufferInactive guibg=#15161e guifg=#565f89')
+vim.cmd('highlight BufferInactiveADDED guibg=#15161e guifg=#246865')
+vim.cmd('highlight BufferInactiveCHANGED guibg=#15161e guifg=#4f6796')
+vim.cmd('highlight BufferInactiveDELETED guibg=#15161e guifg=#a95156')
+vim.cmd('highlight BufferInactiveERROR guibg=#15161e guifg=#d04747')
+vim.cmd('highlight BufferInactiveIndex guibg=#15161e guifg=#0cb0cc')
+vim.cmd('highlight BufferInactiveMod guibg=#15161e guifg=#d5a86c')
+vim.cmd('highlight BufferInactiveSign guibg=#15161e guifg=#15161e')
+vim.cmd('highlight BufferInactiveSignRight guibg=#15161e guifg=#15161e')
+vim.cmd('highlight BufferInactiveWARN guibg=#15161e guifg=#d5a663')
+vim.cmd('highlight BufferVisible guibg=#15161e guifg=#b4c0e7')
+vim.cmd('highlight BufferVisibleADDED guibg=#15161e guifg=#246865')
+vim.cmd('highlight BufferVisibleCHANGED guibg=#15161e guifg=#4f6796')
+vim.cmd('highlight BufferVisibleDELETED guibg=#15161e guifg=#a95156')
+vim.cmd('highlight BufferVisibleERROR guibg=#15161e guifg=#d04747')
+vim.cmd('highlight BufferVisibleIndex guibg=#15161e guifg=#0cb0cc')
+vim.cmd('highlight BufferVisibleMod guibg=#15161e guifg=#d5a86c')
+vim.cmd('highlight BufferVisibleSign guibg=#15161e guifg=#0cb0cc')
+vim.cmd('highlight BufferVisibleSignRight guibg=#15161e guifg=#0cb0cc')
+vim.cmd('highlight BufferVisibleWARN guibg=#15161e guifg=#d5a663')
 
 -- Movement
 require('leap').create_default_mappings()
@@ -369,24 +403,18 @@ require('speedrun').setup({
     langs = {
         c = {
             cmd = {
-                'gcc -std=c99 -O3 -Werror -Wall -Wextra -Wpedantic % && ./a.out',
-                '../cbuild -l',
-                '../cbuild -w',
-                '../cbuild -g',
-                'clang-format ../src/*.c ../inc/*.h'
+                'gcc -std=c99 -O3 -Werror -Wall -Wextra -Wpedantic % -lm && ./a.out',
+                'clang-format -i %'
             },
-            mods = {'r', 'l', 'w', 'g', 'f'},
+            mods = {'r', 'f'},
             icon = '󰙱'
         },
         cpp = {
             cmd = {
-                'g++ -std=c++11 -O3 -Werror -Wall -Wextra -Wpedantic % && ./a.out',
-                '../cbuild -l',
-                '../cbuild -w',
-                '../cbuild -g',
-                'clang-format ../src/*.cpp ../inc/*.hpp'
+                'g++ -std=c++23 -O3 -Werror -Wall -Wextra -Wpedantic % -lm && ./a.out',
+                'clang-format -i %'
             },
-            mods = {'r', 'l', 'w', 'g', 'f'},
+            mods = {'r', 'f'},
             icon = '󰙲'
         },
         rust = {
@@ -410,8 +438,8 @@ require('speedrun').setup({
             icon = ''
         },
         sh = {
-            cmd = {'./%'},
-            mods = {'r'},
+            cmd = {'./%', 'chmod +x %'},
+            mods = {'r', 'x'},
             icon = ''
         }
     }
@@ -476,8 +504,7 @@ require('cmp').setup({
         {name = 'codeium'},
         {name = 'buffer'},
         {name = 'path'}
-    },
-    experimental = {ghost_text = true}
+    }
 })
 
 require('cmp').setup.cmdline(':', {sources = {{name = 'cmdline'}}})
