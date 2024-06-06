@@ -10,6 +10,8 @@ alias grep='grep --color=auto'
 PS1='[\u@\h \W]\$ '
 
 export PATH="/home/doman/.path:$PATH"
+export EDITOR=nvim
+export VISUAL=nvim
 alias clear="clear && fastfetch"
 alias startx="startx && clear"
 source /etc/profile.d/debuginfod.sh
