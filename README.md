@@ -90,9 +90,9 @@ alacritty: font/padding: pc: 11/10, laptop: 7/6\
 google-chrome: login\
 /etc/fstab: mount disks\
 openssh: enable, config\
-nmcli: wake-on-lan\
+nmcli: enable wake-on-lan\
 git: config: user.name, user.email, credential.helper store, generate token\
 discord: login, disable notifications, modify fontsize, set keybindings\
-steam: login\
-minecraft-launcher: login\
+steam: login, enable compatibility\
+minecraft-launcher: login, setup\
 spotify-launcher: login

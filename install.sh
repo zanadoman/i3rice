@@ -3,7 +3,6 @@
 # System
 sudo cp -a ./etc/. /etc/
 sudo grub-mkconfig -o /boot/grub/grub.cfg
-sudo pacman -Syu
 
 # Packages
 sudo pacman -S $(cat pacman.txt)
