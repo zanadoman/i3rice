@@ -27,9 +27,9 @@ sudo mariadb -u root -p"12345678"
 sudo mariadb-secure-installation
 
 # Folders
+mkdir ~/.path
 mkdir ~/Downloads
 mkdir ~/Documents
 mkdir ~/Projects
 mkdir ~/Pictures
 mkdir ~/Videos
-mkdir ~/.path
