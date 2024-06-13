@@ -1,4 +1,5 @@
 if status is-interactive
+    set fish_greeting
     export PATH="/home/doman/.path:$PATH"
     export EDITOR=nvim
     export VISUAL=nvim

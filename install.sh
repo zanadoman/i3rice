@@ -20,7 +20,7 @@ rustup default stable
 # MariaDB
 sudo mariadb-install-db --user=mysql --basedir=/usr --datadir=/var/lib/mysql
 sudo systemctl start mysqld
-sudo mariadb -u root -p
+sudo mariadb -u root -p"12345678"
 sudo mariadb-secure-installation
 
 # Folders

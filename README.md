@@ -1,8 +1,6 @@
-# Preview
 <img src="preview.png">
 
 # Packages (747)
-
 Dependencies: git, yay
 
 ## X.org
@@ -10,7 +8,7 @@ xorg-server\
 xorg-xinit\
 xorg-xinput\
 xorg-xrandr\
-xclip\
+xclip
 
 ## i3
 i3-wm\
@@ -20,13 +18,13 @@ autotiling (AUR)\
 picom-ftlabs-git (AUR)\
 feh\
 maim\
-gromit-mpx (AUR)\
+gromit-mpx (AUR)
 
 ## Terminal
 fish\
 alacritty\
 fastfetch\
-starship\
+starship
 
 ## CLI tools
 brightnessctl\
@@ -34,20 +32,20 @@ pulsemixer\
 bluez\
 bluez-utils\
 btop\
-mosh\
+mosh
 
 ## Editor
 neovim\
 npm\
 composer\
-ripgrep\
+ripgrep
 
 ## Archiving
 atool\
 zip\
 unzip\
 p7zip\
-rar (AUR)\
+rar (AUR)
 
 ## Programming
 cmake\
@@ -57,43 +55,43 @@ valgrind\
 dotnet-sdk\
 rustup\
 jdk17-openjdk\
-virtualbox\
+virtualbox
 
 ## LAMP stack
 php-apache\
 mysql\
-phpmyadmin\
+phpmyadmin
 
 ## Filesystem support
 dosfstools\
-ntfs-3g\
+ntfs-3g
 
 ## Media
 google-chrome (AUR)\
 onlyoffice (AUR)\
 gimp\
 audacity\
-obs-studio\
+obs-studio
 
 ## Entertainment
 discord\
 noto-fonts-emoji\
 steam\
 minecraft-launcher (AUR)\
-spotify-launcher\
+spotify-launcher
 
 ## Compatibility
-wine\
+wine
 
 # Manual setup
+i3: displays\
+alacritty: font/padding: pc: 11/10, laptop: 7/6\
 google-chrome: login\
-spotify-launcher: login\
-steam: login\
-discord: login, disable notifications, fontsize, keybindings\
-minecraft-launcher: login\
+/etc/fstab: mount disks\
 openssh: config\
-git: user.name, user.email, credential.helper store, token\
-fstab: disks\
-networkmanager: wake-on-lan\
-i3: touchpad, brightness, monitor\
-alacritty: font/padding 11/10 7/6\
+nmcli: wake-on-lan\
+git: config: user.name, user.email, credential.helper store, generate token\
+discord: login, disable notifications, modify fontsize, set keybindings\
+steam: login\
+minecraft-launcher: login\
+spotify-launcher: login

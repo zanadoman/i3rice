@@ -1,4 +1,3 @@
-git
 xorg-server
 xorg-xinit
 xorg-xinput
