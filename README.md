@@ -55,7 +55,8 @@ valgrind\
 dotnet-sdk\
 rustup\
 jdk17-openjdk\
-virtualbox
+virtualbox\
+libavif
 
 ## LAMP stack
 php-apache\

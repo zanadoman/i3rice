@@ -33,6 +33,7 @@ dotnet-sdk
 rustup
 jdk17-openjdk
 virtualbox
+libavif
 php-apache
 mysql
 phpmyadmin

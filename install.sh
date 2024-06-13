@@ -17,6 +17,9 @@ chsh -s /bin/fish
 # Rust
 rustup default stable
 
+# Apache
+sudo chmod 777 /srv/http
+
 # MariaDB
 sudo mariadb-install-db --user=mysql --basedir=/usr --datadir=/var/lib/mysql
 sudo systemctl start mysqld
