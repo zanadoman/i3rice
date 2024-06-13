@@ -1,6 +1,6 @@
 <img src="preview.png">
 
-# Packages (699)
+# Packages (705)
 Dependencies: git, yay
 
 ## X11
@@ -12,8 +12,8 @@ xclip
 
 ## i3
 i3-wm\
-i3status\
 dmenu\
+i3status\
 autotiling (AUR)\
 picom-ftlabs-git (AUR)\
 feh\
@@ -27,11 +27,12 @@ fastfetch\
 starship
 
 ## CLI tools
-brightnessctl\
 pulsemixer\
+brightnessctl\
 bluez\
 bluetuith (AUR)\
 btop\
+rocm-smi-lib\
 mosh
 
 ## Editor
@@ -48,15 +49,15 @@ p7zip\
 rar (AUR)
 
 ## Programming
-cmake\
 mingw-w64\
+cmake\
 mingw-w64-cmake (AUR)\
 valgrind\
+libavif\
 dotnet-sdk\
 rustup\
 jdk17-openjdk\
-virtualbox\
-libavif
+virtualbox
 
 ## LAMP stack
 php-apache\
