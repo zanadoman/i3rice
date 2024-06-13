@@ -1,6 +1,7 @@
 autotiling
 picom-ftlabs-git
 gromit-mpx
+bluetuith
 rar
 mingw-w64-cmake
 google-chrome

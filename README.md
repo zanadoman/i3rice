@@ -30,7 +30,7 @@ starship
 brightnessctl\
 pulsemixer\
 bluez\
-bluez-utils\
+bluetuith (AUR)\
 btop\
 mosh
 
@@ -89,7 +89,7 @@ i3: displays\
 alacritty: font/padding: pc: 11/10, laptop: 7/6\
 google-chrome: login\
 /etc/fstab: mount disks\
-openssh: config\
+openssh: enable, config\
 nmcli: wake-on-lan\
 git: config: user.name, user.email, credential.helper store, generate token\
 discord: login, disable notifications, modify fontsize, set keybindings\
