@@ -11,7 +11,7 @@ yay -S $(cat yay.txt)
 pacman -Qdtq | sudo pacman -Rns -
 
 # User
-sudo cp -a ./home/. ~/
+cp -a ./home/. ~/
 chsh -s /bin/fish
 
 # Rust
