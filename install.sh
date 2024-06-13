@@ -1,25 +1,30 @@
 #!/bin/bash
 
+# System
 sudo cp -r ./etc/* /etc/
-sudo cp -r ./home/doman/* ~/
+sudo grub-mkconfig -o /boot/grub/grub.cfg
+sudo pacman -Syu
 
-sudo pacman -Syu $(cat pacman.txt)
+# Packages
+sudo pacman -S $(cat pacman.txt)
 yay -S $(cat yay.txt)
-
 pacman -Qdtq | sudo pacman -Rns -
 
-sudo grub-mkconfig -o /boot/grub/grub.cfg
-
+# User
+sudo cp -r ./home/doman/* ~/
 chsh -s /bin/fish
-echo "set -U fish_greeting" | fish
 
-sudo chmod 557 /srv/http
-sudo mariadb-install-db --user=mysql --basedir=/usr --datadir=/var/lib/mysql
-sudo systemctl start mariadb.service
-sudo mariadb -u root -p
-sudo mariadb-secure-installation
+# Rust
 rustup default stable
 
+# MariaDB
+sudo mariadb-install-db --user=mysql --basedir=/usr --datadir=/var/lib/mysql
+sudo systemctl start mysqld
+sudo mariadb -u root -p
+sudo mariadb-secure-installation
+sudo chmod 557 /srv/http
+
+# Folders
 mkdir ~/Downloads
 mkdir ~/Documents
 mkdir ~/Projects
