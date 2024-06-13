@@ -14,9 +14,6 @@ pacman -Qdtq | sudo pacman -Rns -
 cp -a ./home/. ~/
 chsh -s /bin/fish
 
-# Rust
-rustup default stable
-
 # Apache
 sudo chmod 777 /srv/http
 
@@ -26,6 +23,9 @@ sudo systemctl start mysqld
 sudo mariadb -u root -p"12345678"
 sudo mariadb-secure-installation
 
+# Rust
+rustup default stable
+
 # Folders
 mkdir ~/.path
 mkdir ~/Downloads
@@ -33,3 +33,4 @@ mkdir ~/Documents
 mkdir ~/Projects
 mkdir ~/Pictures
 mkdir ~/Videos
+mkdir ~/Music
