@@ -1,7 +1,7 @@
-# Appearance and update intervall
+# General
 general {
-    colors = false
     interval = 5
+    colors = false
 }
 
 # Order
@@ -25,7 +25,7 @@ memory {
 }
 
 # Internal drive
-disk "/" {
+disk / {
     format = "󱛟 %avail"
 }
 
@@ -43,9 +43,9 @@ wireless _first_ {
 
 # Volume
 volume master {
+    device = "default"
     format = "󰕾 %volume"
     format_muted = "󰝟 "
-    device = "default"
 }
 
 # Battery

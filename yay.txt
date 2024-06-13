@@ -1,0 +1,8 @@
+autotiling
+picom-ftlabs-git
+gromit-mpx
+rar
+mingw-w64-cmake
+google-chrome
+onlyoffice
+minecraft-launcher
