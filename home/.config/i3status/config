@@ -1,0 +1,60 @@
+# General
+general {
+    interval = 5
+    colors = false
+}
+
+# Order
+order += "cpu_usage"
+order += "memory"
+order += "disk /"
+order += "ethernet _first_"
+order += "wireless _first_"
+order += "volume master"
+order += "battery all"
+order += "tztime local"
+
+# CPU
+cpu_usage {
+    format = "󰻠 %usage"
+}
+
+# RAM
+memory {
+    format = " %used"
+}
+
+# Internal drive
+disk / {
+    format = "󱛟 %avail"
+}
+
+# Ethernet
+ethernet _first_ {
+    format_up = "󰈁 %speed"
+    format_down = "󰈂 "
+}
+
+# Wi-Fi
+wireless _first_ {
+    format_up = "󰤨 %essid-%quality"
+    format_down = "󰤭 "
+}
+
+# Volume
+volume master {
+    device = "default"
+    format = "󰕾 %volume"
+    format_muted = "󰝟 "
+}
+
+# Battery
+battery all {
+    format = "󰁹 %percentage %status"
+    format_down = " "
+}
+
+# Time
+tztime local {
+    format = " %m.%d. 󰥔 %H:%M %p "
+}
