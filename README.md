@@ -41,13 +41,6 @@ npm\
 composer\
 ripgrep
 
-## Archiving
-atool\
-zip\
-unzip\
-p7zip\
-rar (AUR)
-
 ## Programming
 mingw-w64\
 cmake\
@@ -64,9 +57,12 @@ php-apache\
 mysql\
 phpmyadmin
 
-## Filesystem support
-dosfstools\
-ntfs-3g
+## Archiving
+atool\
+zip\
+unzip\
+p7zip\
+rar (AUR)
 
 ## Media
 google-chrome (AUR)\
@@ -83,6 +79,8 @@ minecraft-launcher (AUR)\
 spotify-launcher
 
 ## Compatibility
+dosfstools\
+ntfs-3g\
 wine
 
 # Manual setup
