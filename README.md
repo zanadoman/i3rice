@@ -1,9 +1,9 @@
 <img src="preview.png">
 
-# Packages (747)
+# Packages (699)
 Dependencies: git, yay
 
-## X.org
+## X11
 xorg-server\
 xorg-xinit\
 xorg-xinput\
