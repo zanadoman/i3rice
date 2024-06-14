@@ -1,6 +1,6 @@
 <img src="preview.png">
 
-# Packages (710)
+# Packages (712)
 Dependencies: git, yay
 
 ## X11
@@ -43,6 +43,7 @@ ripgrep
 
 ## File manager
 ranger\
+sshfs\
 w3m\
 highlight
 
@@ -92,7 +93,7 @@ wine
 # Manual setup
 i3: displays\
 google-chrome: login\
-filesystem: mount disks\
+filesystem: mount disks, sshfs\
 openssh: enable, config\
 nmcli: enable wake-on-lan\
 git: config: user.name, user.email, credential.helper store, generate token\

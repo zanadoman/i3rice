@@ -23,6 +23,7 @@ npm
 composer
 ripgrep
 ranger
+sshfs
 w3m
 highlight
 atool
