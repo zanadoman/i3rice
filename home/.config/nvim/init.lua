@@ -133,9 +133,6 @@ require('lazy').setup(
             'hrsh7th/cmp-buffer',
             'hrsh7th/cmp-cmdline',
             'hrsh7th/cmp-path'
-        },
-        {
-            'Exafunction/codeium.nvim'
         }
     },
     {
@@ -584,6 +581,3 @@ do
         capabilities = require('cmp_nvim_lsp').default_capabilities()
     })
 end
-
--- Codeium AI
-require('codeium').setup()
