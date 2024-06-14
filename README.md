@@ -1,6 +1,6 @@
 <img src="preview.png">
 
-# Packages (705)
+# Packages (710)
 Dependencies: git, yay
 
 ## X11
@@ -41,6 +41,18 @@ npm\
 composer\
 ripgrep
 
+## File manager
+ranger\
+w3m\
+highlight
+
+## Archiving
+atool\
+zip\
+unzip\
+p7zip\
+rar (AUR)
+
 ## Programming
 mingw-w64\
 cmake\
@@ -57,19 +69,13 @@ php-apache\
 mysql\
 phpmyadmin
 
-## Archiving
-atool\
-zip\
-unzip\
-p7zip\
-rar (AUR)
-
 ## Media
 google-chrome (AUR)\
 onlyoffice (AUR)\
 gimp\
 audacity\
-obs-studio
+obs-studio\
+v4l2loopback-dkms
 
 ## Entertainment
 discord\
@@ -85,7 +91,6 @@ wine
 
 # Manual setup
 i3: displays\
-alacritty: font/padding: pc: 11/10, laptop: 7/6\
 google-chrome: login\
 /etc/fstab: mount disks\
 openssh: enable, config\
