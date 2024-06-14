@@ -129,7 +129,7 @@ bindsym $mod+v exec --no-startup-id alacritty -e nvim
 bindsym $mod+r exec --no-startup-id alacritty -e ranger
 
 # Browser
-bindsym $mod+c exec --no-startup-id google-chrome-stable
+bindsym $mod+b exec --no-startup-id google-chrome-stable
 
 # Screenshot
 bindsym Print exec --no-startup-id maim --select | xclip -selection clipboard -t image/png

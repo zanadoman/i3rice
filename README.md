@@ -92,7 +92,7 @@ wine
 # Manual setup
 i3: displays\
 google-chrome: login\
-/etc/fstab: mount disks\
+filesystem: mount disks\
 openssh: enable, config\
 nmcli: enable wake-on-lan\
 git: config: user.name, user.email, credential.helper store, generate token\
