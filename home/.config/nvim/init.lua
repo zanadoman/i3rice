@@ -62,6 +62,12 @@ vim.o.mouse = "";
 vim.keymap.set('v', '<C-down>', ":m '>+1<CR>gv=gv")
 vim.keymap.set('v', '<C-up>', ":m '<-2<CR>gv=gv")
 
+-- No highlight
+vim.keymap.set('n', '<leader>h', ":nohl\n", {
+    silent = true,
+    desc = '󰸱 No highlight'
+})
+
 -- Fix files
 vim.api.nvim_create_autocmd('BufReadPost', {
     callback = function(opts)
@@ -422,14 +428,14 @@ require('speedrun').setup({
     langs = {
         c = {
             cmd = {
-                'gcc -std=c99 -O3 -Werror -Wall -Wextra -Wpedantic % -lm && ./a.out',
+                'gcc -std=c99 -Ofast -Werror -Wall -Wextra -Wpedantic % -lm && ./a.out',
             },
             mods = {'r'},
             icon = '󰙱'
         },
         cpp = {
             cmd = {
-                'g++ -std=c++23 -O3 -Werror -Wall -Wextra -Wpedantic % -lm && ./a.out',
+                'g++ -std=c++23 -Ofast -Werror -Wall -Wextra -Wpedantic % -lm && ./a.out',
             },
             mods = {'r'},
             icon = '󰙲'
@@ -458,6 +464,11 @@ require('speedrun').setup({
             cmd = {'./%', 'chmod +x %'},
             mods = {'r', 'x'},
             icon = ''
+        },
+        javascript = {
+            cmd = {'npm start'},
+            mods = {'r'},
+            icon = 'bruh'
         }
     }
 })
