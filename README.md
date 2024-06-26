@@ -1,6 +1,6 @@
 <img src="preview.png">
 
-# Packages (728)
+# Packages (730)
 Dependencies: git, yay
 
 ## X11
