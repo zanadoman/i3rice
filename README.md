@@ -96,7 +96,7 @@ google-chrome: login\
 filesystem: mount disks, sshfs\
 openssh: enable, config\
 nmcli: enable wake-on-lan\
-git: config: user.name, user.email, credential.helper store, generate token\
+git: config: generate token\
 discord: login, disable notifications, modify fontsize, set keybindings\
 steam: login, enable compatibility\
 minecraft-launcher: login, setup\
