@@ -93,11 +93,11 @@ wine
 # Manual setup
 i3: wallpapers, displays\
 google-chrome: login\
-filesystem: mount disks, sshfs\
+filesystem: disks, sshfs\
 openssh: enable, config\
-nmcli: enable wake-on-lan\
-git: config: generate token\
-discord: login, disable notifications, modify fontsize, set keybindings\
-steam: login, enable compatibility\
+nmcli: wake-on-lan\
+git: token\
+discord: login, notifications, fontsize, keybindings\
+steam: login, compatibility\
 minecraft-launcher: login, setup\
 spotify-launcher: login
