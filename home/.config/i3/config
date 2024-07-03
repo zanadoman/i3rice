@@ -34,15 +34,15 @@ bindsym $mod+q kill
 
 # -------------------------- WORKSPACES --------------------------
 
-set $ws1 "1"
-set $ws2 "2"
-set $ws3 "3"
-set $ws4 "4"
-set $ws5 "5"
-set $ws6 "6"
-set $ws7 "7"
-set $ws8 "8"
-set $ws9 "9"
+set $ws1 1
+set $ws2 2
+set $ws3 3
+set $ws4 4
+set $ws5 5
+set $ws6 6
+set $ws7 7
+set $ws8 8
+set $ws9 9
 
 # Switch
 bindsym $mod+1 workspace number $ws1
@@ -80,7 +80,7 @@ bindsym $alt+Shift+9 move container to workspace number $ws9, workspace number $
 # -------------------------- UTILITIES --------------------------
 
 # Launcher
-bindsym $mod+d exec --no-startup-id dmenu_run -nb '#000000' -nf '#ffffff' -sb '#ffffff' -sf '#000000'
+bindsym $mod+d exec --no-startup-id dmenu_run -nb "#000000" -nf "#ffffff" -sb "#ffffff" -sf "#000000"
 
 # Statusbar
 bar {
@@ -115,7 +115,7 @@ gaps inner 10
 exec --no-startup-id picom -b
 
 # Wallpaper
-exec --no-startup-id feh --no-fehbg --bg-fill '/home/doman/.wallpaper.png' 
+exec --no-startup-id feh --no-fehbg --bg-fill /home/doman/.wallpaper1.png --bg-fill /home/doman/.wallpaper2.png
 
 # -------------------------- SHORTCUTS --------------------------
 
