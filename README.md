@@ -91,7 +91,7 @@ ntfs-3g\
 wine
 
 # Manual setup
-i3: displays\
+i3: wallpapers, displays\
 google-chrome: login\
 filesystem: mount disks, sshfs\
 openssh: enable, config\
