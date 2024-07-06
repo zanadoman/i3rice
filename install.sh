@@ -2,6 +2,7 @@
 
 # System
 sudo cp -a ./etc/. /etc/
+sudo chown -R root:root /etc/
 sudo grub-mkconfig -o /boot/grub/grub.cfg
 
 # Packages
