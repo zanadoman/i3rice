@@ -30,6 +30,7 @@ atool
 zip
 unzip
 p7zip
+clang
 mingw-w64
 cmake
 valgrind

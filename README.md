@@ -55,6 +55,7 @@ p7zip\
 rar (AUR)
 
 ## Programming
+clang\
 mingw-w64\
 cmake\
 mingw-w64-cmake (AUR)\
