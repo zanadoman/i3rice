@@ -13,6 +13,7 @@ source /etc/profile.d/debuginfod.sh
 export PATH="/home/doman/.path:$PATH"
 export EDITOR=nvim
 export VISUAL=nvim
+export ANDROID_NDK_HOME=/opt/android-ndk/
 alias clear="clear && fastfetch"
 alias startx="startx && clear"
 clear
