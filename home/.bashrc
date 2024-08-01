@@ -10,7 +10,7 @@ alias grep='grep --color=auto'
 PS1='[\u@\h \W]\$ '
 
 source /etc/profile.d/debuginfod.sh
-export PATH="/home/doman/.path:$PATH"
+export PATH="/home/doman/.path:/usr/lib/emscripten:$PATH"
 export EDITOR=nvim
 export VISUAL=nvim
 export ANDROID_NDK_HOME=/opt/android-ndk/

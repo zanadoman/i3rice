@@ -1,6 +1,6 @@
 if status is-interactive
     set fish_greeting
-    export PATH="/home/doman/.path:$PATH"
+    export PATH="/home/doman/.path:/usr/lib/emscripten:$PATH"
     export EDITOR=nvim
     export VISUAL=nvim
     export ANDROID_NDK_HOME=/opt/android-ndk/
