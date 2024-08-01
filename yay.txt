@@ -3,7 +3,7 @@ picom-ftlabs-git
 gromit-mpx
 bluetuith
 rar
-mingw-w64-cmake
+android-ndk
 google-chrome
 onlyoffice
 minecraft-launcher

@@ -1,6 +1,6 @@
 ![Preview](./preview.png)
 
-# Packages (736)
+# Packages (737)
 Dependencies: git, yay
 
 ## X11
@@ -33,7 +33,8 @@ bluez\
 bluetuith (AUR)\
 btop\
 rocm-smi-lib\
-mosh
+mosh\
+less
 
 ## Editor
 neovim\
@@ -55,14 +56,15 @@ p7zip\
 rar (AUR)
 
 ## Programming
-clang\
+aarch64-linux-gnu-gcc\
 mingw-w64\
+android-ndk (AUR)\
 cmake\
-mingw-w64-cmake (AUR)\
+clang\
 valgrind\
 libavif\
-dotnet-sdk\
 rustup\
+dotnet-sdk\
 jdk17-openjdk\
 virtualbox
 

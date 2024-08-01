@@ -18,6 +18,7 @@ bluez
 btop
 rocm-smi-lib
 mosh
+less
 neovim
 npm
 composer
@@ -30,13 +31,14 @@ atool
 zip
 unzip
 p7zip
-clang
+aarch64-linux-gnu-gcc
 mingw-w64
 cmake
+clang
 valgrind
 libavif
-dotnet-sdk
 rustup
+dotnet-sdk
 jdk17-openjdk
 virtualbox
 php-apache
