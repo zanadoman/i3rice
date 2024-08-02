@@ -5,12 +5,22 @@ local servers = {
     'csharp_ls',
     'jdtls',
     'pyright',
+    'lua_ls',
     'bashls',
     'html',
     'cssls',
     'tsserver',
     'phpactor',
     'emmet_language_server'
+}
+
+local servers_opts = {
+    clangd = {cmd = {'clangd', '--header-insertion=never'}},
+    lua_ls = {settings = {Lua = {diagnostics = {globals = {'vim'}}}}},
+    phpactor = {init_options = {
+        ['language_server_phpstan'] = true,
+        ['language_server_psalm'] = true
+    }}
 }
 
 -- Leader
@@ -63,10 +73,7 @@ vim.keymap.set('v', '<C-down>', ":m '>+1<CR>gv=gv")
 vim.keymap.set('v', '<C-up>', ":m '<-2<CR>gv=gv")
 
 -- No highlight
-vim.keymap.set('n', '<leader>h', ":nohl\n", {
-    silent = true,
-    desc = '󰸱 No highlight'
-})
+vim.keymap.set('n', '<leader>h', ":nohl\n", {silent = true})
 
 -- Fix files
 vim.api.nvim_create_autocmd('BufReadPost', {
@@ -74,8 +81,8 @@ vim.api.nvim_create_autocmd('BufReadPost', {
         vim.cmd('silent! retab')
         if vim.bo[opts.buf].fileformat == 'dos'
         then
-            vim.bo.fileformat = 'unix'
             vim.cmd('silent! %s/\r//g')
+            vim.bo.fileformat = 'unix'
         end
     end
 })
@@ -111,15 +118,12 @@ require('lazy').setup(
         },
         {
             'arnamak/stay-centered.nvim',
-            'ggandor/leap.nvim',
             'windwp/nvim-autopairs',
             'kylechui/nvim-surround',
             'numToStr/Comment.nvim',
             'nvim-telescope/telescope.nvim',
             'nvim-telescope/telescope-file-browser.nvim',
-            'lewis6991/gitsigns.nvim',
-            'zanadoman/speedrun.nvim',
-            'folke/which-key.nvim'
+            'lewis6991/gitsigns.nvim'
         },
         {
             'williamboman/mason.nvim',
@@ -139,13 +143,16 @@ require('lazy').setup(
             'hrsh7th/cmp-buffer',
             'hrsh7th/cmp-cmdline',
             'hrsh7th/cmp-path'
+        },
+        {
+            'Exafunction/codeium.nvim'
         }
     },
     {
         ui = {border = 'rounded'}
     }
 )
-    
+
 -- Startup screen
 require('dashboard').setup({
     shortcut_type = 'number',
@@ -197,7 +204,7 @@ require('dashboard').setup({
                 icon = '󰩈 ',
                 desc = 'Quit',
                 key = 'q',
-                action = 'quit' 
+                action = 'quit'
             }
         },
         packages = {enable = false},
@@ -249,7 +256,6 @@ require('barbar').setup({
 vim.keymap.set('n', '<A-,>', ':BufferPrevious\n', {silent = true})
 vim.keymap.set('n', '<A-.>', ':BufferNext\n', {silent = true})
 vim.keymap.set('n', '<A-c>', ':BufferWipeout!\n', {silent = true})
-
 vim.keymap.set('n', '<A-1>', ':BufferGoto 1\n', {silent = true})
 vim.keymap.set('n', '<A-2>', ':BufferGoto 2\n', {silent = true})
 vim.keymap.set('n', '<A-3>', ':BufferGoto 3\n', {silent = true})
@@ -259,14 +265,11 @@ vim.keymap.set('n', '<A-6>', ':BufferGoto 6\n', {silent = true})
 vim.keymap.set('n', '<A-7>', ':BufferGoto 7\n', {silent = true})
 vim.keymap.set('n', '<A-8>', ':BufferGoto 8\n', {silent = true})
 vim.keymap.set('n', '<A-9>', ':BufferGoto 9\n', {silent = true})
+vim.keymap.set('n', '<A-0>', ':BufferGoto 10\n', {silent = true})
 
 -- Center buffer
 require('no-neck-pain').setup({autocmds = {enableOnVimEnter = true}})
-
-vim.keymap.set('n', '<leader>z', ':NoNeckPain\n', {
-    silent = true,
-    desc = '󰘞 Zen mode'
-})
+vim.keymap.set('n', '<leader>z', ':NoNeckPain\n', {silent = true})
 
 -- Indentation indicator
 require('ibl').setup({
@@ -276,16 +279,10 @@ require('ibl').setup({
 })
 
 -- Theme
-require('tokyonight').setup({
-    style = 'night',
-    transparent = true
-})
-
+require('tokyonight').setup({style = 'night', transparent = true})
 vim.cmd('colorscheme tokyonight')
-
 vim.cmd('highlight BufferScrollArrow guibg=#15161e guifg=#0cb0cc')
 vim.cmd('highlight BufferTabpageFill guibg=#15161e guifg=#15161e')
-
 vim.cmd('highlight BufferAlternate guibg=#15161e guifg=#565f89')
 vim.cmd('highlight BufferAlternateADDED guibg=#15161e guifg=#246865')
 vim.cmd('highlight BufferAlternateCHANGED guibg=#15161e guifg=#4f6796')
@@ -298,7 +295,6 @@ vim.cmd('highlight BufferAlternateMod guibg=#15161e guifg=#d5a86c')
 vim.cmd('highlight BufferAlternateSign guibg=#15161e guifg=#15161e')
 vim.cmd('highlight BufferAlternateSignRight guibg=#15161e guifg=#15161e')
 vim.cmd('highlight BufferAlternateWARN guibg=#15161e guifg=#d5a663')
-
 vim.cmd('highlight BufferCurrent guibg=#15161e guifg=#b4c0e7')
 vim.cmd('highlight BufferCurrentADDED guibg=#15161e guifg=#246865')
 vim.cmd('highlight BufferCurrentCHANGED guibg=#15161e guifg=#4f6796')
@@ -311,7 +307,6 @@ vim.cmd('highlight BufferCurrentMod guibg=#15161e guifg=#d5a86c')
 vim.cmd('highlight BufferCurrentSign guibg=#15161e guifg=#0cb0cc')
 vim.cmd('highlight BufferCurrentSignRight guibg=#15161e guifg=#0cb0cc')
 vim.cmd('highlight BufferCurrentWARN guibg=#15161e guifg=#d5a663')
-
 vim.cmd('highlight BufferInactive guibg=#15161e guifg=#565f89')
 vim.cmd('highlight BufferInactiveADDED guibg=#15161e guifg=#246865')
 vim.cmd('highlight BufferInactiveCHANGED guibg=#15161e guifg=#4f6796')
@@ -324,7 +319,6 @@ vim.cmd('highlight BufferInactiveMod guibg=#15161e guifg=#d5a86c')
 vim.cmd('highlight BufferInactiveSign guibg=#15161e guifg=#15161e')
 vim.cmd('highlight BufferInactiveSignRight guibg=#15161e guifg=#15161e')
 vim.cmd('highlight BufferInactiveWARN guibg=#15161e guifg=#d5a663')
-
 vim.cmd('highlight BufferVisible guibg=#15161e guifg=#b4c0e7')
 vim.cmd('highlight BufferVisibleADDED guibg=#15161e guifg=#246865')
 vim.cmd('highlight BufferVisibleCHANGED guibg=#15161e guifg=#4f6796')
@@ -341,9 +335,6 @@ vim.cmd('highlight BufferVisibleWARN guibg=#15161e guifg=#d5a663')
 -- Center cursorline
 require('stay-centered').setup({skip_filetypes = {'dashboard'}})
 
--- Movement
-require('leap').create_default_mappings()
-
 -- Bracket autocompletion
 require('nvim-autopairs').setup()
 
@@ -356,174 +347,37 @@ require('Comment.ft').set('plsql', '--%s')
 
 --Fuzzy finder
 require('telescope').setup()
-
-vim.keymap.set('n', '<leader>f', ':Telescope\n', {
-    silent = true,
-    desc = '󰭎 Telescope'
-})
-
-vim.keymap.set('n', '<leader>ff', ':Telescope file_browser\n', {
-    silent = true,
-    desc = '󰭎 File browser'
-})
-
-vim.keymap.set('n', '<leader>fg', ':Telescope live_grep\n', {
-    silent = true,
-    desc = '󰭎 Live grep'
-})
-
-vim.keymap.set('n', '<leader>fb', ':Telescope buffers\n', {
-    silent = true,
-    desc = '󰭎 Buffers'
-})
+vim.keymap.set('n', '<leader>f', ':Telescope\n', {silent = true})
+vim.keymap.set('n', '<leader>ff', ':Telescope file_browser\n', {silent = true})
+vim.keymap.set('n', '<leader>fg', ':Telescope live_grep\n', {silent = true})
+vim.keymap.set('n', '<leader>fb', ':Telescope buffers\n', {silent = true})
 
 -- Git integration
 require('gitsigns').setup({
     on_attach = function()
-        vim.keymap.set('n', '<leader>g', ':Gitsigns\n', {
-            silent = true,
-            desc = ' Git'
-        })
-
-        vim.keymap.set('n', '<leader>gp', ':Gitsigns preview_hunk_inline\n', {
-            silent = true,
-            desc = ' Preview hunk'
-        })
-
-        vim.keymap.set('n', '<leader>gs', ':Gitsigns stage_hunk\n', {
-            silent = true,
-            desc = ' Stage hunk'
-        })
-
-        vim.keymap.set('n', '<leader>gu', ':Gitsigns undo_stage_hunk\n', {
-            silent = true,
-            desc = ' Unstage hunk'
-        })
-
-        vim.keymap.set('n', '<leader>gr', ':Gitsigns reset_hunk\n', {
-            silent = true,
-            desc = ' Reset hunk'
-        })
-
-        vim.keymap.set('n', '<leader>gS', ':Gitsigns stage_buffer\n', {
-            silent = true,
-            desc = ' Stage buffer'
-        })
-
-        vim.keymap.set('n', '<leader>gR', ':Gitsigns reset_buffer\n', {
-            silent = true,
-            desc = ' Reset buffer'
-        })
-
-        vim.keymap.set('n', '<leader>gb', ':Gitsigns toggle_current_line_blame\n', {
-            silent = true,
-            desc = ' Toggle blame'
-        })
+        vim.keymap.set('n', '<leader>g', ':Gitsigns\n', {silent = true})
+        vim.keymap.set('n', '<leader>gp', ':Gitsigns preview_hunk_inline\n', {silent = true})
+        vim.keymap.set('n', '<leader>gs', ':Gitsigns stage_hunk\n', {silent = true})
+        vim.keymap.set('n', '<leader>gu', ':Gitsigns undo_stage_hunk\n', {silent = true})
+        vim.keymap.set('n', '<leader>gr', ':Gitsigns reset_hunk\n', {silent = true})
+        vim.keymap.set('n', '<leader>gS', ':Gitsigns stage_buffer\n', {silent = true})
+        vim.keymap.set('n', '<leader>gR', ':Gitsigns reset_buffer\n', {silent = true})
+        vim.keymap.set('n', '<leader>gb', ':Gitsigns toggle_current_line_blame\n', {silent = true})
     end
 })
-
--- Speedrun
-require('speedrun').setup({
-    keymap = '<leader>r',
-    langs = {
-        c = {
-            cmd = {
-                'gcc -std=c99 -Ofast -Werror -Wall -Wextra -Wpedantic % -lm && ./a.out',
-            },
-            mods = {'r'},
-            icon = '󰙱'
-        },
-        cpp = {
-            cmd = {
-                'g++ -std=c++23 -Ofast -Werror -Wall -Wextra -Wpedantic % -lm && ./a.out',
-            },
-            mods = {'r'},
-            icon = '󰙲'
-        },
-        rust = {
-            cmd = {'cargo run', 'cargo clippy', 'cargo fmt', 'cargo test'},
-            mods = {'r', 'c', 'f', 't'},
-            icon = ''
-        },
-        cs = {
-            cmd = {'dotnet run'}, 
-            mods = {'r'},
-            icon = '󰌛'
-        },
-        java = {
-            cmd = {'java %'},
-            mods = {'r'},
-            icon = ''
-        },
-        python = {
-            cmd = {'python3 %'},
-            mods = {'r'},
-            icon = ''
-        },
-        sh = {
-            cmd = {'./%', 'chmod +x %'},
-            mods = {'r', 'x'},
-            icon = ''
-        },
-        javascript = {
-            cmd = {'npm start'},
-            mods = {'r'},
-            icon = 'bruh'
-        }
-    }
-})
-
--- Key bindings
-require('which-key').setup({window = {border = 'rounded'}})
 
 -- Install servers
 require('mason').setup({ui = {border = 'rounded'}})
 require('mason-lspconfig').setup({ensure_installed = servers})
 
-vim.keymap.set('n', '<leader>l', ':LspInfo\n', {
-    silent = true,
-    desc = ' LSP'
-})
+vim.keymap.set('n', '<leader>l', ':LspInfo\n', {silent = true})
+vim.keymap.set('n', '<leader>ln', vim.lsp.buf.rename, {silent = true})
+vim.keymap.set('n', '<leader>lf', vim.lsp.buf.format, {silent = true,})
+vim.keymap.set('n', '<leader>ld', require('telescope.builtin').lsp_definitions, {silent = true})
+vim.keymap.set('n', '<leader>lr', require('telescope.builtin').lsp_references, {silent = true})
+vim.keymap.set('n', '<leader>ll', require('telescope.builtin').diagnostics, {silent = true})
 
-vim.keymap.set('n', '<leader>ln', vim.lsp.buf.rename, {
-    silent = true,
-    desc = ' Rename'
-})
-
-vim.keymap.set('n', '<leader>lf', vim.lsp.buf.format, {
-    silent = true,
-    desc = ' Format'
-})
-
-vim.keymap.set('n', '<leader>ld',
-    function()
-        require('telescope.builtin').lsp_definitions()
-    end,
-    {
-        silent = true,
-        desc = ' Jump to definition'
-    }
-)
-
-vim.keymap.set('n', '<leader>lr',
-    function()
-        require('telescope.builtin').lsp_references()
-    end,
-    {
-        silent = true,
-        desc = ' Jump to references'
-    }
-)
-
-vim.keymap.set('n', '<leader>ll',
-    function()
-        require('telescope.builtin').diagnostics()
-    end,
-    {
-        silent = true,
-        desc = ' List diagnostics'
-    }
-)
+require('lspconfig.ui.windows').default_options.border = 'rounded'
 
 -- Diagnostic config
 vim.api.nvim_create_autocmd({'CursorHold', 'CursorHoldI'}, {
@@ -577,7 +431,8 @@ require('cmp').setup({
         {name = 'vim-dadbod-completion'},
         {name = 'codeium'},
         {name = 'buffer'},
-        {name = 'path'}
+        {name = 'path'},
+        {name = 'codeium'}
     }
 })
 
@@ -588,7 +443,13 @@ vim.o.pumheight = 10
 -- Start servers
 for _, server in ipairs(servers)
 do
-    require('lspconfig')[server].setup({
-        capabilities = require('cmp_nvim_lsp').default_capabilities()
-    })
+    local opts = servers_opts[server] or {}
+    opts.capabilities = require('cmp_nvim_lsp').default_capabilities()
+    require('lspconfig')[server].setup(opts)
 end
+
+-- Codeium
+require('codeium').setup({
+    enable_chat = true,
+    ignored_errors = {408, 499, 500, 503, 504}
+})
