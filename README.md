@@ -1,6 +1,6 @@
 ![Preview](./preview.png)
 
-# Packages (739)
+# Packages (741)
 Dependencies: git, yay
 
 ## X11
@@ -67,7 +67,8 @@ libavif\
 rustup\
 dotnet-sdk\
 jdk17-openjdk\
-virtualbox
+virtualbox\
+gnu-netcat
 
 ## LAMP stack
 php-apache\
