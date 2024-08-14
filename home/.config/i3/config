@@ -115,7 +115,7 @@ gaps inner 10
 exec --no-startup-id picom -b
 
 # Wallpaper
-exec --no-startup-id feh --no-fehbg --bg-fill /home/doman/.wallpaper1.png --bg-fill /home/doman/.wallpaper2.png
+exec_always --no-startup-id feh --no-fehbg --bg-fill /home/doman/.wallpaper1.png --bg-fill /home/doman/.wallpaper2.png
 
 # -------------------------- SHORTCUTS --------------------------
 
@@ -146,8 +146,8 @@ exec --no-startup-id gromit-mpx
 bindsym $mod+space exec --no-startup-id fish -c cyclexkbmap
 
 # Touchpad
-exec --no-startup-id xinput set-prop "SYNA2BA6:00 06CB:CE2C Touchpad" "libinput Tapping Enabled" 1
-exec --no-startup-id xinput set-prop "SYNA2BA6:00 06CB:CE2C Touchpad" "libinput Natural Scrolling Enabled" 1
+exec_always --no-startup-id xinput set-prop "SYNA2BA6:00 06CB:CE2C Touchpad" "libinput Tapping Enabled" 1
+exec_always --no-startup-id xinput set-prop "SYNA2BA6:00 06CB:CE2C Touchpad" "libinput Natural Scrolling Enabled" 1
 
 # Volume
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10%
@@ -156,12 +156,12 @@ bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ to
 bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle
 
 # Brightness
-exec --no-startup-id brightnessctl set 40%
+exec_always --no-startup-id brightnessctl set 40%
 bindsym XF86MonBrightnessUp exec --no-startup-id brightnessctl set +10%
 bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl set 10%-
 
 # Displays
-exec --no-startup-id xrandr --output DP-2 --primary
-exec --no-startup-id xrandr --output HDMI-1 --pos 1920x-600 --rotate left
-#exec --no-startup-id xrandr --output eDP-1 --primary
-#exec --no-startup-id xrandr --output HDMI-1 --auto --same-as eDP-1
+exec_always --no-startup-id xrandr --output DP-2 --auto --primary
+exec_always --no-startup-id xrandr --output HDMI-1 --auto --pos 1920x-600 --rotate left
+#exec_always --no-startup-id xrandr --output eDP-1 --auto --primary
+#exec_always --no-startup-id xrandr --output HDMI-1 --auto --same-as eDP-1
