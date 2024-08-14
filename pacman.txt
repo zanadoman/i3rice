@@ -2,7 +2,6 @@ xorg-server
 xorg-xinit
 xorg-xinput
 xorg-xrandr
-autorandr
 xclip
 i3-wm
 dmenu
