@@ -1,5 +1,7 @@
 [user]
-	name = zanadoman
-	email = domanseven@gmail.com
+    name = zanadoman
+    email = domanseven@gmail.com
 [credential]
-	helper = store
+    helper = store
+[pull]
+	rebase = false
