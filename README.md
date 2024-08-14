@@ -1,6 +1,6 @@
 ![Preview](./preview.png)
 
-# Packages (741)
+# Packages (743)
 Dependencies: git, yay
 
 ## X11
@@ -8,6 +8,7 @@ xorg-server\
 xorg-xinit\
 xorg-xinput\
 xorg-xrandr\
+autorandr\
 xclip
 
 ## i3
