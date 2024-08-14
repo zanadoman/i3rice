@@ -21,10 +21,10 @@ floating_modifier $mod
 tiling_drag off
 
 # Resize
-bindsym $alt+Shift+Up resize grow height 5 px or 5 ppt
-bindsym $alt+Shift+Down resize shrink height 5 px or 5 ppt
-bindsym $alt+Shift+Left resize shrink width 5 px or 5 ppt
-bindsym $alt+Shift+Right resize grow width 5 px or 5 ppt
+bindsym $alt+Up resize grow height 5 px or 5 ppt
+bindsym $alt+Down resize shrink height 5 px or 5 ppt
+bindsym $alt+Left resize shrink width 5 px or 5 ppt
+bindsym $alt+Right resize grow width 5 px or 5 ppt
 
 # Fullscreen
 bindsym $mod+f fullscreen toggle
