@@ -119,6 +119,9 @@ exec --no-startup-id feh --no-fehbg --bg-fill /home/doman/.wallpaper1.png --bg-f
 
 # -------------------------- SHORTCUTS --------------------------
 
+# Reload
+bindsym $mod+Shift+r restart
+
 # Terminal
 bindsym $mod+Return exec --no-startup-id alacritty
 
