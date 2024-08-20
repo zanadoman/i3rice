@@ -1,6 +1,6 @@
 ![Preview](./preview.png)
 
-# Packages (741)
+# Packages (739)
 Dependencies: git, yay
 
 ## X11
