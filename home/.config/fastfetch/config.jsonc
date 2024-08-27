@@ -1,0 +1,108 @@
+{
+    "logo": "~/.config/fastfetch/logo.txt",
+    "display": {
+        "separator": "  "
+    },
+    "modules": [
+        {
+            "type": "os",
+            "key": "󰣇 OS",
+            "keyColor": "blue"
+        },
+        {
+            "type": "kernel",
+            "key": "  ├",
+            "keyColor": "blue"
+        },
+        {
+            "type": "packages",
+            "key": "  ├󰏖",
+            "keyColor": "blue"
+        },
+        {
+            "type": "shell",
+            "key": "  └",
+            "keyColor": "blue"
+        },
+        {
+            "type": "wm",
+            "key": " WM",
+            "keyColor": "magenta"
+        },
+        {
+            "type": "terminal",
+            "key": "  ├",
+            "keyColor": "magenta"
+        },
+        {
+            "type": "terminalfont",
+            "key": "  ├",
+            "keyColor": "magenta"
+        },
+        {
+            "type": "theme",
+            "key": "  ├",
+            "keyColor": "magenta"
+        },
+        {
+            "type": "icons",
+            "key": "  ├󰀻",
+            "keyColor": "magenta"
+        },
+        {
+            "type": "cursor",
+            "key": "  └󰇀",
+            "keyColor": "magenta"
+        },
+        {
+            "type": "host",
+            "key": "󰍹 PC",
+            "keyColor": "blue"
+        },
+        {
+            "type": "cpu",
+            "key": "  ├󰻠",
+            "keyColor": "blue"
+        },
+        {
+            "type": "gpu",
+            "key": "  ├󰤽",
+            "keyColor": "blue"
+        },
+        {
+            "type": "memory",
+            "key": "  ├",
+            "keyColor": "blue"
+        },
+        {
+            "type": "disk",
+            "key": "  ├󱛟",
+            "keyColor": "blue"
+        },
+        {
+            "type": "display",
+            "key": "  ├󰍹",
+            "keyColor": "blue"
+        },
+        {
+            "type": "localip",
+            "key": "  ├󰖟",
+            "keyColor": "blue"
+        },
+        {
+            "type": "bluetooth",
+            "key": "  ├󰖟",
+            "keyColor": "blue"
+        },
+        {
+            "type": "battery",
+            "key": "  ├󰁹",
+            "keyColor": "blue"
+        },
+        {
+            "type": "uptime",
+            "key": "  └󰥔",
+            "keyColor": "blue"
+        }
+    ]
+}
