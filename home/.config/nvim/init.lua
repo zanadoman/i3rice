@@ -1,4 +1,4 @@
--- External dependencies: ripgrep, npm, composer
+-- External dependencies: luarocks, ripgrep, npm, composer
 
 -- Neovim options
 vim.g.mapleader = ' '
@@ -420,7 +420,7 @@ vim.keymap.set('n', '<leader>ll', require('telescope.builtin').diagnostics, {
 })
 vim.keymap.set('n', '<leader>ld', require('telescope.builtin').lsp_definitions, {
     silent = true,
-    desc = ' Definition'
+    desc = ' Definitions'
 })
 vim.keymap.set('n', '<leader>lr', require('telescope.builtin').lsp_references, {
     silent = true,
