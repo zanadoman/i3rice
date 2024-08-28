@@ -24,6 +24,6 @@ disabled = false
 
 # Prompt
 [character]
-success_symbol = "[╰─ ](cyan)"
-error_symbol = "[╰─](cyan)[󰰱 ](red)"
+success_symbol = "[╰─](cyan)"
+error_symbol = "[╰─](cyan)[󰰱](red)"
 
