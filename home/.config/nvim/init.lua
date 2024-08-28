@@ -473,6 +473,7 @@ require('cmp').setup.cmdline('/', { sources = { { name = 'buffer' } } })
 
 -- folke/which-key.nvim
 require('which-key').setup({
+    delay = 1000,
     win = { border = 'rounded' },
     icons = {
         group = '',
