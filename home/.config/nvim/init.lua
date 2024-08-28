@@ -338,20 +338,19 @@ require('Comment.ft').set('plsql', '--%s')
 
 -- nvim-telescope/telescope.nvim, nvim-telescope/telescope-file-browser.nvim
 require('telescope').setup()
-require('telescope').load_extension('file_browser')
 vim.keymap.set('n', '<leader>f', ':Telescope\n', {
     silent = true,
     desc = '󰭎 Telescope'
 })
-vim.keymap.set('n', '<leader>ff', ':Telescope file_browser\n', {
+vim.keymap.set('n', '<leader>ff', require("telescope").extensions.file_browser.file_browser, {
     silent = true,
     desc = '󰭎 File browser'
 })
-vim.keymap.set('n', '<leader>fg', ':Telescope live_grep\n', {
+vim.keymap.set('n', '<leader>fg', require('telescope.builtin').live_grep, {
     silent = true,
     desc = '󰭎 Live grep'
 })
-vim.keymap.set('n', '<leader>fb', ':Telescope buffers\n', {
+vim.keymap.set('n', '<leader>fb', require('telescope.builtin').buffers, {
     silent = true,
     desc = '󰭎 Buffers'
 })
@@ -363,33 +362,37 @@ require('gitsigns').setup({
             silent = true,
             desc = ' Git'
         })
-        vim.keymap.set('n', '<leader>gp', ':Gitsigns preview_hunk_inline\n', {
-            silent = true,
-            desc = ' Preview hunk'
-        })
-        vim.keymap.set('n', '<leader>gs', ':Gitsigns stage_hunk\n', {
+        vim.keymap.set('n', '<leader>gs', require('gitsigns').stage_hunk, {
             silent = true,
             desc = ' Stage hunk'
         })
-        vim.keymap.set('n', '<leader>gu', ':Gitsigns undo_stage_hunk\n', {
-            silent = true,
-            desc = ' Unstage hunk'
-        })
-        vim.keymap.set('n', '<leader>gr', ':Gitsigns reset_hunk\n', {
+        vim.keymap.set('n', '<leader>gr', require('gitsigns').reset_hunk, {
             silent = true,
             desc = ' Reset hunk'
         })
-        vim.keymap.set('n', '<leader>gS', ':Gitsigns stage_buffer\n', {
+        vim.keymap.set('n', '<leader>gS', require('gitsigns').stage_buffer, {
             silent = true,
             desc = ' Stage buffer'
         })
-        vim.keymap.set('n', '<leader>gR', ':Gitsigns reset_buffer\n', {
+        vim.keymap.set('n', '<leader>gu', require('gitsigns').undo_stage_hunk, {
+            silent = true,
+            desc = ' Unstage hunk'
+        })
+        vim.keymap.set('n', '<leader>gR', require('gitsigns').reset_buffer, {
             silent = true,
             desc = ' Reset buffer'
         })
-        vim.keymap.set('n', '<leader>gb', ':Gitsigns toggle_current_line_blame\n', {
+        vim.keymap.set('n', '<leader>gp', require('gitsigns').preview_hunk, {
             silent = true,
-            desc = ' Toggle blame'
+            desc = ' Preview hunk'
+        })
+        vim.keymap.set('n', '<leader>gb', require('gitsigns').blame_line, {
+            silent = true,
+            desc = ' Blame hunk'
+        })
+        vim.keymap.set('n', '<leader>gd', require('gitsigns').diffthis, {
+            silent = true,
+            desc = ' Toggle diff'
         })
     end
 })
