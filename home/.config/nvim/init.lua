@@ -382,13 +382,13 @@ require('gitsigns').setup({
             silent = true,
             desc = ' Reset buffer'
         })
-        vim.keymap.set('n', '<leader>gp', require('gitsigns').preview_hunk, {
+        vim.keymap.set('n', '<leader>gp', require('gitsigns').preview_hunk_inline, {
             silent = true,
             desc = ' Preview hunk'
         })
-        vim.keymap.set('n', '<leader>gb', require('gitsigns').blame_line, {
+        vim.keymap.set('n', '<leader>gb', require('gitsigns').toggle_current_line_blame, {
             silent = true,
-            desc = ' Blame hunk'
+            desc = ' Toggle blame'
         })
         vim.keymap.set('n', '<leader>gd', require('gitsigns').diffthis, {
             silent = true,
