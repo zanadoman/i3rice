@@ -338,11 +338,12 @@ require('Comment.ft').set('plsql', '--%s')
 
 -- nvim-telescope/telescope.nvim, nvim-telescope/telescope-file-browser.nvim
 require('telescope').setup()
+require('telescope').load_extension('file_browser')
 vim.keymap.set('n', '<leader>f', ':Telescope\n', {
     silent = true,
     desc = '󰭎 Telescope'
 })
-vim.keymap.set('n', '<leader>ff', require("telescope").extensions.file_browser.file_browser, {
+vim.keymap.set('n', '<leader>ff', require('telescope').extensions.file_browser.file_browser, {
     silent = true,
     desc = '󰭎 File browser'
 })
@@ -436,8 +437,8 @@ end
 -- ray-x/lsp_signature.nvim
 require('lsp_signature').setup({
     bind = true,
-    handler_opts = { border = 'rounded' },
-    hint_prefix = '■ '
+    hint_prefix = '■ ',
+    handler_opts = { border = 'rounded' }
 })
 
 -- L3MON4D3/LuaSnip, hrsh7th/nvim-cmp
