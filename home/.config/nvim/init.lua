@@ -175,7 +175,7 @@ require('dashboard').setup({
                 icon = ' ',
                 desc = 'New',
                 key = 'n',
-                action = 'bdelete | enew'
+                action = 'enew'
             },
             {
                 icon = ' ',
@@ -199,7 +199,7 @@ require('dashboard').setup({
                 icon = ' ',
                 desc = 'Config',
                 key = 'c',
-                action = 'bdelete | edit ' .. vim.fn.stdpath('config') .. '/init.lua'
+                action = 'edit ' .. vim.fn.stdpath('config') .. '/init.lua'
             },
             {
                 icon = '󰩈 ',
