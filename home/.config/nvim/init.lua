@@ -441,7 +441,8 @@ require('lsp_signature').setup({
     handler_opts = { border = 'rounded' }
 })
 
--- L3MON4D3/LuaSnip, hrsh7th/nvim-cmp
+-- L3MON4D3/LuaSnip, hrsh7th/nvim-cmp, hrsh7th/cmp-nvim-lsp, hrsh7th/cmp-buffer,
+-- hrsh7th/cmp-path, kristijanhusak/vim-dadbod-completion, hrsh7th/cmp-cmdline
 require('cmp').setup({
     snippet = {
         expand = function(args)
