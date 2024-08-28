@@ -29,12 +29,10 @@ vim.keymap.set('t', '<esc>', '<c-\\><c-n>')
 
 -- File formatter
 vim.api.nvim_create_autocmd('BufReadPost', {
-    callback = function(opts)
+    callback = function()
+        vim.cmd('silent! %s/\r//g')
+        vim.bo.fileformat = 'unix'
         vim.cmd('silent! retab')
-        if vim.bo[opts.buf].fileformat == 'dos' then
-            vim.cmd('silent! %s/\r//g')
-            vim.bo.fileformat = 'unix'
-        end
     end
 })
 
@@ -42,7 +40,7 @@ vim.api.nvim_create_autocmd('BufReadPost', {
 vim.api.nvim_create_autocmd('InsertEnter', {
     callback = function()
         vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes(
-            '<cmd>silent! nohlsearch\n', true, false, true), 'n', false)
+            '<cmd>silent! nohlsearch\n', true, true, true), 'n', true)
     end
 })
 
@@ -177,7 +175,7 @@ require('dashboard').setup({
                 icon = ' ',
                 desc = 'New',
                 key = 'n',
-                action = 'enew'
+                action = 'bdelete | enew'
             },
             {
                 icon = ' ',
@@ -201,7 +199,7 @@ require('dashboard').setup({
                 icon = ' ',
                 desc = 'Config',
                 key = 'c',
-                action = 'edit ' .. vim.fn.stdpath('config') .. '/init.lua'
+                action = 'bdelete | edit ' .. vim.fn.stdpath('config') .. '/init.lua'
             },
             {
                 icon = '󰩈 ',
@@ -231,7 +229,6 @@ require('lualine').setup({
 -- romgrk/barbar.nvim
 require('barbar').setup({
     animation = false,
-    tabpages = false,
     focus_on_close = 'previous',
     icons = {
         buffer_index = true,
@@ -248,15 +245,14 @@ require('barbar').setup({
             deleted = { enabled = true }
         },
         separator = { left = '[', right = ']' },
-        separator_at_end = false,
         modified = { button = '' }
-    },
-    insert_at_end = true
+    }
 })
 
 vim.keymap.set('n', '<a-,>', ':BufferPrevious\n', { silent = true })
 vim.keymap.set('n', '<a-.>', ':BufferNext\n', { silent = true })
-vim.keymap.set('n', '<a-c>', ':BufferWipeout!\n', { silent = true })
+vim.keymap.set('n', '<a-<>', ':BufferMovePrevious\n', { silent = true })
+vim.keymap.set('n', '<a->>', ':BufferMoveNext\n', { silent = true })
 vim.keymap.set('n', '<a-1>', ':BufferGoto 1\n', { silent = true })
 vim.keymap.set('n', '<a-2>', ':BufferGoto 2\n', { silent = true })
 vim.keymap.set('n', '<a-3>', ':BufferGoto 3\n', { silent = true })
@@ -267,8 +263,7 @@ vim.keymap.set('n', '<a-7>', ':BufferGoto 7\n', { silent = true })
 vim.keymap.set('n', '<a-8>', ':BufferGoto 8\n', { silent = true })
 vim.keymap.set('n', '<a-9>', ':BufferGoto 9\n', { silent = true })
 vim.keymap.set('n', '<a-0>', ':BufferGoto 10\n', { silent = true })
-vim.api.nvim_set_hl(0, 'BufferScrollArrow', { bg = '#16161e', fg = '#0db9d7' })
-vim.api.nvim_set_hl(0, 'BufferTabpageFill', { bg = '#16161e', fg = '#16161e' })
+vim.keymap.set('n', '<a-c>', ':BufferWipeout!\n', { silent = true })
 vim.api.nvim_set_hl(0, 'BufferAlternate', { bg = '#16161e', fg = '#565f89' })
 vim.api.nvim_set_hl(0, 'BufferAlternateADDED', { bg = '#16161e', fg = '#449dab' })
 vim.api.nvim_set_hl(0, 'BufferAlternateCHANGED', { bg = '#16161e', fg = '#6183bb' })
@@ -278,8 +273,8 @@ vim.api.nvim_set_hl(0, 'BufferAlternateHINT', { bg = '#16161e', fg = '#1abc9c' }
 vim.api.nvim_set_hl(0, 'BufferAlternateIndex', { bg = '#16161e', fg = '#0db9d7' })
 vim.api.nvim_set_hl(0, 'BufferAlternateINFO', { bg = '#16161e', fg = '#0db9d7' })
 vim.api.nvim_set_hl(0, 'BufferAlternateMod', { bg = '#16161e', fg = '#e0af68' })
-vim.api.nvim_set_hl(0, 'BufferAlternateSign', { bg = '#16161e', fg = '#0db9d7' })
-vim.api.nvim_set_hl(0, 'BufferAlternateSignRight', { bg = '#16161e', fg = '#0db9d7' })
+vim.api.nvim_set_hl(0, 'BufferAlternateSign', { bg = '#16161e', fg = '#16161e' })
+vim.api.nvim_set_hl(0, 'BufferAlternateSignRight', { bg = '#16161e', fg = '#16161e' })
 vim.api.nvim_set_hl(0, 'BufferAlternateWARN', { bg = '#16161e', fg = '#e0af68' })
 vim.api.nvim_set_hl(0, 'BufferCurrent', { bg = '#16161e', fg = '#c0caf5' })
 vim.api.nvim_set_hl(0, 'BufferCurrentADDED', { bg = '#16161e', fg = '#449dab' })
@@ -302,8 +297,8 @@ vim.api.nvim_set_hl(0, 'BufferInactiveHINT', { bg = '#16161e', fg = '#1abc9c' })
 vim.api.nvim_set_hl(0, 'BufferInactiveIndex', { bg = '#16161e', fg = '#0db9d7' })
 vim.api.nvim_set_hl(0, 'BufferInactiveINFO', { bg = '#16161e', fg = '#0db9d7' })
 vim.api.nvim_set_hl(0, 'BufferInactiveMod', { bg = '#16161e', fg = '#e0af68' })
-vim.api.nvim_set_hl(0, 'BufferInactiveSign', { bg = '#16161e', fg = '#0db9d7' })
-vim.api.nvim_set_hl(0, 'BufferInactiveSignRight', { bg = '#16161e', fg = '#0db9d7' })
+vim.api.nvim_set_hl(0, 'BufferInactiveSign', { bg = '#16161e', fg = '#16161e' })
+vim.api.nvim_set_hl(0, 'BufferInactiveSignRight', { bg = '#16161e', fg = '#16161e' })
 vim.api.nvim_set_hl(0, 'BufferInactiveWARN', { bg = '#16161e', fg = '#e0af68' })
 vim.api.nvim_set_hl(0, 'BufferVisible', { bg = '#16161e', fg = '#c0caf5' })
 vim.api.nvim_set_hl(0, 'BufferVisibleADDED', { bg = '#16161e', fg = '#449dab' })
@@ -317,6 +312,8 @@ vim.api.nvim_set_hl(0, 'BufferVisibleMod', { bg = '#16161e', fg = '#e0af68' })
 vim.api.nvim_set_hl(0, 'BufferVisibleSign', { bg = '#16161e', fg = '#0db9d7' })
 vim.api.nvim_set_hl(0, 'BufferVisibleSignRight', { bg = '#16161e', fg = '#0db9d7' })
 vim.api.nvim_set_hl(0, 'BufferVisibleWARN', { bg = '#16161e', fg = '#e0af68' })
+vim.api.nvim_set_hl(0, 'BufferScrollArrow', { bg = '#16161e', fg = '#0db9d7' })
+vim.api.nvim_set_hl(0, 'BufferTabpageFill', { bg = '#16161e', fg = '#16161e' })
 
 -- shortcuts/no-neck-pain.nvim, arnamak/stay-centered.nvim
 require('no-neck-pain').setup({ autocmds = { enableOnVimEnter = true } })
