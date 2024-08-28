@@ -453,12 +453,12 @@ require('cmp').setup({
         documentation = require('cmp').config.window.bordered()
     },
     mapping = {
+        ['<c-u>'] = require('cmp').mapping.scroll_docs(-1),
+        ['<c-d>'] = require('cmp').mapping.scroll_docs(1),
         ['<c-f>'] = require('cmp').mapping.confirm({ select = true }),
         ['<c-e>'] = require('cmp').mapping.abort(),
         ['<c-up>'] = require('cmp').mapping.select_prev_item(),
-        ['<c-down>'] = require('cmp').mapping.select_next_item(),
-        ['<a-down>'] = require('cmp').mapping.scroll_docs(1),
-        ['<a-up>'] = require('cmp').mapping.scroll_docs(-1)
+        ['<c-down>'] = require('cmp').mapping.select_next_item()
     },
     sources = {
         { name = 'nvim_lsp' },
