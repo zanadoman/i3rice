@@ -20,9 +20,10 @@ rocm-smi-lib
 mosh
 less
 neovim
+luarocks
+ripgrep
 npm
 composer
-ripgrep
 ranger
 sshfs
 w3m

@@ -1,6 +1,6 @@
 ![Preview](./preview.png)
 
-# Packages (739)
+# Packages (740)
 Dependencies: git, yay
 
 ## X11
@@ -38,9 +38,10 @@ less
 
 ## Editor
 neovim\
+luarocks\
+ripgrep\
 npm\
-composer\
-ripgrep
+composer
 
 ## File manager
 ranger\
