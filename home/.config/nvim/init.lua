@@ -1,3 +1,5 @@
+-- External dependencies: ripgrep, npm, composer
+
 -- Neovim options
 vim.g.mapleader = ' '
 vim.o.autochdir = true
@@ -25,6 +27,25 @@ vim.keymap.set('v', '<c-up>', ':m \'<-2\ngv=gv')
 vim.keymap.set('v', '<c-down>', ':m \'>+1\ngv=gv')
 vim.keymap.set('t', '<esc>', '<c-\\><c-n>')
 
+-- File formatter
+vim.api.nvim_create_autocmd('BufReadPost', {
+    callback = function(opts)
+        vim.cmd('silent! retab')
+        if vim.bo[opts.buf].fileformat == 'dos' then
+            vim.cmd('silent! %s/\r//g')
+            vim.bo.fileformat = 'unix'
+        end
+    end
+})
+
+-- Auto highlight
+vim.api.nvim_create_autocmd('InsertEnter', {
+    callback = function()
+        vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes(
+            '<cmd>silent! nohlsearch\n', true, false, true), 'n', false)
+    end
+})
+
 -- Language servers
 local servers = {
     'bashls',
@@ -48,22 +69,23 @@ local servers_opts = {
     lua_ls = { settings = { Lua = { diagnostics = { globals = { 'vim' } } } } }
 }
 
--- File formatter
-vim.api.nvim_create_autocmd('BufReadPost', {
-    callback = function(opts)
-        vim.cmd('silent! retab')
-        if vim.bo[opts.buf].fileformat == 'dos' then
-            vim.cmd('silent! %s/\r//g')
-            vim.bo.fileformat = 'unix'
-        end
-    end
+-- Diagnostics options
+vim.diagnostic.config({
+    update_in_insert = true,
+    float = { border = 'rounded' }
+})
+vim.lsp.handlers['textDocument/hover'] = vim.lsp.with(vim.lsp.handlers.hover, {
+    focusable = false,
+    border = 'rounded'
 })
 
--- Auto highlight
-vim.api.nvim_create_autocmd('InsertEnter', {
+-- Hover diagnostics
+vim.api.nvim_create_autocmd({ 'CursorHold', 'CursorHoldI' }, {
     callback = function()
-        vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes(
-            '<cmd>nohlsearch\n', true, false, true), 'n', false)
+        if not require('cmp').visible() and
+            not vim.diagnostic.open_float({ focusable = false }) then
+            vim.lsp.buf.hover()
+        end
     end
 })
 
@@ -77,7 +99,6 @@ if vim.fn.isdirectory(vim.fn.stdpath('data') .. '/lazy/lazy.nvim') then
         vim.fn.stdpath('data') .. '/lazy/lazy.nvim'
     })
 end
-
 vim.opt.rtp:prepend(vim.fn.stdpath('data') .. '/lazy/lazy.nvim')
 
 require('lazy').setup(
@@ -133,12 +154,14 @@ require('lazy').setup(
     }
 )
 
--- Startup screen
+-- folke/tokyonight.nvim
+require('tokyonight').setup({ style = 'night', transparent = true })
+vim.cmd('colorscheme tokyonight')
+
+-- nvimdev/dashboard-nvim
 require('dashboard').setup({
-    shortcut_type = 'number',
     config = {
         header = {
-            '                                                                     ',
             ' ██████   █████                   █████   █████  ███                 ',
             '░░██████ ░░███                   ░░███   ░░███  ░░░                  ',
             ' ░███░███ ░███   ██████   ██████  ░███    ░███  ████  █████████████  ',
@@ -188,8 +211,8 @@ require('dashboard').setup({
             }
         },
         packages = { enable = false },
-        project = { enable = false },
-        mru = { limit = 20 },
+        project = { limit = 10 },
+        mru = { limit = 10 },
         footer = {
             '                         ',
             '"Keep it simple, stupid!"'
@@ -197,7 +220,7 @@ require('dashboard').setup({
     }
 })
 
--- Statusline
+-- nvim-lualine/lualine.nvim
 require('lualine').setup({
     options = {
         disabled_filetypes = { 'dashboard' },
@@ -205,7 +228,7 @@ require('lualine').setup({
     }
 })
 
--- Bufferline
+-- romgrk/barbar.nvim
 require('barbar').setup({
     animation = false,
     tabpages = false,
@@ -231,38 +254,19 @@ require('barbar').setup({
     insert_at_end = true
 })
 
-vim.keymap.set('n', '<A-,>', ':BufferPrevious\n', { silent = true })
-vim.keymap.set('n', '<A-.>', ':BufferNext\n', { silent = true })
-vim.keymap.set('n', '<A-c>', ':BufferWipeout!\n', { silent = true })
-vim.keymap.set('n', '<A-1>', ':BufferGoto 1\n', { silent = true })
-vim.keymap.set('n', '<A-2>', ':BufferGoto 2\n', { silent = true })
-vim.keymap.set('n', '<A-3>', ':BufferGoto 3\n', { silent = true })
-vim.keymap.set('n', '<A-4>', ':BufferGoto 4\n', { silent = true })
-vim.keymap.set('n', '<A-5>', ':BufferGoto 5\n', { silent = true })
-vim.keymap.set('n', '<A-6>', ':BufferGoto 6\n', { silent = true })
-vim.keymap.set('n', '<A-7>', ':BufferGoto 7\n', { silent = true })
-vim.keymap.set('n', '<A-8>', ':BufferGoto 8\n', { silent = true })
-vim.keymap.set('n', '<A-9>', ':BufferGoto 9\n', { silent = true })
-vim.keymap.set('n', '<A-0>', ':BufferGoto 10\n', { silent = true })
-
--- shortcuts/no-neck-pain.nvim, arnamak/stay-centered.nvim
-require('no-neck-pain').setup({ autocmds = { enableOnVimEnter = true } })
-require('stay-centered').setup({ skip_filetypes = { 'dashboard' } })
-vim.keymap.set('n', '<leader>z', ':NoNeckPain\n', {
-    silent = true,
-    desc = '󰘞 Zen mode'
-})
-
--- Indentation indicator
-require('ibl').setup({
-    indent = { char = '.' },
-    scope = { enabled = false },
-    exclude = { filetypes = { 'dashboard' } }
-})
-
--- tokyonight.nvim
-require('tokyonight').setup({ style = 'night', transparent = true })
-vim.cmd('colorscheme tokyonight')
+vim.keymap.set('n', '<a-,>', ':BufferPrevious\n', { silent = true })
+vim.keymap.set('n', '<a-.>', ':BufferNext\n', { silent = true })
+vim.keymap.set('n', '<a-c>', ':BufferWipeout!\n', { silent = true })
+vim.keymap.set('n', '<a-1>', ':BufferGoto 1\n', { silent = true })
+vim.keymap.set('n', '<a-2>', ':BufferGoto 2\n', { silent = true })
+vim.keymap.set('n', '<a-3>', ':BufferGoto 3\n', { silent = true })
+vim.keymap.set('n', '<a-4>', ':BufferGoto 4\n', { silent = true })
+vim.keymap.set('n', '<a-5>', ':BufferGoto 5\n', { silent = true })
+vim.keymap.set('n', '<a-6>', ':BufferGoto 6\n', { silent = true })
+vim.keymap.set('n', '<a-7>', ':BufferGoto 7\n', { silent = true })
+vim.keymap.set('n', '<a-8>', ':BufferGoto 8\n', { silent = true })
+vim.keymap.set('n', '<a-9>', ':BufferGoto 9\n', { silent = true })
+vim.keymap.set('n', '<a-0>', ':BufferGoto 10\n', { silent = true })
 vim.api.nvim_set_hl(0, 'BufferScrollArrow', { bg = '#16161e', fg = '#0db9d7' })
 vim.api.nvim_set_hl(0, 'BufferTabpageFill', { bg = '#16161e', fg = '#16161e' })
 vim.api.nvim_set_hl(0, 'BufferAlternate', { bg = '#16161e', fg = '#565f89' })
@@ -314,6 +318,21 @@ vim.api.nvim_set_hl(0, 'BufferVisibleSign', { bg = '#16161e', fg = '#0db9d7' })
 vim.api.nvim_set_hl(0, 'BufferVisibleSignRight', { bg = '#16161e', fg = '#0db9d7' })
 vim.api.nvim_set_hl(0, 'BufferVisibleWARN', { bg = '#16161e', fg = '#e0af68' })
 
+-- shortcuts/no-neck-pain.nvim, arnamak/stay-centered.nvim
+require('no-neck-pain').setup({ autocmds = { enableOnVimEnter = true } })
+require('stay-centered').setup({ skip_filetypes = { 'dashboard' } })
+vim.keymap.set('n', '<leader>z', ':NoNeckPain\n', {
+    silent = true,
+    desc = '󰘞 Zen mode'
+})
+
+-- lukas-reineke/indent-blankline.nvim
+require('ibl').setup({
+    indent = { char = '.' },
+    scope = { enabled = false },
+    exclude = { filetypes = { 'dashboard' } }
+})
+
 -- windwp/nvim-autopairs, kylechui/nvim-surround, numToStr/Comment.nvim
 require('nvim-autopairs').setup()
 require('nvim-surround').setup()
@@ -340,7 +359,7 @@ vim.keymap.set('n', '<leader>fb', ':Telescope buffers\n', {
     desc = '󰭎 Buffers'
 })
 
--- Git integration
+-- lewis6991/gitsigns.nvim
 require('gitsigns').setup({
     on_attach = function()
         vim.keymap.set('n', '<leader>g', ':Gitsigns\n', {
@@ -414,34 +433,14 @@ for _, server in ipairs(servers) do
     require('lspconfig')[server].setup(opts)
 end
 
--- Diagnostic config
-vim.api.nvim_create_autocmd({ 'CursorHold', 'CursorHoldI' }, {
-    callback = function()
-        if not require('cmp').visible() and
-            not vim.diagnostic.open_float({ focusable = false }) then
-            vim.lsp.buf.hover()
-        end
-    end
-})
-
-vim.diagnostic.config({
-    update_in_insert = true,
-    float = { border = 'rounded' }
-})
-
-vim.lsp.handlers['textDocument/hover'] = vim.lsp.with(vim.lsp.handlers.hover, {
-    focusable = false,
-    border = 'rounded'
-})
-
--- LSP hints
+-- ray-x/lsp_signature.nvim
 require('lsp_signature').setup({
     bind = true,
     handler_opts = { border = 'rounded' },
     hint_prefix = '■ '
 })
 
--- Autocompletion
+-- L3MON4D3/LuaSnip, hrsh7th/nvim-cmp
 require('cmp').setup({
     snippet = {
         expand = function(args)
@@ -462,14 +461,11 @@ require('cmp').setup({
     },
     sources = {
         { name = 'nvim_lsp' },
-        { name = 'vim-dadbod-completion' },
-        { name = 'codeium' },
         { name = 'buffer' },
         { name = 'path' },
-        { name = 'codeium' }
+        { name = 'vim-dadbod-completion' }
     }
 })
-
 require('cmp').setup.cmdline(':', { sources = { { name = 'cmdline' } } })
 require('cmp').setup.cmdline('/', { sources = { { name = 'buffer' } } })
 
