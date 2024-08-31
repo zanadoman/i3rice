@@ -38,7 +38,6 @@ less
 
 ## Editor
 neovim\
-luarocks\
 ripgrep\
 npm\
 composer

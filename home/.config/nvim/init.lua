@@ -1,4 +1,4 @@
--- External dependencies: luarocks, ripgrep, npm, composer
+-- External dependencies: ripgrep, npm, composer
 
 -- Neovim options
 vim.g.mapleader = ' '
@@ -483,24 +483,35 @@ require('cmp').setup({
         completion = require('cmp').config.window.bordered(),
         documentation = require('cmp').config.window.bordered()
     },
-    mapping = {
+    mapping = require('cmp').mapping.preset.insert({
         ['<c-u>'] = require('cmp').mapping.scroll_docs(-1),
         ['<c-d>'] = require('cmp').mapping.scroll_docs(1),
         ['<c-f>'] = require('cmp').mapping.confirm({ select = true }),
         ['<c-e>'] = require('cmp').mapping.abort(),
         ['<c-up>'] = require('cmp').mapping.select_prev_item(),
         ['<c-down>'] = require('cmp').mapping.select_next_item()
-    },
-    sources = {
-        { name = 'nvim_lsp' },
-        { name = 'nvim_lsp_signature_help' },
-        { name = 'buffer' },
-        { name = 'path' },
-        { name = 'vim-dadbod-completion' }
-    }
+    }),
+    sources = require('cmp').config.sources(
+        { { name = 'nvim_lsp' } },
+        { { name = 'nvim_lsp_signature_help' } },
+        { { name = 'buffer' } },
+        { { name = 'path' } },
+        { { name = 'vim-dadbod-completion' } }
+    )
 })
-require('cmp').setup.cmdline(':', { sources = { { name = 'cmdline' } } })
-require('cmp').setup.cmdline('/', { sources = { { name = 'buffer' } } })
+require('cmp').setup.cmdline({ '/', '?' }, {
+    mapping = require('cmp').mapping.preset.cmdline(),
+    sources = require('cmp').config.sources(
+        { { name = 'buffer' } }
+    )
+})
+require('cmp').setup.cmdline(':', {
+    mapping = require('cmp').mapping.preset.cmdline(),
+    sources = require('cmp').config.sources(
+        { { name = 'path' } },
+        { { name = 'cmdline' } }
+    )
+})
 
 -- folke/which-key.nvim
 require('which-key').setup({

@@ -20,7 +20,6 @@ rocm-smi-lib
 mosh
 less
 neovim
-luarocks
 ripgrep
 npm
 composer
