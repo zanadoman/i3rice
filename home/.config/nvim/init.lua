@@ -376,6 +376,10 @@ vim.keymap.set('n', '<leader>fo', require('telescope.builtin').oldfiles, {
 -- lewis6991/gitsigns.nvim
 require('gitsigns').setup({
     on_attach = function()
+        vim.keymap.set('n', '<leader>h', ':Gitsigns\n', {
+            silent = true,
+            desc = ' Git'
+        })
         vim.keymap.set('n', '<leader>hs', require('gitsigns').stage_hunk, {
             silent = true,
             desc = ' Stage hunk'
@@ -400,10 +404,6 @@ require('gitsigns').setup({
             silent = true,
             desc = ' Preview hunk'
         })
-        vim.keymap.set('n', '<leader>hb', require('gitsigns').toggle_current_line_blame, {
-            silent = true,
-            desc = ' Toggle blame'
-        })
         vim.keymap.set('n', '<leader>hd', require('gitsigns').diffthis, {
             silent = true,
             desc = ' Toggle diff'
@@ -412,7 +412,7 @@ require('gitsigns').setup({
             silent = true,
             desc = ' Commits'
         })
-        vim.keymap.set('n', '<leader>hB', require('telescope.builtin').git_branches, {
+        vim.keymap.set('n', '<leader>hb', require('telescope.builtin').git_branches, {
             silent = true,
             desc = ' Branches'
         })
@@ -436,13 +436,9 @@ vim.keymap.set('n', '<leader>ls', ':LspStart\n', {
     silent = true,
     desc = ' Start'
 })
-vim.keymap.set('n', '<leader>lR', ':LspRestart\n', {
+vim.keymap.set('n', '<leader>lh', ':LspStop\n', {
     silent = true,
-    desc = ' Restart'
-})
-vim.keymap.set('n', '<leader>lS', ':LspStop\n', {
-    silent = true,
-    desc = ' Stop'
+    desc = ' Halt'
 })
 vim.keymap.set('n', '<leader>lf', vim.lsp.buf.format, {
     silent = true,
