@@ -128,12 +128,12 @@ require('lazy').setup(
         {
             'neovim/nvim-lspconfig',
             'williamboman/mason.nvim',
-            'williamboman/mason-lspconfig.nvim',
-            'ray-x/lsp_signature.nvim'
+            'williamboman/mason-lspconfig.nvim'
         },
         {
             'L3MON4D3/LuaSnip',
             'hrsh7th/nvim-cmp',
+            'hrsh7th/cmp-nvim-lsp-signature-help',
             'hrsh7th/cmp-nvim-lsp',
             'hrsh7th/cmp-buffer',
             'hrsh7th/cmp-cmdline',
@@ -473,15 +473,8 @@ for _, server in ipairs(servers) do
     require('lspconfig')[server].setup(opts)
 end
 
--- ray-x/lsp_signature.nvim
-require('lsp_signature').setup({
-    bind = true,
-    hint_prefix = '■ ',
-    handler_opts = { border = 'rounded' }
-})
-
--- L3MON4D3/LuaSnip, hrsh7th/nvim-cmp, hrsh7th/cmp-nvim-lsp, hrsh7th/cmp-buffer,
--- hrsh7th/cmp-path, kristijanhusak/vim-dadbod-completion, hrsh7th/cmp-cmdline
+-- L3MON4D3/LuaSnip, hrsh7th/nvim-cmp, hrsh7th/cmp-nvim-lsp, hrsh7th/cmp-nvim-lsp-signature-help,
+-- hrsh7th/cmp-buffer, hrsh7th/cmp-path, kristijanhusak/vim-dadbod-completion, hrsh7th/cmp-cmdline
 require('cmp').setup({
     snippet = {
         expand = function(args)
@@ -502,6 +495,7 @@ require('cmp').setup({
     },
     sources = {
         { name = 'nvim_lsp' },
+        { name = 'nvim_lsp_signature_help' },
         { name = 'buffer' },
         { name = 'path' },
         { name = 'vim-dadbod-completion' }
