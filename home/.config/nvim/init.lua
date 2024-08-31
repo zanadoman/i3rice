@@ -30,9 +30,11 @@ vim.keymap.set('t', '<esc>', '<c-\\><c-n>')
 -- File formatter
 vim.api.nvim_create_autocmd('BufReadPost', {
     callback = function()
-        vim.cmd('silent! %s/\r//g')
-        vim.bo.fileformat = 'unix'
-        vim.cmd('silent! retab')
+        if vim.bo.modifiable then
+            vim.cmd('silent! %s/\r//g')
+            vim.bo.fileformat = 'unix'
+            vim.cmd('silent! retab')
+        end
     end
 })
 
