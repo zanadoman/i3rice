@@ -57,12 +57,12 @@ p7zip\
 rar (AUR)
 
 ## Programming
+clang\
 aarch64-linux-gnu-gcc\
 mingw-w64\
 android-ndk (AUR)\
 emscripten\
 cmake\
-clang\
 valgrind\
 libavif\
 rustup\
