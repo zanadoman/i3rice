@@ -362,24 +362,20 @@ vim.keymap.set('n', '<leader>fb', require('telescope.builtin').buffers, {
 })
 vim.keymap.set('n', '<leader>fc', require('telescope.builtin').command_history, {
     silent = true,
-    desc = '󰭎 Commands'
+    desc = '󰭎 Command history'
 })
 vim.keymap.set('n', '<leader>fs', require('telescope.builtin').search_history, {
     silent = true,
-    desc = '󰭎 Searches'
+    desc = '󰭎 Search history'
 })
 vim.keymap.set('n', '<leader>fo', require('telescope.builtin').oldfiles, {
     silent = true,
-    desc = '󰭎 Files'
+    desc = '󰭎 File history'
 })
 
 -- lewis6991/gitsigns.nvim
 require('gitsigns').setup({
     on_attach = function()
-        vim.keymap.set('n', '<leader>h', ':Gitsigns\n', {
-            silent = true,
-            desc = ' Git'
-        })
         vim.keymap.set('n', '<leader>hs', require('gitsigns').stage_hunk, {
             silent = true,
             desc = ' Stage hunk'
