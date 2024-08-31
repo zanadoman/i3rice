@@ -160,6 +160,7 @@ vim.api.nvim_set_hl(0, 'WinSeparator', { bg = '#16161e', fg = '#16161e' })
 
 -- nvimdev/dashboard-nvim
 require('dashboard').setup({
+    shortcut_type = 'number',
     config = {
         header = {
             ' ██████   █████                   █████   █████  ███                 ',
@@ -341,7 +342,7 @@ require('Comment.ft').set('plsql', '--%s')
 -- nvim-telescope/telescope.nvim, nvim-telescope/telescope-file-browser.nvim
 require('telescope').setup()
 require('telescope').load_extension('file_browser')
-vim.keymap.set('n', '<leader>f', ':Telescope\n', {
+vim.keymap.set('n', '<leader>f', require('telescope.builtin').builtin, {
     silent = true,
     desc = '󰭎 Telescope'
 })
@@ -357,45 +358,69 @@ vim.keymap.set('n', '<leader>fb', require('telescope.builtin').buffers, {
     silent = true,
     desc = '󰭎 Buffers'
 })
+vim.keymap.set('n', '<leader>fc', require('telescope.builtin').command_history, {
+    silent = true,
+    desc = '󰭎 Commands'
+})
+vim.keymap.set('n', '<leader>fs', require('telescope.builtin').search_history, {
+    silent = true,
+    desc = '󰭎 Searches'
+})
+vim.keymap.set('n', '<leader>fo', require('telescope.builtin').oldfiles, {
+    silent = true,
+    desc = '󰭎 Files'
+})
 
 -- lewis6991/gitsigns.nvim
 require('gitsigns').setup({
     on_attach = function()
-        vim.keymap.set('n', '<leader>g', ':Gitsigns\n', {
+        vim.keymap.set('n', '<leader>h', ':Gitsigns\n', {
             silent = true,
             desc = ' Git'
         })
-        vim.keymap.set('n', '<leader>gs', require('gitsigns').stage_hunk, {
+        vim.keymap.set('n', '<leader>hs', require('gitsigns').stage_hunk, {
             silent = true,
             desc = ' Stage hunk'
         })
-        vim.keymap.set('n', '<leader>gr', require('gitsigns').reset_hunk, {
+        vim.keymap.set('n', '<leader>hr', require('gitsigns').reset_hunk, {
             silent = true,
             desc = ' Reset hunk'
         })
-        vim.keymap.set('n', '<leader>gS', require('gitsigns').stage_buffer, {
+        vim.keymap.set('n', '<leader>hS', require('gitsigns').stage_buffer, {
             silent = true,
             desc = ' Stage buffer'
         })
-        vim.keymap.set('n', '<leader>gu', require('gitsigns').undo_stage_hunk, {
+        vim.keymap.set('n', '<leader>hu', require('gitsigns').undo_stage_hunk, {
             silent = true,
             desc = ' Unstage hunk'
         })
-        vim.keymap.set('n', '<leader>gR', require('gitsigns').reset_buffer, {
+        vim.keymap.set('n', '<leader>hR', require('gitsigns').reset_buffer, {
             silent = true,
             desc = ' Reset buffer'
         })
-        vim.keymap.set('n', '<leader>gp', require('gitsigns').preview_hunk_inline, {
+        vim.keymap.set('n', '<leader>hp', require('gitsigns').preview_hunk_inline, {
             silent = true,
             desc = ' Preview hunk'
         })
-        vim.keymap.set('n', '<leader>gb', require('gitsigns').toggle_current_line_blame, {
+        vim.keymap.set('n', '<leader>hb', require('gitsigns').toggle_current_line_blame, {
             silent = true,
             desc = ' Toggle blame'
         })
-        vim.keymap.set('n', '<leader>gd', require('gitsigns').diffthis, {
+        vim.keymap.set('n', '<leader>hd', require('gitsigns').diffthis, {
             silent = true,
             desc = ' Toggle diff'
+        })
+        vim.keymap.set('n', '<leader>hc', require('telescope.builtin').git_commits, {
+            silent = true,
+            desc = ' Commits'
+        })
+        vim.keymap.set('n', '<leader>hB', require('telescope.builtin').git_branches, {
+            silent = true,
+            desc = ' Branches'
+        })
+        vim.keymap.set('n', '<leader>hf', require('telescope.builtin').git_files, {
+            silent = true,
+            desc = ' Files'
         })
     end
 })
@@ -408,6 +433,18 @@ require('mason-lspconfig').setup({ ensure_installed = servers })
 vim.keymap.set('n', '<leader>l', ':LspInfo\n', {
     silent = true,
     desc = ' LSP'
+})
+vim.keymap.set('n', '<leader>ls', ':LspStart\n', {
+    silent = true,
+    desc = ' Start'
+})
+vim.keymap.set('n', '<leader>lR', ':LspRestart\n', {
+    silent = true,
+    desc = ' Restart'
+})
+vim.keymap.set('n', '<leader>lS', ':LspStop\n', {
+    silent = true,
+    desc = ' Stop'
 })
 vim.keymap.set('n', '<leader>lf', vim.lsp.buf.format, {
     silent = true,
