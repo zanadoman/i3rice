@@ -74,6 +74,7 @@ vim.diagnostic.config({
 })
 vim.lsp.handlers['textDocument/hover'] = vim.lsp.with(vim.lsp.handlers.hover, {
     focusable = false,
+    silent = true,
     border = 'rounded'
 })
 
@@ -155,6 +156,7 @@ require('lazy').setup(
 -- folke/tokyonight.nvim
 require('tokyonight').setup({ style = 'night', transparent = true })
 vim.cmd('colorscheme tokyonight')
+vim.api.nvim_set_hl(0, 'WinSeparator', { bg = '#16161e', fg = '#16161e' })
 
 -- nvimdev/dashboard-nvim
 require('dashboard').setup({
@@ -209,8 +211,8 @@ require('dashboard').setup({
             }
         },
         packages = { enable = false },
-        project = { limit = 10 },
-        mru = { limit = 10 },
+        project = { limit = 5 },
+        mru = { limit = 15 },
         footer = {
             '                         ',
             '"Keep it simple, stupid!"'
@@ -262,7 +264,7 @@ vim.keymap.set('n', '<a-6>', ':BufferGoto 6\n', { silent = true })
 vim.keymap.set('n', '<a-7>', ':BufferGoto 7\n', { silent = true })
 vim.keymap.set('n', '<a-8>', ':BufferGoto 8\n', { silent = true })
 vim.keymap.set('n', '<a-9>', ':BufferGoto 9\n', { silent = true })
-vim.keymap.set('n', '<a-0>', ':BufferGoto 10\n', { silent = true })
+vim.keymap.set('n', '<a-0>', ':BufferLast\n', { silent = true })
 vim.keymap.set('n', '<a-c>', ':BufferWipeout!\n', { silent = true })
 vim.api.nvim_set_hl(0, 'BufferAlternate', { bg = '#16161e', fg = '#565f89' })
 vim.api.nvim_set_hl(0, 'BufferAlternateADDED', { bg = '#16161e', fg = '#449dab' })
