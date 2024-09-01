@@ -1,4 +1,3 @@
-autotiling
 picom-ftlabs-git
 gromit-mpx
 bluetuith-bin

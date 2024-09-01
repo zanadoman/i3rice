@@ -14,7 +14,7 @@ xclip
 i3-wm\
 dmenu\
 i3status\
-autotiling (AUR)\
+autotiling\
 picom-ftlabs-git (AUR)\
 feh\
 maim\
