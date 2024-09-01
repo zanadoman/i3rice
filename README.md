@@ -14,7 +14,7 @@ xclip
 i3-wm\
 dmenu\
 i3status\
-autotiling (AUR)\
+autotiling-git (AUR)\
 picom-ftlabs-git (AUR)\
 feh\
 maim\
@@ -30,7 +30,7 @@ starship
 pulsemixer\
 brightnessctl\
 bluez\
-bluetuith (AUR)\
+bluetuith-bin (AUR)\
 btop\
 rocm-smi-lib\
 mosh\

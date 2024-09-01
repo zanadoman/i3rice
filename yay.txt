@@ -1,7 +1,7 @@
-autotiling
+autotiling-git
 picom-ftlabs-git
 gromit-mpx
-bluetuith
+bluetuith-bin
 rar
 android-ndk
 google-chrome
