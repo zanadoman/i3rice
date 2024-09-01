@@ -5,5 +5,5 @@ bluetuith
 rar
 android-ndk
 google-chrome
-onlyoffice
+onlyoffice-bin
 minecraft-launcher

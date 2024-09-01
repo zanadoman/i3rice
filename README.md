@@ -77,7 +77,7 @@ phpmyadmin
 
 ## Media
 google-chrome (AUR)\
-onlyoffice (AUR)\
+onlyoffice-bin (AUR)\
 gimp\
 audacity\
 obs-studio\
