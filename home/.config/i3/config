@@ -97,7 +97,7 @@ bar {
 }
 
 # Layout
-exec --no-startup-id autotiling -o DP-2
+exec_always --no-startup-id autotiling -o DP-2
 
 # -------------------------- APPEREANCE --------------------------
 
@@ -112,7 +112,7 @@ default_floating_border pixel 0
 gaps inner 10
 
 # Compositor
-exec --no-startup-id picom -b
+exec_always --no-startup-id picom -b
 
 # Wallpaper
 exec_always --no-startup-id feh --no-fehbg --bg-fill /home/doman/.wallpaper1.png --bg-fill /home/doman/.wallpaper2.png
@@ -135,10 +135,10 @@ bindsym $mod+r exec --no-startup-id alacritty -e ranger
 bindsym $mod+b exec --no-startup-id google-chrome-stable
 
 # Screenshot
-bindsym Print exec --no-startup-id maim --select | xclip -selection clipboard -t image/png
+bindsym Print exec --no-startup-id maim --hidecursor --select | xclip -selection clipboard -t image/png
 
 # Annotation
-exec --no-startup-id gromit-mpx
+exec_always --no-startup-id gromit-mpx
 
 # -------------------------- PERIPHERALS --------------------------
 
@@ -156,7 +156,7 @@ bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ to
 bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle
 
 # Brightness
-exec --no-startup-id brightnessctl set 40%
+exec_always --no-startup-id brightnessctl set 40%
 bindsym XF86MonBrightnessUp exec --no-startup-id brightnessctl set +10%
 bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl set 10%-
 
@@ -164,4 +164,4 @@ bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl set 10%-
 exec_always --no-startup-id xrandr --output DP-2 --auto --primary
 exec_always --no-startup-id xrandr --output HDMI-1 --auto --pos 1920x-600 --rotate left
 #exec_always --no-startup-id xrandr --output eDP-1 --auto --primary
-#exec_always --no-startup-id xrandr --output HDMI-1 --auto --same-as eDP-1
+#exec_always --no-startup-id xrandr --output HDMI-1 --auto --same-as eDP-1 --mode 1920x1080
