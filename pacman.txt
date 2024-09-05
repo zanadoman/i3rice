@@ -6,6 +6,7 @@ xclip
 i3-wm
 dmenu
 i3status
+autotiling
 feh
 maim
 fish
