@@ -479,14 +479,14 @@ require('cmp').setup({
         completion = require('cmp').config.window.bordered(),
         documentation = require('cmp').config.window.bordered()
     },
-    mapping = require('cmp').mapping.preset.insert({
+    mapping = {
         ['<c-u>'] = require('cmp').mapping.scroll_docs(-1),
         ['<c-d>'] = require('cmp').mapping.scroll_docs(1),
         ['<c-f>'] = require('cmp').mapping.confirm({ select = true }),
         ['<c-e>'] = require('cmp').mapping.abort(),
         ['<c-up>'] = require('cmp').mapping.select_prev_item(),
         ['<c-down>'] = require('cmp').mapping.select_next_item()
-    }),
+    },
     sources = require('cmp').config.sources(
         { { name = 'nvim_lsp' } },
         { { name = 'nvim_lsp_signature_help' } },
