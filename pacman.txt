@@ -38,7 +38,6 @@ mingw-w64
 emscripten
 cmake
 valgrind
-libavif
 rustup
 dotnet-sdk
 jdk17-openjdk

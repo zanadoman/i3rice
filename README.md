@@ -1,6 +1,6 @@
 ![Preview](./preview.png)
 
-# Packages (739)
+# Packages (737)
 Dependencies: git, yay
 
 ## X11
@@ -63,7 +63,6 @@ android-ndk (AUR)\
 emscripten\
 cmake\
 valgrind\
-libavif\
 rustup\
 dotnet-sdk\
 jdk17-openjdk\
