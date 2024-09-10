@@ -1,6 +1,6 @@
 ![Preview](./preview.png)
 
-# Packages (737)
+# Packages (738)
 Dependencies: git, yay
 
 ## X11
@@ -66,6 +66,7 @@ valgrind\
 rustup\
 dotnet-sdk\
 jdk17-openjdk\
+kotlin\
 virtualbox\
 gnu-netcat
 

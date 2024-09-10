@@ -41,6 +41,7 @@ valgrind
 rustup
 dotnet-sdk
 jdk17-openjdk
+kotlin
 virtualbox
 gnu-netcat
 php-apache
