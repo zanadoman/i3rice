@@ -3,7 +3,7 @@ if status is-interactive
     export PATH="/home/doman/.path:/usr/lib/emscripten:$PATH:/opt/android-ndk/toolchains/llvm/prebuilt/linux-x86_64/bin/"
     export EDITOR=nvim
     export VISUAL=nvim
-    export ANDROID_NDK_HOME=/opt/android-ndk/
+    export ANDROID_NDK_ROOT=/opt/android-ndk/
     alias clear="clear && fastfetch"
     alias startx="startx && clear"
     clear
