@@ -99,11 +99,11 @@ wine
 # Manual setup
 i3: layout, wallpapers, displays\
 google-chrome: login\
-filesystem: disks, sshfs\
+filesystem: disks\
 openssh: enable, config\
 nmcli: wake-on-lan\
 git: token\
 discord: login, notifications, fontsize, keybindings\
 steam: login, compatibility\
-minecraft-launcher: login, setup\
-spotify-launcher: login
+spotify-launcher: login\
+android-studio: start
