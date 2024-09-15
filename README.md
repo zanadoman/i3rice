@@ -106,6 +106,7 @@
   - Login
   - Appearance: CHAT FONT SCALING: 20px
   - Notifications: Enable Desktop Notifications: off
+  - Keybinds: Toggle Mute
 - steam
   - Login
   - Compatibility: Enable Steam Play for supported titles: on
