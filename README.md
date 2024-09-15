@@ -1,6 +1,6 @@
 ![Preview](./preview.png)
 
-# Packages (739)
+# Packages (724)
 Dependencies: git, yay
 
 ## X11
@@ -106,4 +106,5 @@ git: token\
 discord: login, notifications, fontsize, keybindings\
 steam: login, compatibility\
 spotify-launcher: login\
-android-studio: start
+android-studio: start\
+wine: start
