@@ -7,7 +7,7 @@ sudo grub-mkconfig -o /boot/grub/grub.cfg
 
 # Packages
 sudo pacman -S $(cat pacman.txt)
-yay -S $(cat yay.txt)
+yay -S $(cat aur.txt)
 pacman -Qdtq | sudo pacman -Rns -
 
 # User

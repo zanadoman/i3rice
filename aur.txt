@@ -1,5 +1,5 @@
-picom-ftlabs-git
 gromit-mpx
+picom-ftlabs-git
 bluetuith-bin
 rar
 android-ndk
