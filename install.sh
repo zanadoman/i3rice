@@ -6,8 +6,8 @@ sudo chown -R root:root /etc/
 sudo grub-mkconfig -o /boot/grub/grub.cfg
 
 # Packages
-sudo pacman -S $(cat pacman.txt)
-yay -S $(cat aur.txt)
+cat ./pacman.txt | sudo pacman -S -
+cat ./aur.txt | yay -S -
 pacman -Qdtq | sudo pacman -Rns -
 
 # User
@@ -15,10 +15,10 @@ cp -a ./home/. ~/
 chsh -s /bin/fish
 
 # Apache
-sudo chmod 777 /srv/http
+sudo chmod 777 /srv/http/
 
 # MariaDB
-sudo mariadb-install-db --user=mysql --basedir=/usr --datadir=/var/lib/mysql
+sudo mariadb-install-db --user=mysql --basedir=/usr/ --datadir=/var/lib/mysql/
 sudo systemctl start mysqld
 sudo mariadb-secure-installation
 
@@ -26,10 +26,11 @@ sudo mariadb-secure-installation
 rustup default stable
 
 # Folders
-mkdir ~/.path
-mkdir ~/Downloads
-mkdir ~/Documents
-mkdir ~/Projects
-mkdir ~/Pictures
-mkdir ~/Videos
-mkdir ~/Music
+mkdir ~/.path/
+mkdir ~/Desktop/
+mkdir ~/Downloads/
+mkdir ~/Documents/
+mkdir ~/Projects/
+mkdir ~/Pictures/
+mkdir ~/Videos/
+mkdir ~/Music/

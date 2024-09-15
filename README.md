@@ -99,7 +99,7 @@
   - ~/.ssh/config
   - systemctl enable sshd.service
 - git
-  - Create token
+  - Generate new token (classic)
 - android-studio
   - First start
 - discord
