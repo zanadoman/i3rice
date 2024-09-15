@@ -3,82 +3,82 @@
 # Packages (724)
 **Dependencies: git, yay**
 - X11
+  - xclip
   - xorg-server
   - xorg-xinit
   - xorg-xinput
   - xorg-xrandr
-  - xclip
 - i3
-  - i3-wm
-  - dmenu
-  - i3status
   - autotiling
-  - picom-ftlabs-git (AUR)
+  - dmenu
   - feh
-  - maim
   - gromit-mpx (AUR)
+  - i3-wm
+  - i3status
+  - maim
+  - picom-ftlabs-git (AUR)
 - Terminal
-  - fish
   - alacritty
   - fastfetch
+  - fish
   - starship
 - CLI tools
-  - pulsemixer
-  - brightnessctl
-  - bluez
   - bluetuith-bin (AUR)
+  - bluez
+  - brightnessctl
   - btop
-  - rocm-smi-lib
-  - mosh
   - less
-- Editor
-  - neovim
+  - mosh
+  - pulsemixer
   - ripgrep
-  - npm
+  - rocm-smi-lib
+  - sshfs
+- Editor
   - composer
+  - neovim
 - File manager
   - ranger
-  - sshfs
   - w3m
   - highlight
 - Archiving
   - atool
-  - zip
-  - unzip
   - p7zip
   - rar (AUR)
+  - unzip
+  - zip
 - Programming
-  - clang
   - aarch64-linux-gnu-gcc
-  - mingw-w64
   - android-ndk (AUR)
-  - emscripten
+  - android-studio (AUR)
+  - clang
   - cmake
-  - valgrind
-  - rustup
   - dotnet-sdk
+  - emscripten
+  - gnu-netcat
   - jdk17-openjdk
   - kotlin
-  - android-studio (AUR)
+  - mingw-w64
+  - npm
+  - rustup
+  - valgrind
   - virtualbox
-  - gnu-netcat
 - LAMP stack
-  - php-apache
   - mysql
+  - php-apache
   - phpmyadmin
 - Media
-  - google-chrome (AUR)
-  - onlyoffice-bin (AUR)
-  - gimp
   - audacity
+  - gimp
+  - google-chrome (AUR)
   - obs-studio
+  - onlyoffice-bin (AUR)
   - v4l2loopback-dkms
 - Entertainment
   - discord
-  - noto-fonts-emoji
-  - steam
   - minecraft-launcher (AUR)
+  - noto-fonts-emoji
   - spotify-launcher
+  - steam
 - Compatibility
   - dosfstools
   - ntfs-3g
