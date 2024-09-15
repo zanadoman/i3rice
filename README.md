@@ -102,6 +102,8 @@
   - Generate new token (classic)
 - android-studio
   - First start
+- onlyoffice-bin
+  - Interface scaling: 100%
 - discord
   - Login
   - Appearance: CHAT FONT SCALING: 20px
