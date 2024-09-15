@@ -97,32 +97,32 @@ ntfs-3g\
 wine
 
 # Manual setup
-* i3
-    + Layout
-    + Wallpaper
-    + Displays
-* google-chrome
-    + Login
-* filesystem
-    + /etc/fstab
-* networkmanager
-    + 802-3-ethernet.wake-on-lan: magic
-* openssh
-    + ~/.ssh/config
-    + systemctl enable sshd.service
-* git:
-    + Create token
-* android-studio
-    + First start
-* discord:
-    + Login
-    + Appearance: CHAT FONT SCALING: 20px
-    + Notifications: Enable Desktop Notifications: off
-* steam
-    + Login
-    + Compatibility: Enable Steam Play for supported titles: on
-    + Download games
-* spotify-launcher
-    + Login
-* wine
-    + First start
+- i3
+  - Layout
+  - Wallpaper
+  - Displays
+- google-chrome
+  - Login
+- filesystem
+  - /etc/fstab
+- networkmanager
+  - 802-3-ethernet.wake-on-lan: magic
+- openssh
+  - ~/.ssh/config
+  - systemctl enable sshd.service
+- git
+  - Create token
+- android-studio
+  - First start
+- discord
+  - Login
+  - Appearance: CHAT FONT SCALING: 20px
+  - Notifications: Enable Desktop Notifications: off
+- steam
+  - Login
+  - Compatibility: Enable Steam Play for supported titles: on
+  - Download games
+- spotify-launcher
+  - Login
+- wine
+  - First start
