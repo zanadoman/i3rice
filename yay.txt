@@ -3,6 +3,7 @@ gromit-mpx
 bluetuith-bin
 rar
 android-ndk
+android-studio
 google-chrome
 onlyoffice-bin
 minecraft-launcher

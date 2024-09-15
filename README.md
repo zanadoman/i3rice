@@ -67,6 +67,7 @@ rustup\
 dotnet-sdk\
 jdk17-openjdk\
 kotlin\
+android-studio (AUR)\
 virtualbox\
 gnu-netcat
 
