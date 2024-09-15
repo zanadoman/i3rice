@@ -60,7 +60,7 @@ local servers = {
     'phpactor',
     'pyright',
     'rust_analyzer',
-    'tsserver'
+    'ts_ls'
 }
 
 -- Language servers options
@@ -101,7 +101,6 @@ if vim.fn.isdirectory(vim.fn.stdpath('data') .. '/lazy/lazy.nvim') then
     })
 end
 vim.opt.rtp:prepend(vim.fn.stdpath('data') .. '/lazy/lazy.nvim')
-
 require('lazy').setup(
     {
         {
@@ -253,7 +252,6 @@ require('barbar').setup({
         modified = { button = '' }
     }
 })
-
 vim.keymap.set('n', '<a-,>', ':BufferPrevious\n', { silent = true })
 vim.keymap.set('n', '<a-.>', ':BufferNext\n', { silent = true })
 vim.keymap.set('n', '<a-<>', ':BufferMovePrevious\n', { silent = true })
@@ -314,8 +312,8 @@ vim.api.nvim_set_hl(0, 'BufferVisibleHINT', { bg = '#16161e', fg = '#1abc9c' })
 vim.api.nvim_set_hl(0, 'BufferVisibleIndex', { bg = '#16161e', fg = '#0db9d7' })
 vim.api.nvim_set_hl(0, 'BufferVisibleINFO', { bg = '#16161e', fg = '#0db9d7' })
 vim.api.nvim_set_hl(0, 'BufferVisibleMod', { bg = '#16161e', fg = '#e0af68' })
-vim.api.nvim_set_hl(0, 'BufferVisibleSign', { bg = '#16161e', fg = '#0db9d7' })
-vim.api.nvim_set_hl(0, 'BufferVisibleSignRight', { bg = '#16161e', fg = '#0db9d7' })
+vim.api.nvim_set_hl(0, 'BufferVisibleSign', { bg = '#16161e', fg = '#565f89' })
+vim.api.nvim_set_hl(0, 'BufferVisibleSignRight', { bg = '#16161e', fg = '#565f89' })
 vim.api.nvim_set_hl(0, 'BufferVisibleWARN', { bg = '#16161e', fg = '#e0af68' })
 vim.api.nvim_set_hl(0, 'BufferScrollArrow', { bg = '#16161e', fg = '#0db9d7' })
 vim.api.nvim_set_hl(0, 'BufferTabpageFill', { bg = '#16161e', fg = '#16161e' })
@@ -426,8 +424,14 @@ require('gitsigns').setup({
 -- neovim/nvim-lspconfig, williamboman/mason.nvim, williamboman/mason-lspconfig.nvim
 require('lspconfig.ui.windows').default_options.border = 'rounded'
 require('mason').setup({ ui = { border = 'rounded' } })
-require('mason-lspconfig').setup({ ensure_installed = servers })
-
+require('mason-lspconfig').setup({
+    ensure_installed = servers,
+    handlers = { function(server)
+        local opts = servers_opts[server] or {}
+        opts.capabilities = require('cmp_nvim_lsp').default_capabilities()
+        require('lspconfig')[server].setup(opts)
+    end }
+})
 vim.keymap.set('n', '<leader>l', ':LspInfo\n', {
     silent = true,
     desc = ' LSP'
@@ -460,12 +464,6 @@ vim.keymap.set('n', '<leader>lr', require('telescope.builtin').lsp_references, {
     silent = true,
     desc = ' References'
 })
-
-for _, server in ipairs(servers) do
-    local opts = servers_opts[server] or {}
-    opts.capabilities = require('cmp_nvim_lsp').default_capabilities()
-    require('lspconfig')[server].setup(opts)
-end
 
 -- L3MON4D3/LuaSnip, hrsh7th/nvim-cmp, hrsh7th/cmp-nvim-lsp, hrsh7th/cmp-nvim-lsp-signature-help,
 -- hrsh7th/cmp-buffer, hrsh7th/cmp-path, kristijanhusak/vim-dadbod-completion, hrsh7th/cmp-cmdline
