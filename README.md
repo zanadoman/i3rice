@@ -1,4 +1,4 @@
-![Preview](./preview.png)
+![Preview](/preview.png)
 
 # Packages (724)
 **Dependencies: git, yay**
