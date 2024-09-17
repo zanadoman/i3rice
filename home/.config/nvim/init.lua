@@ -48,20 +48,20 @@ vim.api.nvim_create_autocmd('InsertEnter', {
 
 -- Language servers
 local servers = {
-    bashls = nil,
+    bashls = {},
     clangd = { cmd = { 'clangd', '--header-insertion=never' } },
-    cmake = nil,
-    csharp_ls = nil,
-    cssls = nil,
-    emmet_language_server = nil,
-    html = nil,
-    jdtls = nil,
-    kotlin_language_server = nil,
+    cmake = {},
+    csharp_ls = {},
+    cssls = {},
+    emmet_language_server = {},
+    html = {},
+    jdtls = {},
+    kotlin_language_server = {},
     lua_ls = { settings = { Lua = { diagnostics = { globals = { 'vim' } } } } },
-    phpactor = nil,
-    pyright = nil,
-    rust_analyzer = nil,
-    ts_ls = nil
+    phpactor = {},
+    pyright = {},
+    rust_analyzer = {},
+    ts_ls = {}
 }
 
 -- Diagnostics options
@@ -422,9 +422,8 @@ require('mason').setup({ ui = { border = 'rounded' } })
 require('mason-lspconfig').setup({
     ensure_installed = vim.tbl_keys(servers),
     handlers = { function(server)
-        local opts = servers[server] or {}
-        opts.capabilities = require('cmp_nvim_lsp').default_capabilities()
-        require('lspconfig')[server].setup(opts)
+        servers[server].capabilities = require('cmp_nvim_lsp').default_capabilities()
+        require('lspconfig')[server].setup(servers[server])
     end }
 })
 vim.keymap.set('n', '<leader>l', ':LspInfo\n', {
