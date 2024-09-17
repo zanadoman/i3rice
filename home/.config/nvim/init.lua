@@ -48,25 +48,20 @@ vim.api.nvim_create_autocmd('InsertEnter', {
 
 -- Language servers
 local servers = {
-    'bashls',
-    'clangd',
-    'cmake',
-    'csharp_ls',
-    'cssls',
-    'emmet_language_server',
-    'html',
-    'jdtls',
-    'lua_ls',
-    'phpactor',
-    'pyright',
-    'rust_analyzer',
-    'ts_ls'
-}
-
--- Language servers options
-local servers_opts = {
+    bashls = nil,
     clangd = { cmd = { 'clangd', '--header-insertion=never' } },
-    lua_ls = { settings = { Lua = { diagnostics = { globals = { 'vim' } } } } }
+    cmake = nil,
+    csharp_ls = nil,
+    cssls = nil,
+    emmet_language_server = nil,
+    html = nil,
+    jdtls = nil,
+    kotlin_language_server = nil,
+    lua_ls = { settings = { Lua = { diagnostics = { globals = { 'vim' } } } } },
+    phpactor = nil,
+    pyright = nil,
+    rust_analyzer = nil,
+    ts_ls = nil
 }
 
 -- Diagnostics options
@@ -425,9 +420,9 @@ require('gitsigns').setup({
 require('lspconfig.ui.windows').default_options.border = 'rounded'
 require('mason').setup({ ui = { border = 'rounded' } })
 require('mason-lspconfig').setup({
-    ensure_installed = servers,
+    ensure_installed = vim.tbl_keys(servers),
     handlers = { function(server)
-        local opts = servers_opts[server] or {}
+        local opts = servers[server] or {}
         opts.capabilities = require('cmp_nvim_lsp').default_capabilities()
         require('lspconfig')[server].setup(opts)
     end }

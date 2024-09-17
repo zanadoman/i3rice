@@ -36,6 +36,7 @@ cmake
 dotnet-sdk
 emscripten
 gnu-netcat
+gradle
 jdk17-openjdk
 kotlin
 libbsd
