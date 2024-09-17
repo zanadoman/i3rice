@@ -337,7 +337,7 @@ require('ibl').setup({
 require('nvim-autopairs').setup()
 require('nvim-surround').setup()
 require('Comment').setup()
-require('Comment.ft').set('plsql', '--%s')
+require('Comment.ft').set('mysql', '--%s')
 
 -- nvim-telescope/telescope.nvim, nvim-telescope/telescope-file-browser.nvim
 require('telescope').setup()
