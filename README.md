@@ -34,7 +34,6 @@
   - rocm-smi-lib
   - sshfs
 - Editor
-  - composer
   - neovim
 - File manager
   - ranger
@@ -57,12 +56,14 @@
   - gnu-netcat
   - jdk17-openjdk
   - kotlin
+  - libbsd
   - mingw-w64
   - npm
   - rustup
   - valgrind
   - virtualbox
 - LAMP stack
+  - composer
   - mysql
   - php-apache
   - phpmyadmin
