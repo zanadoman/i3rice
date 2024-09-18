@@ -16,5 +16,6 @@ export VISUAL=nvim
 export ANDROID_NDK_ROOT=/opt/android-ndk/
 alias clear="clear && fastfetch"
 alias startx="startx && clear"
-clear
+eval "$(zoxide init --cmd cd bash)"
 eval "$(starship init bash)"
+clear

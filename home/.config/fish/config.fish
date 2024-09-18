@@ -6,8 +6,9 @@ if status is-interactive
     export ANDROID_NDK_ROOT=/opt/android-ndk/
     alias clear="clear && fastfetch"
     alias startx="startx && clear"
-    clear
+    zoxide init --cmd cd fish | source
     starship init fish | source
+    clear
 end
 
 function cyclexkbmap

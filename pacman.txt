@@ -12,7 +12,9 @@ maim
 alacritty
 fastfetch
 fish
+fzf
 starship
+zoxide
 bluez
 brightnessctl
 btop
@@ -33,6 +35,7 @@ zip
 aarch64-linux-gnu-gcc
 clang
 cmake
+composer
 dotnet-sdk
 emscripten
 gnu-netcat
@@ -45,7 +48,6 @@ npm
 rustup
 valgrind
 virtualbox
-composer
 mysql
 php-apache
 phpmyadmin

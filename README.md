@@ -1,6 +1,6 @@
 ![Preview](/preview.png)
 
-# Packages (728)
+# Packages (730)
 **Dependencies: git, yay**
 - X11
   - xclip
@@ -21,7 +21,9 @@
   - alacritty
   - fastfetch
   - fish
+  - fzf
   - starship
+  - zoxide
 - CLI tools
   - bluetuith-bin (AUR)
   - bluez
@@ -51,6 +53,7 @@
   - android-studio (AUR)
   - clang
   - cmake
+  - composer
   - dotnet-sdk
   - emscripten
   - gnu-netcat
@@ -64,7 +67,6 @@
   - valgrind
   - virtualbox
 - LAMP stack
-  - composer
   - mysql
   - php-apache
   - phpmyadmin
