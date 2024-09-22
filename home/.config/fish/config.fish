@@ -4,6 +4,7 @@ if status is-interactive
     export EDITOR=nvim
     export VISUAL=nvim
     export ANDROID_NDK_ROOT=/opt/android-ndk/
+    export ANDROID_SDK_ROOT=/home/doman/Android/Sdk/
     alias clear="clear && fastfetch"
     alias startx="startx && clear"
     zoxide init --cmd cd fish | source
