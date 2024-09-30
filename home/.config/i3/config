@@ -123,7 +123,7 @@ exec_always --no-startup-id feh --no-fehbg --bg-fill /home/doman/.wallpaper1.png
 bindsym $mod+Shift+r restart
 
 # Terminal
-bindsym $mod+Return exec --no-startup-id alacritty
+bindsym $mod+Return exec --no-startup-id alacritty -e tmux new-session -A -s $USER
 
 # Editor
 bindsym $mod+v exec --no-startup-id alacritty -e nvim

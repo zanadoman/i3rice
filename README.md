@@ -23,6 +23,7 @@
   - fish
   - fzf
   - starship
+  - tmux
   - zoxide
 - CLI tools
   - bluetuith-bin (AUR)
