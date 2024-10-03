@@ -4,6 +4,7 @@ bluetuith-bin
 rar
 android-ndk
 android-studio
+javafx-scenebuilder
 google-chrome
 onlyoffice-bin
 minecraft-launcher
