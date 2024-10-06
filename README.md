@@ -1,6 +1,6 @@
 ![Preview](/preview.png)
 
-# Packages (729)
+# Packages (728)
 **Dependencies: git, yay**
 - X11
   - xclip
@@ -59,7 +59,6 @@
   - emscripten
   - gnu-netcat
   - gradle
-  - javafx-scenebuilder (AUR)
   - jdk17-openjdk
   - kotlin
   - libbsd
