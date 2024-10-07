@@ -55,7 +55,15 @@ local servers = {
     cssls = {},
     emmet_language_server = {},
     html = {},
-    jdtls = {},
+    jdtls = {
+        settings = {
+            java = {
+                settings = {
+                    url = vim.fn.stdpath('config') .. '/jdtls.prefs'
+                }
+            }
+        }
+    },
     kotlin_language_server = {},
     lua_ls = { settings = { Lua = { diagnostics = { globals = { 'vim' } } } } },
     phpactor = {},
