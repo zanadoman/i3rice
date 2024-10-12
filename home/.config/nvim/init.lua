@@ -59,7 +59,7 @@ local servers = {
         settings = {
             java = {
                 settings = {
-                    url = vim.fn.stdpath('config') .. '/jdtls.prefs'
+                    url = vim.fn.stdpath('config') .. '/org.eclipse.jdt.core.prefs'
                 }
             }
         }
@@ -455,9 +455,15 @@ vim.keymap.set('n', '<leader>ln', vim.lsp.buf.rename, {
     silent = true,
     desc = ' Rename'
 })
-vim.keymap.set('n', '<leader>ll', require('telescope.builtin').diagnostics, {
+vim.keymap.set('n', '<leader>lp', function()
+    vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
+end, {
     silent = true,
-    desc = ' Diagnostics'
+    desc = ' Parameters'
+})
+vim.keymap.set('n', '<leader>li', require('telescope.builtin').diagnostics, {
+    silent = true,
+    desc = ' Issues'
 })
 vim.keymap.set('n', '<leader>ld', require('telescope.builtin').lsp_definitions, {
     silent = true,
