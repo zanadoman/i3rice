@@ -378,47 +378,47 @@ vim.keymap.set('n', '<leader>fo', require('telescope.builtin').oldfiles, {
 -- lewis6991/gitsigns.nvim
 require('gitsigns').setup({
     on_attach = function()
-        vim.keymap.set('n', '<leader>h', ':Gitsigns\n', {
+        vim.keymap.set('n', '<leader>g', ':Gitsigns\n', {
             silent = true,
             desc = ' Git'
         })
-        vim.keymap.set('n', '<leader>hs', require('gitsigns').stage_hunk, {
+        vim.keymap.set('n', '<leader>gs', require('gitsigns').stage_hunk, {
             silent = true,
             desc = ' Stage hunk'
         })
-        vim.keymap.set('n', '<leader>hr', require('gitsigns').reset_hunk, {
+        vim.keymap.set('n', '<leader>gr', require('gitsigns').reset_hunk, {
             silent = true,
             desc = ' Reset hunk'
         })
-        vim.keymap.set('n', '<leader>hS', require('gitsigns').stage_buffer, {
+        vim.keymap.set('n', '<leader>gS', require('gitsigns').stage_buffer, {
             silent = true,
             desc = ' Stage buffer'
         })
-        vim.keymap.set('n', '<leader>hu', require('gitsigns').undo_stage_hunk, {
+        vim.keymap.set('n', '<leader>gu', require('gitsigns').undo_stage_hunk, {
             silent = true,
             desc = ' Unstage hunk'
         })
-        vim.keymap.set('n', '<leader>hR', require('gitsigns').reset_buffer, {
+        vim.keymap.set('n', '<leader>gR', require('gitsigns').reset_buffer, {
             silent = true,
             desc = ' Reset buffer'
         })
-        vim.keymap.set('n', '<leader>hp', require('gitsigns').preview_hunk_inline, {
+        vim.keymap.set('n', '<leader>gp', require('gitsigns').preview_hunk_inline, {
             silent = true,
             desc = ' Preview hunk'
         })
-        vim.keymap.set('n', '<leader>hd', require('gitsigns').diffthis, {
+        vim.keymap.set('n', '<leader>gd', require('gitsigns').diffthis, {
             silent = true,
-            desc = ' Toggle diff'
+            desc = ' Differences'
         })
-        vim.keymap.set('n', '<leader>hc', require('telescope.builtin').git_commits, {
+        vim.keymap.set('n', '<leader>gc', require('telescope.builtin').git_commits, {
             silent = true,
             desc = ' Commits'
         })
-        vim.keymap.set('n', '<leader>hb', require('telescope.builtin').git_branches, {
+        vim.keymap.set('n', '<leader>gb', require('telescope.builtin').git_branches, {
             silent = true,
             desc = ' Branches'
         })
-        vim.keymap.set('n', '<leader>hf', require('telescope.builtin').git_files, {
+        vim.keymap.set('n', '<leader>gf', require('telescope.builtin').git_files, {
             silent = true,
             desc = ' Files'
         })
