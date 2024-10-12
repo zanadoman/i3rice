@@ -406,7 +406,10 @@ require('gitsigns').setup({
             silent = true,
             desc = ' Preview hunk'
         })
-        vim.keymap.set('n', '<leader>gd', require('gitsigns').diffthis, {
+        vim.keymap.set('n', '<leader>gd', function()
+            require('gitsigns').diffthis()
+            require('no-neck-pain').disable()
+        end, {
             silent = true,
             desc = ' Differences'
         })
