@@ -50,10 +50,10 @@ vim.api.nvim_create_autocmd('InsertEnter', {
 local servers = {
     bashls = {},
     clangd = { cmd = { 'clangd', '--header-insertion=never' } },
-    cmake = {},
     csharp_ls = {},
     cssls = {},
     emmet_language_server = {},
+    gopls = {},
     html = {},
     jdtls = {
         settings = {
@@ -66,6 +66,7 @@ local servers = {
     },
     kotlin_language_server = {},
     lua_ls = { settings = { Lua = { diagnostics = { globals = { 'vim' } } } } },
+    neocmake = {},
     phpactor = {},
     pyright = {},
     rust_analyzer = {},
@@ -407,8 +408,8 @@ require('gitsigns').setup({
             desc = ' Preview hunk'
         })
         vim.keymap.set('n', '<leader>gd', function()
-            require('gitsigns').diffthis()
             require('no-neck-pain').disable()
+            require('gitsigns').diffthis()
         end, {
             silent = true,
             desc = ' Differences'

@@ -1,6 +1,6 @@
 ![Preview](/preview.png)
 
-# Packages (728)
+# Packages (729)
 **Dependencies: git, yay**
 - X11
   - xclip
@@ -58,6 +58,7 @@
   - dotnet-sdk
   - emscripten
   - gnu-netcat
+  - go
   - gradle
   - jdk17-openjdk
   - kotlin
