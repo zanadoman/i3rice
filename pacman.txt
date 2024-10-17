@@ -38,6 +38,7 @@ clang
 cmake
 composer
 dotnet-sdk
+doxygen
 emscripten
 gnu-netcat
 go

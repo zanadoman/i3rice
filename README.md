@@ -1,6 +1,6 @@
 ![Preview](/preview.png)
 
-# Packages (729)
+# Packages (732)
 **Dependencies: git, yay**
 - X11
   - xclip
@@ -56,6 +56,7 @@
   - cmake
   - composer
   - dotnet-sdk
+  - doxygen
   - emscripten
   - gnu-netcat
   - go
