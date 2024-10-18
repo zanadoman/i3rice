@@ -59,6 +59,7 @@ gimp
 obs-studio
 v4l2loopback-dkms
 discord
+gamemode
 noto-fonts-emoji
 spotify-launcher
 steam

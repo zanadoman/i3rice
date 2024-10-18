@@ -1,6 +1,6 @@
 ![Preview](/preview.png)
 
-# Packages (732)
+# Packages (733)
 **Dependencies: git, yay**
 - X11
   - xclip
@@ -82,6 +82,7 @@
   - v4l2loopback-dkms
 - Entertainment
   - discord
+  - gamemode
   - minecraft-launcher (AUR)
   - noto-fonts-emoji
   - spotify-launcher
