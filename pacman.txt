@@ -34,6 +34,7 @@ p7zip
 unzip
 zip
 aarch64-linux-gnu-gcc
+cargo-watch
 clang
 cmake
 composer
@@ -41,7 +42,6 @@ dotnet-sdk
 doxygen
 emscripten
 gnu-netcat
-go
 gradle
 jdk17-openjdk
 kotlin
@@ -49,6 +49,7 @@ libbsd
 mingw-w64
 npm
 rustup
+sqlx-cli
 valgrind
 virtualbox
 mysql

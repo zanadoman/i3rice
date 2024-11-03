@@ -52,6 +52,7 @@
   - aarch64-linux-gnu-gcc
   - android-ndk (AUR)
   - android-studio (AUR)
+  - cargo-watch
   - clang
   - cmake
   - composer
@@ -59,7 +60,6 @@
   - doxygen
   - emscripten
   - gnu-netcat
-  - go
   - gradle
   - jdk17-openjdk
   - kotlin
@@ -67,6 +67,7 @@
   - mingw-w64
   - npm
   - rustup
+  - sqlx-cli
   - valgrind
   - virtualbox
 - LAMP stack
