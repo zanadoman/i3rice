@@ -1,5 +1,3 @@
--- External dependencies: ripgrep, npm, composer
-
 -- Neovim options
 vim.g.mapleader = ' '
 vim.o.autochdir = true
@@ -29,8 +27,9 @@ vim.keymap.set('t', '<esc>', '<c-\\><c-n>')
 
 -- File associations
 vim.filetype.add({
-    extension = {
-        html = 'html'
+    pattern = {
+        ['.*.html'] = { 'html', { priority = 10 } },
+        ['.*.php'] = { 'php', { priority = 10 } }
     }
 })
 
@@ -55,16 +54,15 @@ vim.api.nvim_create_autocmd('InsertEnter', {
 
 -- Language servers
 local servers = {
-    bashls = {},
     clangd = { cmd = { 'clangd', '--header-insertion=never' } },
     csharp_ls = {},
     cssls = {},
-    emmet_language_server = { filetypes = '*' },
-    gopls = {},
+    emmet_language_server = {},
     html = {
-        filetypes = { 'html', 'php' },
+        filetypes = { 'html', 'php', 'templ' },
         init_options = { provideFormatter = false }
     },
+    intelephense = {},
     jdtls = {
         settings = {
             java = {
@@ -74,10 +72,7 @@ local servers = {
             }
         }
     },
-    kotlin_language_server = {},
     lua_ls = { settings = { Lua = { diagnostics = { globals = { 'vim' } } } } },
-    neocmake = {},
-    intelephense = {},
     pyright = {},
     rust_analyzer = {},
     ts_ls = {}
@@ -95,11 +90,11 @@ vim.lsp.handlers['textDocument/hover'] = vim.lsp.with(vim.lsp.handlers.hover, {
 })
 
 -- Hover diagnostics
-vim.api.nvim_create_autocmd({ 'CursorHold', 'CursorHoldI' }, {
+vim.api.nvim_create_autocmd({ 'CursorHold' }, {
     callback = function()
         if not require('cmp').visible() and
             not vim.diagnostic.open_float({ focusable = false }) then
-            vim.lsp.buf.hover()
+            vim.cmd('silent! lua vim.lsp.buf.hover()')
         end
     end
 })
@@ -333,7 +328,10 @@ vim.api.nvim_set_hl(0, 'BufferScrollArrow', { bg = '#16161e', fg = '#0db9d7' })
 vim.api.nvim_set_hl(0, 'BufferTabpageFill', { bg = '#16161e', fg = '#16161e' })
 
 -- shortcuts/no-neck-pain.nvim, arnamak/stay-centered.nvim
-require('no-neck-pain').setup({ autocmds = { enableOnVimEnter = true } })
+require('no-neck-pain').setup({
+    autocmds = { enableOnVimEnter = true, skipEnteringNoNeckPainBuffer = true },
+    buffers = { right = { enabled = false } }
+})
 require('stay-centered').setup({ skip_filetypes = { 'dashboard' } })
 vim.keymap.set('n', '<leader>z', ':NoNeckPain\n', {
     silent = true,
