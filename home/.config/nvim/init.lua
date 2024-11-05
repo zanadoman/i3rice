@@ -27,6 +27,13 @@ vim.keymap.set('v', '<c-up>', ':m \'<-2\ngv=gv')
 vim.keymap.set('v', '<c-down>', ':m \'>+1\ngv=gv')
 vim.keymap.set('t', '<esc>', '<c-\\><c-n>')
 
+-- File associations
+vim.filetype.add({
+    extension = {
+        html = 'html'
+    }
+})
+
 -- File formatter
 vim.api.nvim_create_autocmd('BufReadPost', {
     callback = function()
@@ -52,9 +59,12 @@ local servers = {
     clangd = { cmd = { 'clangd', '--header-insertion=never' } },
     csharp_ls = {},
     cssls = {},
-    emmet_language_server = {},
+    emmet_language_server = { filetypes = '*' },
     gopls = {},
-    html = {},
+    html = {
+        filetypes = { 'html', 'php' },
+        init_options = { provideFormatter = false }
+    },
     jdtls = {
         settings = {
             java = {
@@ -67,7 +77,7 @@ local servers = {
     kotlin_language_server = {},
     lua_ls = { settings = { Lua = { diagnostics = { globals = { 'vim' } } } } },
     neocmake = {},
-    phpactor = {},
+    intelephense = {},
     pyright = {},
     rust_analyzer = {},
     ts_ls = {}
@@ -347,10 +357,6 @@ require('Comment.ft').set('plsql', '--%s')
 -- nvim-telescope/telescope.nvim, nvim-telescope/telescope-file-browser.nvim
 require('telescope').setup()
 require('telescope').load_extension('file_browser')
-vim.keymap.set('n', '<leader>f', require('telescope.builtin').builtin, {
-    silent = true,
-    desc = '󰭎 Telescope'
-})
 vim.keymap.set('n', '<leader>ff', require('telescope').extensions.file_browser.file_browser, {
     silent = true,
     desc = '󰭎 File browser'
@@ -379,10 +385,6 @@ vim.keymap.set('n', '<leader>fo', require('telescope.builtin').oldfiles, {
 -- lewis6991/gitsigns.nvim
 require('gitsigns').setup({
     on_attach = function()
-        vim.keymap.set('n', '<leader>g', ':Gitsigns\n', {
-            silent = true,
-            desc = ' Git'
-        })
         vim.keymap.set('n', '<leader>gs', require('gitsigns').stage_hunk, {
             silent = true,
             desc = ' Stage hunk'
@@ -438,10 +440,6 @@ require('mason-lspconfig').setup({
         servers[server].capabilities = require('cmp_nvim_lsp').default_capabilities()
         require('lspconfig')[server].setup(servers[server])
     end }
-})
-vim.keymap.set('n', '<leader>l', ':LspInfo\n', {
-    silent = true,
-    desc = ' LSP'
 })
 vim.keymap.set('n', '<leader>ls', ':LspStart\n', {
     silent = true,
