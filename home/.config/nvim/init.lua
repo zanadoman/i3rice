@@ -127,7 +127,6 @@ require('lazy').setup(
         },
         {
             'windwp/nvim-autopairs',
-            'kylechui/nvim-surround',
             'numToStr/Comment.nvim'
         },
         {
@@ -143,11 +142,12 @@ require('lazy').setup(
         {
             'L3MON4D3/LuaSnip',
             'hrsh7th/nvim-cmp',
-            'hrsh7th/cmp-nvim-lsp-signature-help',
             'hrsh7th/cmp-nvim-lsp',
+            'hrsh7th/cmp-nvim-lsp-signature-help',
             'hrsh7th/cmp-buffer',
             'hrsh7th/cmp-cmdline',
-            'hrsh7th/cmp-path'
+            'hrsh7th/cmp-path',
+            'Exafunction/codeium.nvim'
         },
         {
             'tpope/vim-dadbod',
@@ -345,9 +345,8 @@ require('ibl').setup({
     exclude = { filetypes = { 'dashboard' } }
 })
 
--- windwp/nvim-autopairs, kylechui/nvim-surround, numToStr/Comment.nvim
+-- windwp/nvim-autopairs, numToStr/Comment.nvim
 require('nvim-autopairs').setup()
-require('nvim-surround').setup()
 require('Comment').setup()
 require('Comment.ft').set('mysql', '--%s')
 require('Comment.ft').set('plsql', '--%s')
@@ -475,7 +474,8 @@ vim.keymap.set('n', '<leader>lr', require('telescope.builtin').lsp_references, {
 })
 
 -- L3MON4D3/LuaSnip, hrsh7th/nvim-cmp, hrsh7th/cmp-nvim-lsp, hrsh7th/cmp-nvim-lsp-signature-help,
--- hrsh7th/cmp-buffer, hrsh7th/cmp-path, kristijanhusak/vim-dadbod-completion, hrsh7th/cmp-cmdline
+-- hrsh7th/cmp-buffer, hrsh7th/cmp-cmdline, hrsh7th/cmp-path, kristijanhusak/vim-dadbod-completion,
+-- Exafunction/codeium.nvim
 require('cmp').setup({
     snippet = {
         expand = function(args)
@@ -499,7 +499,8 @@ require('cmp').setup({
         { { name = 'nvim_lsp_signature_help' } },
         { { name = 'buffer' } },
         { { name = 'path' } },
-        { { name = 'vim-dadbod-completion' } }
+        { { name = 'vim-dadbod-completion' } },
+        { { name = 'codeium' } }
     )
 })
 require('cmp').setup.cmdline({ '/', '?' }, {
@@ -511,10 +512,11 @@ require('cmp').setup.cmdline({ '/', '?' }, {
 require('cmp').setup.cmdline(':', {
     mapping = require('cmp').mapping.preset.cmdline(),
     sources = require('cmp').config.sources(
-        { { name = 'path' } },
-        { { name = 'cmdline' } }
+        { { name = 'cmdline' } },
+        { { name = 'path' } }
     )
 })
+require('codeium').setup({ enable_chat = true })
 
 -- folke/which-key.nvim
 require('which-key').setup({
