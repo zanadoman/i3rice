@@ -21,6 +21,7 @@ sudo chmod 777 /srv/http/
 sudo mariadb-install-db --user=mysql --basedir=/usr/ --datadir=/var/lib/mysql/
 sudo systemctl start mysqld
 sudo mariadb-secure-installation
+sudo systemctl enable mariadb.service
 
 # Rust
 rustup default stable
