@@ -57,7 +57,7 @@ local servers = {
     clangd = { cmd = { 'clangd', '--header-insertion=never' } },
     csharp_ls = {},
     cssls = {},
-    emmet_language_server = {},
+    emmet_language_server = { filetypes = { '*' } },
     html = {
         filetypes = { 'html', 'php', 'templ' },
         init_options = { provideFormatter = false }
@@ -405,13 +405,6 @@ require('gitsigns').setup({
         vim.keymap.set('n', '<leader>gp', require('gitsigns').preview_hunk_inline, {
             silent = true,
             desc = ' Preview hunk'
-        })
-        vim.keymap.set('n', '<leader>gd', function()
-            require('no-neck-pain').disable()
-            require('gitsigns').diffthis()
-        end, {
-            silent = true,
-            desc = ' Differences'
         })
         vim.keymap.set('n', '<leader>gc', require('telescope.builtin').git_commits, {
             silent = true,
