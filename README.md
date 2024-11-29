@@ -25,8 +25,8 @@
   - starship
   - zoxide
 - CLI tools
-  - bluetuith-bin (AUR)
   - bluez
+  - bluez-utils
   - brightnessctl
   - btop
   - less

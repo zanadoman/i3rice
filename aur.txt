@@ -1,5 +1,4 @@
 gromit-mpx
-bluetuith-bin
 android-ndk
 android-studio
 google-chrome
