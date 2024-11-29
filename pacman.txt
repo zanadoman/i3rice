@@ -2,7 +2,6 @@ xclip
 xorg-server
 xorg-xinit
 xorg-xinput
-xorg-xrandr
 autotiling
 dmenu
 feh
@@ -33,11 +32,9 @@ highlight
 atool
 p7zip
 unrar
-unzip
 zip
 aarch64-linux-gnu-gcc
 cargo-watch
-clang
 cmake
 composer
 dotnet-sdk
@@ -45,16 +42,13 @@ doxygen
 emscripten
 gnu-netcat
 gradle
-jdk17-openjdk
-kotlin
 libbsd
+mariadb
 mingw-w64
 npm
-rustup
 sqlx-cli
 valgrind
 virtualbox
-mariadb
 audacity
 gimp
 obs-studio
