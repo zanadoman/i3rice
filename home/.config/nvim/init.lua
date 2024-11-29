@@ -20,14 +20,6 @@ vim.o.tabstop = 4
 vim.o.updatetime = 1000
 vim.o.wrap = false
 
--- Spell checker
-vim.keymap.set('n', '<leader>s', function()
-    vim.o.spell = not vim.o.spell
-end, {
-    silent = true,
-    desc = '󰓆 Spelling'
-})
-
 -- Neovim keymaps
 vim.keymap.set('v', '<c-up>', ':m \'<-2\ngv=gv')
 vim.keymap.set('v', '<c-down>', ':m \'>+1\ngv=gv')
@@ -58,6 +50,14 @@ vim.api.nvim_create_autocmd('InsertEnter', {
         vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes(
             '<cmd>silent! nohlsearch\n', true, true, true), 'n', true)
     end
+})
+
+-- Spell checker
+vim.keymap.set('n', '<leader>s', function()
+    vim.o.spell = not vim.o.spell
+end, {
+    silent = true,
+    desc = '󰓆 Spelling'
 })
 
 -- Language servers
@@ -339,9 +339,9 @@ require('no-neck-pain').setup({
     buffers = { right = { enabled = false } }
 })
 require('stay-centered').setup({ skip_filetypes = { 'dashboard' } })
-vim.keymap.set('n', '<leader>z', ':NoNeckPain\n', {
+vim.keymap.set('n', '<leader>c', ':NoNeckPain\n', {
     silent = true,
-    desc = '󰘞 Zen mode'
+    desc = '󰘞 Center'
 })
 
 -- lukas-reineke/indent-blankline.nvim
@@ -361,25 +361,17 @@ require('Comment.ft').set('plsql', '--%s')
 -- nvim-telescope/telescope.nvim, nvim-telescope/telescope-file-browser.nvim
 require('telescope').setup()
 require('telescope').load_extension('file_browser')
-vim.keymap.set('n', '<leader>ff', require('telescope').extensions.file_browser.file_browser, {
+vim.keymap.set('n', '<leader>f', require('telescope').extensions.file_browser.file_browser, {
     silent = true,
-    desc = '󰭎 File browser'
+    desc = ' Files'
 })
-vim.keymap.set('n', '<leader>rg', require('telescope.builtin').live_grep, {
+vim.keymap.set('n', '<leader>g', require('telescope.builtin').live_grep, {
     silent = true,
-    desc = '󰭎 Ripgrep'
+    desc = '󱡴 Grep'
 })
-vim.keymap.set('n', '<leader>fc', require('telescope.builtin').command_history, {
+vim.keymap.set('n', '<leader>h', require('telescope.builtin').oldfiles, {
     silent = true,
-    desc = '󰭎 Command history'
-})
-vim.keymap.set('n', '<leader>fs', require('telescope.builtin').search_history, {
-    silent = true,
-    desc = '󰭎 Search history'
-})
-vim.keymap.set('n', '<leader>fo', require('telescope.builtin').oldfiles, {
-    silent = true,
-    desc = '󰭎 File history'
+    desc = '󰋚 History'
 })
 
 -- lewis6991/gitsigns.nvim
@@ -420,6 +412,10 @@ require('gitsigns').setup({
         vim.keymap.set('n', '<leader>gf', require('telescope.builtin').git_files, {
             silent = true,
             desc = ' Files'
+        })
+        vim.keymap.set('n', '<leader>gd', require('telescope.builtin').git_status, {
+            silent = true,
+            desc = ' Diffs'
         })
     end
 })
