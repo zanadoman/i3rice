@@ -16,7 +16,7 @@
   - i3-wm
   - i3status
   - maim
-  - picom-ftlabs-git (AUR)
+  - picom
 - Terminal
   - alacritty
   - fastfetch

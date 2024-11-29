@@ -1,5 +1,4 @@
 gromit-mpx
-picom-ftlabs-git
 bluetuith-bin
 android-ndk
 android-studio

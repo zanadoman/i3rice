@@ -9,6 +9,7 @@ feh
 i3-wm
 i3status
 maim
+picom
 alacritty
 fastfetch
 fish
