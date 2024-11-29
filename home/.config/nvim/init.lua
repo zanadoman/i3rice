@@ -20,6 +20,14 @@ vim.o.tabstop = 4
 vim.o.updatetime = 1000
 vim.o.wrap = false
 
+-- Spell checker
+vim.keymap.set('n', '<leader>s', function()
+    vim.o.spell = not vim.o.spell
+end, {
+    silent = true,
+    desc = '󰓆 Spelling'
+})
+
 -- Neovim keymaps
 vim.keymap.set('v', '<c-up>', ':m \'<-2\ngv=gv')
 vim.keymap.set('v', '<c-down>', ':m \'>+1\ngv=gv')
@@ -357,13 +365,9 @@ vim.keymap.set('n', '<leader>ff', require('telescope').extensions.file_browser.f
     silent = true,
     desc = '󰭎 File browser'
 })
-vim.keymap.set('n', '<leader>fg', require('telescope.builtin').live_grep, {
+vim.keymap.set('n', '<leader>rg', require('telescope.builtin').live_grep, {
     silent = true,
-    desc = '󰭎 Live grep'
-})
-vim.keymap.set('n', '<leader>fb', require('telescope.builtin').buffers, {
-    silent = true,
-    desc = '󰭎 Buffers'
+    desc = '󰭎 Ripgrep'
 })
 vim.keymap.set('n', '<leader>fc', require('telescope.builtin').command_history, {
     silent = true,
