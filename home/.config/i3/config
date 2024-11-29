@@ -130,9 +130,6 @@ bindsym $mod+Shift+r restart
 # Terminal
 bindsym $mod+Return exec --no-startup-id alacritty
 
-# Tmux
-bindsym $alt+Return exec --no-startup-id alacritty -e tmux new-session -A -s $USER
-
 # Editor
 bindsym $mod+v exec --no-startup-id alacritty -e nvim
 
