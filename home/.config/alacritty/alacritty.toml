@@ -56,3 +56,6 @@ blue = "#7aa2f7"
 magenta = "#bb9af7"
 cyan = "#7dcfff"
 white = "#c0caf5"
+
+[keyboard]
+bindings = [{ key = "S", mods = "Control", action = "SpawnNewInstance" }]
