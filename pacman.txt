@@ -14,7 +14,6 @@ fastfetch
 fish
 fzf
 starship
-tmux
 zoxide
 bluez
 brightnessctl

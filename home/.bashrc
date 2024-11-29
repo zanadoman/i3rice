@@ -1,22 +1,38 @@
-#
-# ~/.bashrc
-#
-
-# If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
-alias ls='ls --color=auto'
-alias grep='grep --color=auto'
-PS1='[\u@\h \W]\$ '
-
-source /etc/profile.d/debuginfod.sh
 export PATH="/home/doman/.path:/usr/lib/emscripten:$PATH:/opt/android-ndk/toolchains/llvm/prebuilt/linux-x86_64/bin/"
 export EDITOR=nvim
 export VISUAL=nvim
 export ANDROID_NDK_ROOT=/opt/android-ndk/
 export ANDROID_SDK_ROOT=/home/doman/Android/Sdk/
-alias clear="clear && fastfetch"
-alias startx="startx && clear"
+alias clear='clear && fastfetch'
+alias startx='startx && clear'
 eval "$(zoxide init --cmd cd bash)"
 eval "$(starship init bash)"
 clear
+
+fd() {
+    if [ $# -eq 0 ]; then
+        root="$HOME"
+    else
+        root=$@
+    fi
+    selected=$(dirname "$(find $root -mindepth 1 | fzf)" 2>/dev/null)
+    if [ -n "$selected" ]; then
+        cd "$selected"
+    fi
+}
+
+cyclexkbmap() {
+    case $(setxkbmap -query | awk '(NR == 3) {print $2}') in
+        hu)
+            setxkbmap us
+            ;;
+        us)
+            setxkbmap hu
+            ;;
+        *)
+            setxkbmap hu
+            ;;
+    esac
+}

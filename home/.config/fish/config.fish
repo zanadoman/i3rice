@@ -5,12 +5,23 @@ if status is-interactive
     export VISUAL=nvim
     export ANDROID_NDK_ROOT=/opt/android-ndk/
     export ANDROID_SDK_ROOT=/home/doman/Android/Sdk/
-    alias clear="clear && fastfetch"
-    alias startx="startx && clear"
+    alias clear='clear && fastfetch'
+    alias startx='startx && clear'
     zoxide init --cmd cd fish | source
     starship init fish | source
-    bind \cs tmux-sessionizer
     clear
+end
+
+function fd
+    if test (count $argv) -eq 0
+        set root "$HOME"
+    else
+        set root $argv
+    end
+    set selected (dirname "$(find $root -mindepth 1 | fzf)" 2>/dev/null)
+    if test -n "$selected"
+        cd "$selected"
+    end
 end
 
 function cyclexkbmap
@@ -19,32 +30,7 @@ function cyclexkbmap
             setxkbmap us
         case us
             setxkbmap hu
-    end
-end
-
-function tmux-sessionizer
-    if test (count $argv) -eq 1
-        set selected "$argv[1]"
-    else
-        set selected (find ~/Projects ~/ -mindepth 1 -maxdepth 3 -type d | fzf)
-    end
-
-    if test -z "$selected"
-        exit 0
-    end
-
-    set selected_name (basename "$selected")
-
-    if test -z (pgrep tmux)
-        tmux new-session -s "$selected_name" -c "$selected"
-        exit 0
-    end
-
-    tmux new-session -ds "$selected_name" -c "$selected" 2>/dev/null
-
-    if test -n "$TMUX"
-        tmux switch-client -t "$selected_name"
-    else
-        tmux attach -t "$selected_name"
+        case '*'
+            setxkbmap hu
     end
 end
