@@ -31,6 +31,7 @@ w3m
 highlight
 atool
 p7zip
+unrar
 unzip
 zip
 aarch64-linux-gnu-gcc
@@ -52,15 +53,11 @@ rustup
 sqlx-cli
 valgrind
 virtualbox
-mysql
-php-apache
-phpmyadmin
+mariadb
 audacity
 gimp
 obs-studio
-v4l2loopback-dkms
 discord
-gamemode
 noto-fonts-emoji
 spotify-launcher
 steam

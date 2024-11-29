@@ -45,7 +45,7 @@
 - Archiving
   - atool
   - p7zip
-  - rar (AUR)
+  - unrar
   - unzip
   - zip
 - Programming
@@ -71,19 +71,15 @@
   - valgrind
   - virtualbox
 - LAMP stack
-  - mysql
-  - php-apache
-  - phpmyadmin
+  - mariadb
 - Media
   - audacity
   - gimp
   - google-chrome (AUR)
   - obs-studio
   - onlyoffice-bin (AUR)
-  - v4l2loopback-dkms
 - Entertainment
   - discord
-  - gamemode
   - minecraft-launcher (AUR)
   - noto-fonts-emoji
   - spotify-launcher

@@ -1,7 +1,6 @@
 gromit-mpx
 picom-ftlabs-git
 bluetuith-bin
-rar
 android-ndk
 android-studio
 google-chrome
