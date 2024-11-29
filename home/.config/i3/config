@@ -80,11 +80,10 @@ bindsym $alt+Shift+9 move container to workspace number $ws9, workspace number $
 # -------------------------- UTILITIES --------------------------
 
 # Launcher
-bindsym $mod+d exec --no-startup-id dmenu_run -nb "#000000" -nf "#ffffff" -sb "#ffffff" -sf "#000000"
+bindsym $mod+d exec --no-startup-id dmenu_run -nb "#000000" -nf "#ffffff" -sb "#ffffff" -sf "#000000" -fn "hacknerdfont:size=11"
 
 # Statusbar
 bar {
-    position top
     status_command i3status
     modifier $mod
     mode hide
@@ -103,7 +102,7 @@ exec_always --no-startup-id autotiling -o DP-2
 # -------------------------- APPEREANCE --------------------------
 
 # Font
-font xft:HackNerdFont 8
+font xft:hacknerdfont 11
 
 # Borders
 default_border pixel 3
