@@ -8,20 +8,9 @@ if status is-interactive
     alias clear='clear && fastfetch'
     alias startx='startx && clear'
     zoxide init --cmd cd fish | source
+    fzf --fish | source
     starship init fish | source
     clear
-end
-
-function fd
-    if test (count $argv) -eq 0
-        set root "$HOME"
-    else
-        set root $argv
-    end
-    set selected (dirname "$(find $root -mindepth 1 | fzf)" 2>/dev/null)
-    if test -n "$selected"
-        cd "$selected"
-    end
 end
 
 function cyclexkbmap
