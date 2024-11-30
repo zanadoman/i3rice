@@ -5,6 +5,10 @@ set $alt Mod1
 
 # -------------------------- WINDOWS --------------------------
 
+# Direction
+bindsym $mod+v split h
+bindsym $mod+s split v
+
 # Focus
 bindsym $mod+Up focus up
 bindsym $mod+Down focus down
@@ -98,9 +102,6 @@ bar {
     }
 }
 
-# Layout
-exec_always --no-startup-id autotiling -o DP-2
-
 # -------------------------- APPEREANCE --------------------------
 
 # Font
@@ -109,7 +110,7 @@ font xft:hacknerdfont 11
 # Borders
 default_border pixel 3
 default_floating_border pixel 3
-client.focused          #16161e #1a1b26 #c0caf5 #0db9d7 #0db9d7
+client.focused          #16161e #1a1b26 #c0caf5 #c0caf5 #0db9d7
 client.focused_inactive #16161e #1a1b26 #c0caf5 #16161e #16161e
 client.unfocused        #16161e #1a1b26 #c0caf5 #16161e #16161e
 client.urgent           #16161e #1a1b26 #c0caf5 #16161e #16161e
@@ -120,7 +121,7 @@ client.background       #16161e
 exec_always --no-startup-id picom -b
 
 # Wallpaper
-exec_always --no-startup-id feh --no-fehbg --bg-fill /home/doman/.wallpaper1.png --bg-fill /home/doman/.wallpaper2.png
+exec_always --no-startup-id feh --no-fehbg --bg-fill "$HOME/.wallpaper1.png" --bg-fill "$HOME/.wallpaper2.png"
 
 # -------------------------- SHORTCUTS --------------------------
 
@@ -129,15 +130,6 @@ bindsym $mod+Shift+r restart
 
 # Terminal
 bindsym $mod+Return exec --no-startup-id alacritty
-
-# Editor
-bindsym $mod+v exec --no-startup-id alacritty -e nvim
-
-# Files
-bindsym $mod+r exec --no-startup-id alacritty -e ranger
-
-# Browser
-bindsym $mod+b exec --no-startup-id google-chrome-stable
 
 # Screenshot
 bindsym Print exec --no-startup-id maim --hidecursor --select | xclip -selection clipboard -t image/png

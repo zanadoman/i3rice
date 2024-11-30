@@ -1,2 +1,2 @@
-xrdb /home/doman/.Xdefaults
+xrdb "$HOME/.Xdefaults"
 exec i3

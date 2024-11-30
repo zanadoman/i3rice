@@ -1,10 +1,10 @@
 [[ $- != *i* ]] && return
 
-export PATH="/home/doman/.path:/usr/lib/emscripten:$PATH:/opt/android-ndk/toolchains/llvm/prebuilt/linux-x86_64/bin/"
+export PATH="$HOME/.path:/usr/lib/emscripten:$PATH:/opt/android-ndk/toolchains/llvm/prebuilt/linux-x86_64/bin/"
 export EDITOR=nvim
 export VISUAL=nvim
 export ANDROID_NDK_ROOT=/opt/android-ndk/
-export ANDROID_SDK_ROOT=/home/doman/Android/Sdk/
+export ANDROID_SDK_ROOT="$HOME/Android/Sdk/"
 alias clear='clear && fastfetch'
 alias startx='startx && clear'
 eval "$(zoxide init --cmd cd bash)"
