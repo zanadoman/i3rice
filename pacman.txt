@@ -2,7 +2,6 @@ xclip
 xorg-server
 xorg-xinit
 xorg-xinput
-autotiling
 dmenu
 feh
 i3-wm

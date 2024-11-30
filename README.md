@@ -8,7 +8,6 @@
   - xorg-xinit
   - xorg-xinput
 - i3
-  - autotiling
   - dmenu
   - feh
   - gromit-mpx (AUR)
