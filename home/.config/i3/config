@@ -142,7 +142,7 @@ exec_always --no-startup-id gromit-mpx
 # -------------------------- PERIPHERALS --------------------------
 
 # Keyboard
-bindsym $mod+space exec --no-startup-id fish -c cyclexkbmap
+bindsym $mod+space exec --no-startup-id fish -c cxkbmap
 
 # Touchpad
 exec_always --no-startup-id xinput set-prop "SYNA2BA6:00 06CB:CE2C Touchpad" "libinput Tapping Enabled" 1

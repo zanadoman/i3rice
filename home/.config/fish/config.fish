@@ -40,7 +40,7 @@ function frg
     end
 end
 
-function cyclexkbmap
+function cxkbmap
     switch (setxkbmap -query | awk '(NR == 3) {print $2}')
         case hu
             setxkbmap us
