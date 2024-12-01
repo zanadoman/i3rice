@@ -1,8 +1,7 @@
 #!/bin/bash
 
 # System
-sudo cp -a ./etc/. /etc/
-sudo chown -R root:root /etc/
+sudo cp -r ./etc/. /etc/
 sudo grub-mkconfig -o /boot/grub/grub.cfg
 
 # Packages
@@ -11,7 +10,7 @@ cat ./aur.txt | yay -S -
 pacman -Qdtq | sudo pacman -Rns -
 
 # User
-cp -a ./home/. "$HOME/"
+cp -r ./home/. "$HOME/"
 chsh -s /bin/fish
 
 # MariaDB
