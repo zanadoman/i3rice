@@ -56,7 +56,7 @@ frg() {
     fi
 }
 
-cxkbmap() {
+cyclexkbmap() {
     case $(setxkbmap -query | awk '(NR == 3) {print $2}') in
         hu)
             setxkbmap us
