@@ -11,15 +11,12 @@ cat ./aur.txt | yay -S -
 pacman -Qdtq | sudo pacman -Rns -
 
 # User
-cp -a ./home/. ~/
+cp -a ./home/. "$HOME/"
 chsh -s /bin/fish
-
-# Apache
-sudo chmod 777 /srv/http/
 
 # MariaDB
 sudo mariadb-install-db --user=mysql --basedir=/usr/ --datadir=/var/lib/mysql/
-sudo systemctl start mysqld
+sudo systemctl start mariadb.service
 sudo mariadb-secure-installation
 sudo systemctl enable mariadb.service
 
@@ -27,11 +24,10 @@ sudo systemctl enable mariadb.service
 rustup default stable
 
 # Folders
-mkdir ~/.path/
-mkdir ~/Desktop/
-mkdir ~/Downloads/
-mkdir ~/Documents/
-mkdir ~/Projects/
-mkdir ~/Pictures/
-mkdir ~/Videos/
-mkdir ~/Music/
+mkdir -p "$HOME/.local/bin/"
+mkdir -p "$HOME/Downloads/"
+mkdir -p "$HOME/Documents/"
+mkdir -p "$HOME/Projects/"
+mkdir -p "$HOME/Pictures/"
+mkdir -p "$HOME/Videos/"
+mkdir -p "$HOME/Music/"

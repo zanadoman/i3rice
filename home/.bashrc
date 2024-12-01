@@ -1,5 +1,5 @@
 [[ $- != *i* ]] && return
-export PATH="$HOME/.path/:/usr/lib/emscripten/:$PATH:/opt/android-ndk/toolchains/llvm/prebuilt/linux-x86_64/bin/"
+export PATH="$HOME/.local/bin/:/usr/lib/emscripten/:$PATH:/opt/android-ndk/toolchains/llvm/prebuilt/linux-x86_64/bin/"
 export EDITOR=nvim
 export VISUAL=nvim
 export ANDROID_NDK_ROOT=/opt/android-ndk/
