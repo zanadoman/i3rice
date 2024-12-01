@@ -12,19 +12,31 @@ if status is-interactive
     clear
 end
 
-function fd
+function fcd
     if test (count $argv) -eq 0
-        set root $HOME
+        set root ./
     else
         set root $argv
     end
     set selected (find $root -mindepth 1 | fzf)
-    if test -n $selected
+    if test -n "$selected"
         if test -d $selected
             cd $selected
         else
             cd (dirname $selected)
         end
+    end
+end
+
+function frg
+    if test (count $argv) -eq 0
+        set root ./
+    else
+        set root $argv
+    end
+    set selected (cat (find $root -mindepth 1 -type f) | fzf)
+    if test -n "$selected"
+        rg -lF $selected
     end
 end
 
