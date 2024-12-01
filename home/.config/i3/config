@@ -6,8 +6,7 @@ set $alt Mod1
 # -------------------------- WINDOWS --------------------------
 
 # Direction
-bindsym $mod+v split horizontal
-bindsym $mod+s split vertical
+bindsym $mod+v split toggle
 
 # Focus
 bindsym $mod+Up focus up
@@ -86,27 +85,25 @@ bindsym $alt+Shift+9 move container to workspace number $ws9, workspace number $
 # -------------------------- UTILITIES --------------------------
 
 # Launcher
-bindsym $mod+d exec --no-startup-id dmenu_run -nb "#000000" -nf "#ffffff" -sb "#ffffff" -sf "#000000" -fn "hacknerdfont:size=13"
+bindsym $mod+d exec --no-startup-id dmenu_run -nb "#16161e" -nf "#c0caf5" -sb "#c0caf5" -sf "#16161e" -fn "hacknerdfont:size=14"
 
 # Statusbar
 bar {
     position top
     status_command i3status
-    modifier $mod
-    mode hide
     colors {
-        background #000000
+        background #16161e
         separator #ffffff
-        focused_workspace #ffffff #ffffff #000000
-        active_workspace #ffffff #000000 #ffffff
-        inactive_workspace #000000 #000000 #ffffff
+        focused_workspace #c0caf5 #c0caf5 #16161e
+        active_workspace #c0caf5 #16161e #c0caf5
+        inactive_workspace #16161e #16161e #c0caf5
     }
 }
 
 # -------------------------- APPEREANCE --------------------------
 
 # Font
-font xft:hacknerdfont 10
+font xft:hacknerdfont 11
 
 # Borders
 default_border pixel 3
@@ -131,6 +128,9 @@ bindsym $mod+Shift+r restart
 
 # Terminal
 bindsym $mod+Return exec --no-startup-id alacritty
+
+# Browser
+bindsym $mod+b exec --no-startup-id google-chrome-stable
 
 # Screenshot
 bindsym Print exec --no-startup-id maim --hidecursor --select | xclip -selection clipboard -t image/png
