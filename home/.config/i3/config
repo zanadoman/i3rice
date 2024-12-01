@@ -6,7 +6,8 @@ set $alt Mod1
 # -------------------------- WINDOWS --------------------------
 
 # Direction
-bindsym $mod+v split toggle
+bindsym $mod+v split horizontal
+bindsym $mod+s split vertical
 
 # Focus
 bindsym $mod+Up focus up

@@ -7,9 +7,24 @@ export ANDROID_SDK_ROOT="$HOME/Android/Sdk/"
 alias clear='clear && fastfetch'
 alias startx='startx && clear'
 eval "$(zoxide init --cmd cd bash)"
-eval "$(fzf --bash)"
 eval "$(starship init bash)"
 clear
+
+fd() {
+    if [ $# -eq 0 ]; then
+        root=$HOME
+    else
+        root=$@
+    fi
+    selected=$(find $root -mindepth 1 | fzf)
+    if [ -n $selected ]; then
+        if [ -d $selected ]; then
+            cd $selected
+        else
+            cd $(dirname $selected)
+        fi
+    fi
+}
 
 cyclexkbmap() {
     case $(setxkbmap -query | awk '(NR == 3) {print $2}') in
