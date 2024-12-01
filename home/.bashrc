@@ -10,6 +10,24 @@ eval "$(zoxide init --cmd cd bash)"
 eval "$(starship init bash)"
 clear
 
+ff() {
+    if [ $# -eq 0 ]; then
+        root=./
+    else
+        root=$@
+    fi
+    find $root -mindepth 1 -type f | fzf
+}
+
+fd() {
+    if [ $# -eq 0 ]; then
+        root=./
+    else
+        root=$@
+    fi
+    find $root -mindepth 1 -type d | fzf
+}
+
 fcd() {
     if [ $# -eq 0 ]; then
         root=./
@@ -34,7 +52,7 @@ frg() {
     fi
     selected=$(cat $(find $root -mindepth 1 -type f) | fzf)
     if [ -n "$selected" ]; then
-        rg -lF "$selected"
+        rg -.lF "$selected"
     fi
 }
 

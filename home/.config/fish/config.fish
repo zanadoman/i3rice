@@ -12,6 +12,24 @@ if status is-interactive
     clear
 end
 
+function ff
+    if test (count $argv) -eq 0
+        set root ./
+    else
+        set root $argv
+    end
+    find $root -mindepth 1 -type f | fzf
+end
+
+function fd
+    if test (count $argv) -eq 0
+        set root ./
+    else
+        set root $argv
+    end
+    find $root -mindepth 1 -type d | fzf
+end
+
 function fcd
     if test (count $argv) -eq 0
         set root ./
@@ -36,7 +54,7 @@ function frg
     end
     set selected (cat (find $root -mindepth 1 -type f) | fzf)
     if test -n "$selected"
-        rg -lF $selected
+        rg -.lF $selected
     end
 end
 
