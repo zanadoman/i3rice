@@ -165,7 +165,7 @@ function SetupDashboard()
                     action = 'quit'
                 }
             },
-            packages = { enable = true },
+            packages = { enable = false },
             project = { limit = 5 },
             mru = { limit = 15 },
             footer = {
