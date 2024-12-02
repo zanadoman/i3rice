@@ -97,15 +97,6 @@ vim.lsp.handlers['textDocument/hover'] = vim.lsp.with(vim.lsp.handlers.hover, {
     border = 'rounded'
 })
 
--- Hover diagnostics
-vim.api.nvim_create_autocmd({ 'CursorHold' }, {
-    callback = function()
-        if not vim.diagnostic.open_float({ focusable = false }) then
-            vim.cmd('silent! lua vim.lsp.buf.hover()')
-        end
-    end
-})
-
 function SetupTokionight()
     require('tokyonight').setup({ style = 'night', transparent = true })
     vim.cmd('colorscheme tokyonight')
@@ -413,6 +404,13 @@ function SetupMasonLspconfig()
     vim.keymap.set('n', '<leader>lr', require('telescope.builtin').lsp_references, {
         silent = true,
         desc = ' References'
+    })
+    vim.api.nvim_create_autocmd('CursorHold', {
+        callback = function()
+            if not vim.diagnostic.open_float({ focusable = false }) then
+                vim.cmd('silent! lua vim.lsp.buf.hover()')
+            end
+        end
     })
 end
 
