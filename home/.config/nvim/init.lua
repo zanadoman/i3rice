@@ -548,8 +548,20 @@ require('lazy').setup(
                 'williamboman/mason.nvim',
                 'neovim/nvim-lspconfig'
             },
-            ft = { 'c', 'cpp', 'cs', 'css', 'html', 'php', 'java', 'lua',
-                'python', 'rust', 'javascript', 'typescript' },
+            ft = {
+                'c',
+                'cpp',
+                'cs',
+                'css',
+                'html',
+                'php',
+                'java',
+                'lua',
+                'python',
+                'rust',
+                'javascript',
+                'typescript'
+            },
             config = SetupMasonLspconfig
         },
         {
@@ -564,6 +576,10 @@ require('lazy').setup(
             },
             event = { 'CmdlineEnter', 'InsertEnter', 'LspAttach' },
             config = SetupNvimCmp
+        },
+        {
+            "lervag/vimtex",
+            ft = "tex"
         },
         {
             'kristijanhusak/vim-dadbod-ui',
