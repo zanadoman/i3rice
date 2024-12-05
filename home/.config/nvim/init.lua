@@ -61,6 +61,23 @@ end, {
     desc = '󰓆 Spelling'
 })
 
+-- Source filetypes
+local sources = {
+    'c',
+    'cpp',
+    'cs',
+    'css',
+    'html',
+    'java',
+    'javascript',
+    'lua',
+    'php',
+    'python',
+    'rust',
+    'tex',
+    'typescript'
+}
+
 -- Language servers
 local servers = {
     clangd = { cmd = { 'clangd', '--header-insertion=never' } },
@@ -479,21 +496,7 @@ require('lazy').setup(
                 'neovim/nvim-lspconfig'
             },
             cmd = { 'Mason', 'MasonUpdate' },
-            ft = {
-                'c',
-                'cpp',
-                'cs',
-                'css',
-                'html',
-                'php',
-                'java',
-                'lua',
-                'python',
-                'rust',
-                'javascript',
-                'typescript',
-                'tex'
-            },
+            ft = sources,
             config = SetupMasonLspconfig
         },
         {
