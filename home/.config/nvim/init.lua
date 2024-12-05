@@ -491,7 +491,8 @@ require('lazy').setup(
                 'python',
                 'rust',
                 'javascript',
-                'typescript'
+                'typescript',
+                'tex'
             },
             config = SetupMasonLspconfig
         },
