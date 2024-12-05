@@ -50,6 +50,8 @@ valgrind
 virtualbox
 audacity
 gimp
+texlive-binextra
+texlive-latex
 obs-studio
 discord
 noto-fonts-emoji

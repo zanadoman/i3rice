@@ -67,6 +67,8 @@
   - audacity
   - gimp
   - google-chrome (AUR)
+  - texlive-binextra
+  - texlive-latex
   - obs-studio
   - onlyoffice-bin (AUR)
 - Entertainment
