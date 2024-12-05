@@ -51,7 +51,8 @@ virtualbox
 audacity
 gimp
 texlive-binextra
-texlive-latex
+texlive-fontsrecommended
+texlive-latexextra
 obs-studio
 discord
 noto-fonts-emoji

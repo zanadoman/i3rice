@@ -11,6 +11,7 @@ vim.o.number = true
 vim.o.pumheight = 10
 vim.o.relativenumber = true
 vim.o.shiftwidth = 4
+vim.o.shortmess = 'I'
 vim.o.showmode = false
 vim.o.signcolumn = 'yes'
 vim.o.smartcase = true
@@ -103,77 +104,8 @@ function SetupTokionight()
     vim.api.nvim_set_hl(0, 'WinSeparator', { bg = '#16161e', fg = '#16161e' })
 end
 
-function SetupDashboard()
-    require('dashboard').setup({
-        shortcut_type = 'number',
-        config = {
-            header = {
-                ' ██████   █████                   █████   █████  ███                 ',
-                '░░██████ ░░███                   ░░███   ░░███  ░░░                  ',
-                ' ░███░███ ░███   ██████   ██████  ░███    ░███  ████  █████████████  ',
-                ' ░███░░███░███  ███░░███ ███░░███ ░███    ░███ ░░███ ░░███░░███░░███ ',
-                ' ░███ ░░██████ ░███████ ░███ ░███ ░░███   ███   ░███  ░███ ░███ ░███ ',
-                ' ░███  ░░█████ ░███░░░  ░███ ░███  ░░░█████░    ░███  ░███ ░███ ░███ ',
-                ' █████  ░░█████░░██████ ░░██████     ░░███      █████ █████░███ █████',
-                '░░░░░    ░░░░░  ░░░░░░   ░░░░░░       ░░░      ░░░░░ ░░░░░ ░░░ ░░░░░ ',
-                '                                                                     '
-            },
-            shortcut = {
-                {
-                    icon = ' ',
-                    desc = 'New',
-                    key = 'n',
-                    action = 'enew'
-                },
-                {
-                    icon = ' ',
-                    desc = 'Open',
-                    key = 'o',
-                    action = 'Telescope file_browser'
-                },
-                {
-                    icon = ' ',
-                    desc = 'DB',
-                    key = 'd',
-                    action = 'bdelete | DBUI'
-                },
-                {
-                    icon = ' ',
-                    desc = 'Update',
-                    key = 'u',
-                    action = 'Lazy update | MasonUpdate'
-                },
-                {
-                    icon = ' ',
-                    desc = 'Config',
-                    key = 'c',
-                    action = 'edit ' .. vim.fn.stdpath('config') .. '/init.lua'
-                },
-                {
-                    icon = '󰩈 ',
-                    desc = 'Quit',
-                    key = 'q',
-                    action = 'quit'
-                }
-            },
-            packages = { enable = false },
-            project = { limit = 5 },
-            mru = { limit = 15 },
-            footer = {
-                '                         ',
-                '"Keep it simple, stupid!"'
-            }
-        }
-    })
-end
-
 function SetupLualine()
-    require('lualine').setup({
-        options = {
-            disabled_filetypes = { 'dashboard' },
-            globalstatus = true
-        }
-    })
+    require('lualine').setup({ options = { globalstatus = true } })
 end
 
 function SetupBarbar()
@@ -268,21 +200,20 @@ function SetupNoNextPain()
         autocmds = { enableOnVimEnter = true, skipEnteringNoNeckPainBuffer = true },
         buffers = { right = { enabled = false } }
     })
-end
-
-function SetupStayCentered()
-    require('stay-centered').setup({ skip_filetypes = { 'dashboard' } })
     vim.keymap.set('n', '<leader>c', ':NoNeckPain\n', {
         silent = true,
         desc = '󰘞 Center'
     })
 end
 
+function SetupStayCentered()
+    require('stay-centered').setup()
+end
+
 function SetupIndentBlankline()
     require('ibl').setup({
         indent = { char = '.' },
-        scope = { enabled = false },
-        exclude = { filetypes = { 'dashboard' } }
+        scope = { enabled = false }
     })
 end
 
@@ -458,6 +389,10 @@ function SetupNvimCmp()
     })
 end
 
+function SetupVimtex()
+    vim.g.vimtex_view_general_viewer = 'google-chrome-stable'
+end
+
 function SetupWhichKey()
     require('which-key').setup({
         delay = 1000,
@@ -485,11 +420,6 @@ require('lazy').setup(
             'folke/tokyonight.nvim',
             lazy = false,
             config = SetupTokionight
-        },
-        {
-            'nvimdev/dashboard-nvim',
-            event = 'VimEnter',
-            config = SetupDashboard
         },
         {
             'nvim-lualine/lualine.nvim',
@@ -548,6 +478,7 @@ require('lazy').setup(
                 'williamboman/mason.nvim',
                 'neovim/nvim-lspconfig'
             },
+            cmd = { 'Mason', 'MasonUpdate' },
             ft = {
                 'c',
                 'cpp',
@@ -579,7 +510,8 @@ require('lazy').setup(
         },
         {
             "lervag/vimtex",
-            ft = "tex"
+            ft = "tex",
+            config = SetupVimtex
         },
         {
             'kristijanhusak/vim-dadbod-ui',

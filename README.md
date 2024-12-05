@@ -68,7 +68,8 @@
   - gimp
   - google-chrome (AUR)
   - texlive-binextra
-  - texlive-latex
+  - texlive-fontsrecommended
+  - texlive-latexextra
   - obs-studio
   - onlyoffice-bin (AUR)
 - Entertainment
