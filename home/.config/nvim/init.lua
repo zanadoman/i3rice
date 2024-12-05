@@ -431,7 +431,9 @@ function SetupNvimCmp()
             ['<c-f>'] = require('cmp').mapping.confirm({ select = true }),
             ['<c-e>'] = require('cmp').mapping.abort(),
             ['<c-up>'] = require('cmp').mapping.select_prev_item(),
-            ['<c-down>'] = require('cmp').mapping.select_next_item()
+            ['<c-down>'] = require('cmp').mapping.select_next_item(),
+            ['<c-k>'] = require('cmp').mapping.select_prev_item(),
+            ['<c-j>'] = require('cmp').mapping.select_next_item()
         },
         sources = require('cmp').config.sources(
             { { name = 'nvim_lsp' } },
