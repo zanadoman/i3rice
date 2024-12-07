@@ -2,7 +2,6 @@
 
 # System
 sudo cp -r ./etc/. /etc/
-sudo grub-mkconfig -o /boot/grub/grub.cfg
 
 # Packages
 cat ./pacman.txt | sudo pacman -S -
