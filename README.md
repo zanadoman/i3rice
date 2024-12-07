@@ -1,6 +1,6 @@
 ![Preview](/preview.png)
 
-# Packages (733)
+# Packages (742)
 **Dependencies: git, yay**
 - X11
   - xclip
