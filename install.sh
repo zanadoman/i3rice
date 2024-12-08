@@ -1,6 +1,7 @@
 #!/bin/bash
 
 # System
+sudo cp -r ./boot/loader/. /boot/loader/
 sudo cp -r ./etc/. /etc/
 
 # Packages
