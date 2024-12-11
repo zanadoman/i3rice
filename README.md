@@ -1,6 +1,6 @@
 ![Preview](/preview.png)
 
-# Packages (742)
+# Packages (743)
 **Dependencies: git, yay**
 - X11
   - xclip
@@ -70,6 +70,7 @@
   - texlive-binextra
   - texlive-fontsrecommended
   - texlive-latexextra
+  - texlive-plaingeneric
   - obs-studio
   - onlyoffice-bin (AUR)
 - Entertainment

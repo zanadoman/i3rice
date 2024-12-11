@@ -53,6 +53,7 @@ gimp
 texlive-binextra
 texlive-fontsrecommended
 texlive-latexextra
+texlive-plaingeneric
 obs-studio
 discord
 noto-fonts-emoji
