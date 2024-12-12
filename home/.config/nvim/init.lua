@@ -242,12 +242,6 @@ function SetupNvimSurround()
     require('nvim-surround').setup()
 end
 
-function SetupComment()
-    require('Comment').setup()
-    require('Comment.ft').set('mysql', '--%s')
-    require('Comment.ft').set('plsql', '--%s')
-end
-
 function SetupTelescope()
     require('telescope').setup()
     require('telescope').load_extension('file_browser')
@@ -473,11 +467,6 @@ require('lazy').setup(
             'kylechui/nvim-surround',
             event = 'VeryLazy',
             config = SetupNvimSurround
-        },
-        {
-            'numToStr/Comment.nvim',
-            keys = 'g',
-            config = SetupComment
         },
         {
             'nvim-telescope/telescope.nvim',
