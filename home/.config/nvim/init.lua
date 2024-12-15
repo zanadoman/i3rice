@@ -61,49 +61,6 @@ end, {
     desc = '󰓆 Spelling'
 })
 
--- Source filetypes
-local sources = {
-    'c',
-    'cpp',
-    'cs',
-    'css',
-    'html',
-    'java',
-    'javascript',
-    'lua',
-    'php',
-    'python',
-    'rust',
-    'tex',
-    'typescript'
-}
-
--- Language servers
-local servers = {
-    clangd = { cmd = { 'clangd', '--header-insertion=never' } },
-    csharp_ls = {},
-    cssls = {},
-    emmet_language_server = { filetypes = { '*' } },
-    html = {
-        filetypes = { 'html', 'php', 'templ' },
-        init_options = { provideFormatter = false }
-    },
-    intelephense = {},
-    jdtls = {
-        settings = {
-            java = {
-                settings = {
-                    url = vim.fn.stdpath('config') .. '/org.eclipse.jdt.core.prefs'
-                }
-            }
-        }
-    },
-    lua_ls = { settings = { Lua = { diagnostics = { globals = { 'vim' } } } } },
-    pyright = {},
-    rust_analyzer = {},
-    ts_ls = {}
-}
-
 -- Diagnostics options
 vim.diagnostic.config({
     update_in_insert = true,
@@ -303,7 +260,61 @@ function SetupTelescope()
     })
 end
 
+function SetupNvimTreesitter()
+    require('nvim-treesitter.configs').setup({
+        ensure_installed = {
+            'asm',
+            'bash',
+            'c',
+            'c_sharp',
+            'cmake',
+            'cpp',
+            'css',
+            'doxygen',
+            'fish',
+            'html',
+            'java',
+            'javascript',
+            'latex',
+            'lua',
+            'make',
+            'markdown',
+            'php',
+            'printf',
+            'python',
+            'rust',
+            'sql',
+            'typescript'
+        },
+        highlight = { enable = true }
+    })
+end
+
 function SetupMasonLspconfig()
+    local servers = {
+        clangd = { cmd = { 'clangd', '--header-insertion=never' } },
+        csharp_ls = {},
+        cssls = {},
+        emmet_language_server = { filetypes = { '*' } },
+        html = {
+            filetypes = { 'html', 'php', 'templ' },
+            init_options = { provideFormatter = false }
+        },
+        intelephense = {},
+        jdtls = {
+            settings = {
+                java = {
+                    settings = {
+                        url = vim.fn.stdpath('config') .. '/org.eclipse.jdt.core.prefs'
+                    }
+                }
+            }
+        },
+        lua_ls = { settings = { Lua = { diagnostics = { globals = { 'vim' } } } } },
+        pyright = {},
+        rust_analyzer = {},
+        ts_ls = {}
+    }
     require('lspconfig.ui.windows').default_options.border = 'rounded'
     require('mason').setup({ ui = { border = 'rounded' } })
     require('mason-lspconfig').setup({
@@ -479,13 +490,52 @@ require('lazy').setup(
             config = SetupTelescope
         },
         {
+            'nvim-treesitter/nvim-treesitter',
+            ft = {
+                'asm',
+                'sh',
+                'c',
+                'cs',
+                'cmake',
+                'cpp',
+                'css',
+                'fish',
+                'html',
+                'java',
+                'javascript',
+                'tex',
+                'lua',
+                'make',
+                'markdown',
+                'php',
+                'python',
+                'rust',
+                'sql',
+                'typescript'
+            },
+            config = SetupNvimTreesitter
+        },
+        {
             'williamboman/mason-lspconfig.nvim',
             dependencies = {
                 'williamboman/mason.nvim',
                 'neovim/nvim-lspconfig'
             },
             cmd = { 'Mason', 'MasonUpdate' },
-            ft = sources,
+            ft = {
+                'c',
+                'cpp',
+                'cs',
+                'css',
+                'html',
+                'java',
+                'javascript',
+                'lua',
+                'php',
+                'python',
+                'rust',
+                'typescript'
+            },
             config = SetupMasonLspconfig
         },
         {
@@ -502,8 +552,8 @@ require('lazy').setup(
             config = SetupNvimCmp
         },
         {
-            "lervag/vimtex",
-            ft = "tex",
+            'lervag/vimtex',
+            ft = 'tex',
             config = SetupVimtex
         },
         {
