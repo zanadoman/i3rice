@@ -25,6 +25,7 @@ ripgrep
 rocm-smi-lib
 sshfs
 neovim
+tree-sitter-cli
 ranger
 w3m
 highlight

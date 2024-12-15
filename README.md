@@ -35,6 +35,7 @@
   - sshfs
 - Editor
   - neovim
+  - tree-sitter-cli
 - File manager
   - ranger
   - w3m
