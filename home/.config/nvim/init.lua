@@ -195,8 +195,8 @@ function SetupNvimAutopairs()
     require('nvim-autopairs').setup()
 end
 
-function SetupNvimSurround()
-    require('nvim-surround').setup()
+function SetupMiniSurround()
+    require('mini.surround').setup({ respect_selection_type = true })
 end
 
 function SetupTelescope()
@@ -475,9 +475,9 @@ require('lazy').setup(
             config = SetupNvimAutopairs
         },
         {
-            'kylechui/nvim-surround',
+            'echasnovski/mini.surround',
             event = 'VeryLazy',
-            config = SetupNvimSurround
+            config = SetupMiniSurround
         },
         {
             'nvim-telescope/telescope.nvim',
