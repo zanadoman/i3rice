@@ -3,4 +3,5 @@ android-ndk
 android-studio
 google-chrome
 onlyoffice-bin
+pandoc-bin
 minecraft-launcher

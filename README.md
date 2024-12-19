@@ -74,6 +74,7 @@
   - texlive-plaingeneric
   - obs-studio
   - onlyoffice-bin (AUR)
+  - pandoc-bin (AUR)
 - Entertainment
   - discord
   - minecraft-launcher (AUR)
