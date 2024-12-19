@@ -1,6 +1,7 @@
 if status is-interactive
     set fish_greeting
     export PATH="$HOME/.local/bin/:/usr/lib/emscripten/:$PATH:/opt/android-ndk/toolchains/llvm/prebuilt/linux-x86_64/bin/"
+    export LIBRARY_PATH="/usr/local/lib:$LIBRARY_PATH"
     export LD_LIBRARY_PATH="/usr/local/lib:$LD_LIBRARY_PATH"
     export EDITOR=nvim
     export VISUAL=nvim
