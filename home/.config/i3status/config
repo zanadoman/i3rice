@@ -56,5 +56,5 @@ battery all {
 
 # Time
 tztime local {
-    format = " %m.%d. 󰥔 %H:%M %p "
+    format = " %a, %m.%d. 󰥔 %H:%M %p "
 }
