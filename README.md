@@ -1,6 +1,6 @@
 ![Preview](/preview.png)
 
-# Packages (739)
+# Packages (741)
 **Dependencies: git, yay**
 - X11
   - xclip
@@ -70,6 +70,8 @@
   - google-chrome (AUR)
   - texlive-binextra
   - texlive-fontsrecommended
+  - texlive-langenglish
+  - texlive-langeuropean
   - texlive-latexextra
   - texlive-plaingeneric
   - obs-studio

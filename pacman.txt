@@ -53,6 +53,8 @@ audacity
 gimp
 texlive-binextra
 texlive-fontsrecommended
+texlive-langenglish
+texlive-langeuropean
 texlive-latexextra
 texlive-plaingeneric
 obs-studio
