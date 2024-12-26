@@ -14,7 +14,6 @@
   - i3-wm
   - i3status
   - maim
-  - picom
 - Terminal
   - alacritty
   - fastfetch
