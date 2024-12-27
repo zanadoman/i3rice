@@ -28,7 +28,7 @@ ranger
 w3m
 highlight
 atool
-p7zip
+7zip
 unrar
 zip
 aarch64-linux-gnu-gcc

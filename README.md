@@ -40,7 +40,7 @@
   - highlight
 - Archiving
   - atool
-  - p7zip
+  - 7zip
   - unrar
   - zip
 - Programming
