@@ -1,6 +1,6 @@
 # General
 general {
-    interval = 5
+    interval = 1
     colors = false
 }
 

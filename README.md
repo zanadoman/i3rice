@@ -28,7 +28,6 @@
   - btop
   - less
   - mosh
-  - pulsemixer
   - ripgrep
   - rocm-smi-lib
   - sshfs
