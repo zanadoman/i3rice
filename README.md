@@ -27,6 +27,7 @@
   - brightnessctl
   - btop
   - less
+  - pulsemixer
   - ripgrep
   - rocm-smi-lib
   - sshfs
