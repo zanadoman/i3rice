@@ -371,7 +371,7 @@ function SetupNvimCmp()
     require('cmp').setup({
         snippet = {
             expand = function(args)
-                require('luasnip').lsp_expand(args.body)
+                vim.snipet.lsp_expand(args.body)
             end
         },
         window = {
@@ -541,7 +541,6 @@ require('lazy').setup(
         {
             'hrsh7th/nvim-cmp',
             dependencies = {
-                'L3MON4D3/LuaSnip',
                 'hrsh7th/cmp-nvim-lsp',
                 'hrsh7th/cmp-nvim-lsp-signature-help',
                 'hrsh7th/cmp-buffer',
