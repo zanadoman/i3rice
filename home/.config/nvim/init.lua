@@ -371,7 +371,7 @@ function SetupNvimCmp()
     require('cmp').setup({
         snippet = {
             expand = function(args)
-                vim.snipet.lsp_expand(args.body)
+                vim.snippet.lsp_expand(args.body)
             end
         },
         window = {
