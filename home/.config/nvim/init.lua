@@ -72,17 +72,17 @@ vim.lsp.handlers['textDocument/hover'] = vim.lsp.with(vim.lsp.handlers.hover, {
     border = 'rounded'
 })
 
-function SetupTokionight()
+function SetupTokionightNvim()
     require('tokyonight').setup({ style = 'night', transparent = true })
     vim.cmd('colorscheme tokyonight')
     vim.api.nvim_set_hl(0, 'WinSeparator', { bg = '#16161e', fg = '#16161e' })
 end
 
-function SetupLualine()
+function SetupLualineNvim()
     require('lualine').setup({ options = { globalstatus = true } })
 end
 
-function SetupBarbar()
+function SetupBarbarNvim()
     require('barbar').setup({
         animation = false,
         focus_on_close = 'previous',
@@ -169,7 +169,7 @@ function SetupBarbar()
     vim.api.nvim_set_hl(0, 'BufferTabpageFill', { bg = '#16161e', fg = '#16161e' })
 end
 
-function SetupNoNextPain()
+function SetupNoNeckPainNvim()
     require('no-neck-pain').setup({
         autocmds = { enableOnVimEnter = true, skipEnteringNoNeckPainBuffer = true },
         buffers = { right = { enabled = false } }
@@ -180,11 +180,11 @@ function SetupNoNextPain()
     })
 end
 
-function SetupStayCentered()
+function SetupStayCenteredNvim()
     require('stay-centered').setup()
 end
 
-function SetupIndentBlankline()
+function SetupIndentBlanklineNvim()
     require('ibl').setup({
         indent = { char = '.' },
         scope = { enabled = false }
@@ -195,7 +195,11 @@ function SetupNvimAutopairs()
     require('nvim-autopairs').setup()
 end
 
-function SetupTelescope()
+function SetupNvimSurround()
+    require('nvim-surround').setup()
+end
+
+function SetupTelescopeNvim()
     require('telescope').setup()
     require('telescope').load_extension('file_browser')
     vim.keymap.set('n', '<leader>f', require('telescope').extensions.file_browser.file_browser, {
@@ -286,7 +290,7 @@ function SetupNvimTreesitter()
     })
 end
 
-function SetupMasonLspconfig()
+function SetupMasonLspconfigNvim()
     local servers = {
         clangd = { cmd = { 'clangd', '--header-insertion=never' } },
         csharp_ls = {},
@@ -412,7 +416,7 @@ function SetupVimtex()
     vim.g.vimtex_view_general_viewer = 'google-chrome-stable'
 end
 
-function SetupWhichKey()
+function SetupWhichKeyNvim()
     require('which-key').setup({
         delay = 1000,
         win = { border = 'rounded' },
@@ -438,38 +442,43 @@ require('lazy').setup(
         {
             'folke/tokyonight.nvim',
             lazy = false,
-            config = SetupTokionight
+            config = SetupTokionightNvim
         },
         {
             'nvim-lualine/lualine.nvim',
             event = 'BufEnter',
-            config = SetupLualine
+            config = SetupLualineNvim
         },
         {
             'romgrk/barbar.nvim',
             dependencies = { 'nvim-tree/nvim-web-devicons' },
             event = 'BufEnter',
-            config = SetupBarbar
+            config = SetupBarbarNvim
         },
         {
             'shortcuts/no-neck-pain.nvim',
             event = 'BufEnter',
-            config = SetupNoNextPain
+            config = SetupNoNeckPainNvim
         },
         {
             'arnamak/stay-centered.nvim',
             event = 'VeryLazy',
-            config = SetupStayCentered
+            config = SetupStayCenteredNvim
         },
         {
             'lukas-reineke/indent-blankline.nvim',
             event = 'VeryLazy',
-            config = SetupIndentBlankline
+            config = SetupIndentBlanklineNvim
         },
         {
             'windwp/nvim-autopairs',
             event = 'InsertEnter',
             config = SetupNvimAutopairs
+        },
+        {
+            'kylechui/nvim-surround',
+            event = 'VeryLazy',
+            config = SetupNvimSurround
         },
         {
             'nvim-telescope/telescope.nvim',
@@ -479,7 +488,7 @@ require('lazy').setup(
                 'lewis6991/gitsigns.nvim'
             },
             event = 'VeryLazy',
-            config = SetupTelescope
+            config = SetupTelescopeNvim
         },
         {
             'nvim-treesitter/nvim-treesitter',
@@ -530,7 +539,7 @@ require('lazy').setup(
                 'rust',
                 'typescript'
             },
-            config = SetupMasonLspconfig
+            config = SetupMasonLspconfigNvim
         },
         {
             'hrsh7th/nvim-cmp',
@@ -559,7 +568,7 @@ require('lazy').setup(
         {
             'folke/which-key.nvim',
             event = 'VeryLazy',
-            config = SetupWhichKey
+            config = SetupWhichKeyNvim
         }
     },
     {
