@@ -195,10 +195,6 @@ function SetupNvimAutopairs()
     require('nvim-autopairs').setup()
 end
 
-function SetupMiniSurround()
-    require('mini.surround').setup({ respect_selection_type = true })
-end
-
 function SetupTelescope()
     require('telescope').setup()
     require('telescope').load_extension('file_browser')
@@ -476,11 +472,6 @@ require('lazy').setup(
             config = SetupNvimAutopairs
         },
         {
-            'echasnovski/mini.surround',
-            event = 'VeryLazy',
-            config = SetupMiniSurround
-        },
-        {
             'nvim-telescope/telescope.nvim',
             dependencies = {
                 'nvim-lua/plenary.nvim',
@@ -520,7 +511,9 @@ require('lazy').setup(
             'williamboman/mason-lspconfig.nvim',
             dependencies = {
                 'williamboman/mason.nvim',
-                'neovim/nvim-lspconfig'
+                'neovim/nvim-lspconfig',
+                'hrsh7th/cmp-nvim-lsp',
+                'hrsh7th/cmp-nvim-lsp-signature-help'
             },
             cmd = { 'Mason', 'MasonUpdate' },
             ft = {
@@ -542,14 +535,12 @@ require('lazy').setup(
         {
             'hrsh7th/nvim-cmp',
             dependencies = {
-                'hrsh7th/cmp-nvim-lsp',
-                'hrsh7th/cmp-nvim-lsp-signature-help',
                 'hrsh7th/cmp-buffer',
                 'hrsh7th/cmp-cmdline',
                 'hrsh7th/cmp-path',
                 'hrsh7th/cmp-calc'
             },
-            event = { 'CmdlineEnter', 'InsertEnter', 'LspAttach' },
+            event = { 'CmdlineEnter', 'InsertEnter' },
             config = SetupNvimCmp
         },
         {
