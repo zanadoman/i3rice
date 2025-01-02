@@ -55,6 +55,7 @@ texlive-langenglish
 texlive-langeuropean
 texlive-latexextra
 texlive-plaingeneric
+pandoc-cli
 discord
 noto-fonts-emoji
 spotify-launcher

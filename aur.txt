@@ -2,5 +2,4 @@ gromit-mpx
 android-ndk
 android-studio
 google-chrome
-pandoc-bin
 minecraft-launcher

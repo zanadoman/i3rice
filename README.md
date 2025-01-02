@@ -72,7 +72,7 @@
   - texlive-langeuropean
   - texlive-latexextra
   - texlive-plaingeneric
-  - pandoc-bin (AUR)
+  - pandoc-cli
 - Entertainment
   - discord
   - minecraft-launcher (AUR)
