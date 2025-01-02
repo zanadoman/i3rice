@@ -47,7 +47,6 @@ npm
 sqlx-cli
 valgrind
 virtualbox
-audacity
 ffmpeg
 gimp
 texlive-binextra

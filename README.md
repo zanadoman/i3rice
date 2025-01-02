@@ -63,7 +63,6 @@
   - valgrind
   - virtualbox
 - Media
-  - audacity
   - ffmpeg
   - gimp
   - google-chrome (AUR)
