@@ -294,22 +294,14 @@ function SetupMasonLspconfigNvim()
     local servers = {
         clangd = { cmd = { 'clangd', '--header-insertion=never' } },
         csharp_ls = {},
-        cssls = {},
+        cssls = { filetypes = { 'html', 'javascript', 'php', 'rust' } },
         emmet_language_server = { filetypes = { '*' } },
         html = {
-            filetypes = { 'html', 'php', 'templ' },
+            filetypes = { 'html', 'javascript', 'php', 'rust' },
             init_options = { provideFormatter = false }
         },
         intelephense = {},
-        jdtls = {
-            settings = {
-                java = {
-                    settings = {
-                        url = vim.fn.stdpath('config') .. '/org.eclipse.jdt.core.prefs'
-                    }
-                }
-            }
-        },
+        jdtls = {},
         lua_ls = { settings = { Lua = { diagnostics = { globals = { 'vim' } } } } },
         pyright = {},
         rust_analyzer = {},
