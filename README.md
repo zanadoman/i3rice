@@ -64,6 +64,7 @@
   - virtualbox
 - Media
   - audacity
+  - ffmpeg
   - gimp
   - google-chrome (AUR)
   - texlive-binextra
@@ -72,7 +73,6 @@
   - texlive-langeuropean
   - texlive-latexextra
   - texlive-plaingeneric
-  - obs-studio
   - pandoc-bin (AUR)
 - Entertainment
   - discord
