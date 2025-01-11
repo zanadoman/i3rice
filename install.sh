@@ -18,11 +18,8 @@ sudo systemctl start mariadb.service
 sudo mariadb-secure-installation
 sudo systemctl enable mariadb.service
 
-# Rust
-rustup default stable
-
 # Folders
-mkdir -p "$HOME/.local/bin/"
+mkdir -p "$HOME/Desktop/"
 mkdir -p "$HOME/Downloads/"
 mkdir -p "$HOME/Documents/"
 mkdir -p "$HOME/Projects/"
